@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sweet Secrets Members Club – Meu Perfil</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      height: 100%;
+      background: #0a0a0a;
+      color: #f5f5f5;
+      font-family: 'Arial', sans-serif;
+      line-height: 1.6;
+    }
+    a, button {
+      text-decoration: none;
+      outline: none;
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #1a1a1a;
+      z-index: 1000;
+    }
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 0;
+    }
+    .logo {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 2px;
+    }
+    .user-menu {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+    .user-menu a {
+      color: #cccccc;
+      font-size: 14px;
+      font-weight: 300;
+      letter-spacing: 1px;
+      transition: color 0.3s ease;
+    }
+    .user-menu a:hover { color: #a6937a; }
+    main {
+      padding: 80px 32px 32px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .profile-content {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 48px;
+    }
+    .profile-main { display: flex; flex-direction: column; gap: 32px; }
+    .profile-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid #1a1a1a;
+      padding: 40px 32px;
+      border-radius: 8px;
+    }
+    .card-title {
+      font-family: 'Georgia', serif;
+      font-size: 18px;
+      font-weight: 400;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 32px;
+      border-bottom: 1px solid #1a1a1a;
+      padding-bottom: 16px;
+    }
+    .profile-basic {
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+    }
+    .profile-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid #333;
+      overflow: hidden;
+    }
+    .profile-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .profile-info {
+      flex: 1;
+    }
+    .profile-name {
+      font-family: 'Georgia', serif;
+      font-size: 28px;
+      font-weight: 400;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+    .profile-role {
+      font-size: 16px;
+      font-weight: 500;
+      color: #a6937a;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .profile-company {
+      font-size: 16px;
+      color: #aaa;
+      margin-bottom: 24px;
+    }
+    .level-label {
+      font-size: 14px;
+      color: #f5f5f5;
+      margin-bottom: 12px;
+    }
+    .level-label::before {
+      content: '🔑 ';
+    }
+    .dual-progress-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .progress-label {
+      font-size: 13px;
+      color: #c2bfa0;
+    }
+    .progress-bar-container {
+      background: #333;
+      border-radius: 4px;
+      overflow: hidden;
+      height: 12px;
+    }
+    .progress-bar-fill {
+      background: #a6937a;
+      height: 100%;
+      transition: width 0.4s ease;
+    }
+    .toggle-container {
+      margin-top: 16px;
+    }
+    .toggle-label {
+      font-size: 13px;
+      margin-right: 12px;
+      color: #c2bfa0;
+    }
+    .btn-edit-toggle {
+      margin-top: 24px;
+      color: #a6937a;
+      text-transform: uppercase;
+      font-size: 12px;
+      background: transparent;
+      border: 1px solid #a6937a;
+      border-radius: 4px;
+      padding: 8px 16px;
+      transition: all 0.3s ease;
+    }
+    .btn-edit-toggle:hover {
+      background: #a6937a;
+      color: #000;
+    }
+    .benefits-card {
+      background: #1a1a1a;
+      border-radius: 12px;
+      padding: 24px 32px;
+    }
+    .benefits-title {
+      font-family: 'Georgia', serif;
+      font-size: 18px;
+      color: #f5f5f5;
+      margin-bottom: 16px;
+    }
+    .benefit-item {
+      margin-bottom: 16px;
+    }
+    .benefit-name {
+      font-size: 15px;
+      color: #f5f0e1;
+    }
+    .benefit-desc {
+      font-size: 14px;
+      color: #c2bfa0;
+    }
+    .event-card {
+      background: #ffffff;
+      color: #000000;
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .event-card .event-title {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+    .event-card .event-date {
+      font-size: 12px;
+      color: #a6937a;
+    }
+    .event-card .event-location {
+      font-size: 13px;
+      color: #444;
+    }
+    @media (max-width: 1024px) {
+      .profile-content {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <h1 class="logo">Sweet Secrets Members Club</h1>
+        <nav class="user-menu">
+          <a href="index.html">Diretório</a>
+          <a href="#" id="notifBtn">Notificações</a>
+          <a href="#" id="btnLogout">Sair</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <main>
+    <div class="profile-content">
+      <div class="profile-main">
+        <div class="profile-card">
+          <div class="card-title">Meu Perfil</div>
+          <div class="profile-basic">
+            <div class="profile-avatar">
+              <img src="https://i.pravatar.cc/150?img=32" alt="Avatar" />
+            </div>
+            <div class="profile-info">
+              <h2 class="profile-name">António Silva</h2>
+              <div class="profile-role">Head of Latin America</div>
+              <div class="profile-company">Entain Group</div>
+              <div class="level-label">Silver Key Member</div>
+              <div class="dual-progress-bars">
+                <div>
+                  <div class="progress-label">Faltam 2 eventos para Gold</div>
+                  <div class="progress-bar-container">
+                    <div class="progress-bar-fill" style="width: 80%;"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="progress-label">Faltam 5 visitas para Gold</div>
+                  <div class="progress-bar-container">
+                    <div class="progress-bar-fill" style="width: 60%;"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="toggle-container">
+                <label class="toggle-label" for="visibility">Quero estar visível para os outros membros:</label>
+                <input type="checkbox" id="visibility" checked />
+              </div>
+              <button class="btn-edit-toggle" onclick="toggleEdit()">Editar Perfil</button>
+            </div>
+          </div>
+        </div>
+        <div class="profile-card" id="editForm" style="display:none;">
+          <div class="card-title">Editar Perfil</div>
+          <!-- Formulário completo aqui como no original -->
+        </div>
+        <div class="profile-card">
+          <div class="card-title">Próximos Eventos</div>
+          <div class="event-card">
+            <div class="event-title">Jantar Executivo Tech Leaders</div>
+            <div class="event-date">15 JUN 2025</div>
+            <div class="event-location">Fasano São Paulo</div>
+          </div>
+          <div class="event-card">
+            <div class="event-title">Summit da Indústria de Jogos</div>
+            <div class="event-date">22 JUN 2025</div>
+            <div class="event-location">Sweet Secrets Lounge</div>
+          </div>
+        </div>
+        <div class="profile-card">
+          <div class="card-title">Eventos Passados</div>
+          <div class="event-card">
+            <div class="event-title">Workshop de Investimentos</div>
+            <div class="event-date">10 ABR 2025</div>
+            <div class="event-location">Sala VIP</div>
+          </div>
+          <div class="event-card">
+            <div class="event-title">Coquetel de Lançamento</div>
+            <div class="event-date">15 JAN 2025</div>
+            <div class="event-location">Sweet Secrets Club</div>
+          </div>
+        </div>
+      </div>
+      <div class="profile-sidebar">
+        <div class="benefits-card">
+          <div class="benefits-title">Benefícios da Membership</div>
+          <div class="benefit-item">
+            <div class="benefit-name">Acesso ao Diretório</div>
+            <div class="benefit-desc">Conecte-se com todos os membros cadastrados.</div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-name">Eventos Gerais</div>
+            <div class="benefit-desc">Participação em eventos abertos a todos os membros.</div>
+          </div>
+        </div>
+        <div class="benefits-card">
+          <div class="benefits-title">Benefícios Exclusivos – Silver</div>
+          <div class="benefit-item">
+            <div class="benefit-name">Acesso VIP Lounge</div>
+            <div class="benefit-desc">Entrada livre com convidados.</div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-name">Eventos Exclusivos</div>
+            <div class="benefit-desc">Convites para jantares executivos.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script>
+    function toggleEdit() {
+      const form = document.getElementById('editForm');
+      form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    }
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+

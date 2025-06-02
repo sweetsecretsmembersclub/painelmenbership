@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sweet Secrets Members Club – Login</title>
+
+  <!-- Fonte Montserrat e Tailwind via CDN -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #000; /* fundo preto */
+      color: #fff;            /* texto branco */
+    }
+    /* Remover contornos nativos em foco para inputs e botões */
+    input:focus, button:focus {
+      outline: none;
+      box-shadow: none;
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center min-h-screen">
+
+  <!-- Container de toda a área de login -->
+  <div class="w-full max-w-sm">
+    <!-- Títulos (centrados) -->
+    <div class="text-center mb-8">
+      <h1 class="text-3xl font-semibold mb-2">Sweet Secrets Members Club</h1>
+      <p class="text-gray-300 text-sm">Navegue no seu clube</p>
+    </div>
+
+    <!-- Caixa de login branca, levemente arredondada -->
+    <div class="bg-white rounded-lg shadow-lg p-8">
+      <!-- Formulário -->
+      <form id="loginForm" class="space-y-4">
+        <!-- E-mail -->
+        <div>
+          <label for="loginEmail" class="sr-only">E-mail</label>
+          <input
+            id="loginEmail"
+            type="text"
+            placeholder="E-mail"
+            class="w-full px-4 py-2 border border-gray-300 rounded-md text-black"
+            autocomplete="off"
+          />
+        </div>
+
+        <!-- Senha -->
+        <div>
+          <label for="loginPassword" class="sr-only">Senha</label>
+          <input
+            id="loginPassword"
+            type="password"
+            placeholder="Senha"
+            class="w-full px-4 py-2 border border-gray-300 rounded-md text-black"
+            autocomplete="off"
+          />
+        </div>
+
+        <!-- Botão Entrar (preto, hover azul) -->
+        <div>
+          <button
+            id="btnLogin"
+            type="button"
+            class="w-full bg-black text-white font-medium py-2 rounded-md hover:bg-blue-600"
+          >
+            Entrar
+          </button>
+        </div>
+
+        <!-- Mensagem de erro (inicialmente oculta) -->
+        <p id="loginError" class="hidden text-red-500 text-sm text-center mt-2">
+          Credenciais inválidas.
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Simulação de dados de membros
+    const members = [
+      { id: 1, name: 'António Silva', email: 'antonio@entain.com', password: 'senha123' },
+      { id: 2, name: 'Inês Relvas',   email: 'ines@sweetsecrets.club', password: 'senha456' }
+    ];
+
+    const loginEmail    = document.getElementById('loginEmail');
+    const loginPassword = document.getElementById('loginPassword');
+    const loginError    = document.getElementById('loginError');
+    const btnLogin      = document.getElementById('btnLogin');
+
+    // Ao clicar em Entrar
+    btnLogin.addEventListener('click', () => {
+      const email = loginEmail.value.trim();
+      const pwd   = loginPassword.value.trim();
+      const member = members.find(m => m.email === email && m.password === pwd);
+
+      if (!member) {
+        loginError.classList.remove('hidden');
+        return;
+      }
+      // Limpa erro (caso estivesse visível)
+      loginError.classList.add('hidden');
+
+      // Salva “sessão” no localStorage
+      localStorage.setItem('ss_currentMember', JSON.stringify(member));
+
+      // Redireciona para página inicial
+      window.location.href = 'index.html';
+    });
+  </script>
+</body>
+</html>
+
+
