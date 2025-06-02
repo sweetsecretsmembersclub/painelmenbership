@@ -157,14 +157,44 @@
       height: 100%;
       transition: width 0.4s ease;
     }
+    
+    /* Toggle Switch Styles */
     .toggle-container {
       margin-top: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
     .toggle-label {
       font-size: 13px;
-      margin-right: 12px;
       color: #c2bfa0;
     }
+    .toggle-switch {
+      position: relative;
+      width: 50px;
+      height: 24px;
+      background: #333;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .toggle-switch.active {
+      background: #a6937a;
+    }
+    .toggle-slider {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 20px;
+      height: 20px;
+      background: #fff;
+      border-radius: 50%;
+      transition: transform 0.3s ease;
+    }
+    .toggle-switch.active .toggle-slider {
+      transform: translateX(26px);
+    }
+    
     .btn-edit-toggle {
       margin-top: 24px;
       color: #a6937a;
@@ -180,28 +210,161 @@
       background: #a6937a;
       color: #000;
     }
+    
+    /* Edit Form Styles */
+    .edit-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 32px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+    .form-group.full-width {
+      grid-column: 1 / -1;
+    }
+    .form-label {
+      font-size: 13px;
+      color: #c2bfa0;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .form-input, .form-textarea {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid #333;
+      border-radius: 4px;
+      padding: 12px 16px;
+      color: #f5f5f5;
+      font-size: 14px;
+      transition: border-color 0.3s ease;
+    }
+    .form-input:focus, .form-textarea:focus {
+      border-color: #a6937a;
+      outline: none;
+    }
+    .form-textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    .form-actions {
+      grid-column: 1 / -1;
+      display: flex;
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .btn-save, .btn-cancel {
+      padding: 12px 24px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+    }
+    .btn-save {
+      background: #a6937a;
+      color: #000;
+      border: 1px solid #a6937a;
+    }
+    .btn-save:hover {
+      background: #b5a589;
+    }
+    .btn-cancel {
+      background: transparent;
+      color: #999;
+      border: 1px solid #333;
+    }
+    .btn-cancel:hover {
+      color: #f5f5f5;
+      border-color: #666;
+    }
+    
+    /* Enhanced Benefits Card */
     .benefits-card {
-      background: #1a1a1a;
+      background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+      border: 1px solid #333;
       border-radius: 12px;
-      padding: 24px 32px;
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .benefits-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #a6937a, #d4c4a8, #a6937a);
+    }
+    .benefits-card.exclusive {
+      background: linear-gradient(135deg, #2a1f14 0%, #3d2b1a 100%);
+      border: 1px solid #a6937a;
+      box-shadow: 0 8px 32px rgba(166, 147, 122, 0.15);
+    }
+    .benefits-card.exclusive::before {
+      background: linear-gradient(90deg, #a6937a, #f4e4c1, #a6937a);
+      height: 4px;
     }
     .benefits-title {
       font-family: 'Georgia', serif;
       font-size: 18px;
       color: #f5f5f5;
-      margin-bottom: 16px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .benefits-card.exclusive .benefits-title {
+      color: #f4e4c1;
+      font-size: 20px;
+      text-shadow: 0 2px 4px rgba(166, 147, 122, 0.3);
+    }
+    .benefits-title::before {
+      content: '✨';
+      font-size: 24px;
+    }
+    .benefits-card.exclusive .benefits-title::before {
+      content: '👑';
+      font-size: 28px;
     }
     .benefit-item {
-      margin-bottom: 16px;
+      margin-bottom: 20px;
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 8px;
+      border-left: 3px solid #666;
+      transition: all 0.3s ease;
+    }
+    .benefits-card.exclusive .benefit-item {
+      background: rgba(244, 228, 193, 0.05);
+      border-left: 3px solid #a6937a;
+    }
+    .benefit-item:hover {
+      transform: translateX(4px);
+      background: rgba(255, 255, 255, 0.05);
     }
     .benefit-name {
       font-size: 15px;
       color: #f5f0e1;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+    .benefits-card.exclusive .benefit-name {
+      color: #f4e4c1;
+      font-weight: 600;
     }
     .benefit-desc {
       font-size: 14px;
       color: #c2bfa0;
+      line-height: 1.5;
     }
+    .benefits-card.exclusive .benefit-desc {
+      color: #d4c4a8;
+    }
+    
     .event-card {
       background: #ffffff;
       color: #000000;
@@ -209,6 +372,12 @@
       padding: 20px 24px;
       margin-bottom: 16px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .event-info {
+      flex: 1;
     }
     .event-card .event-title {
       font-size: 16px;
@@ -223,9 +392,32 @@
       font-size: 13px;
       color: #444;
     }
+    .btn-cancel-event {
+      background: #dc3545;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+    }
+    .btn-cancel-event:hover {
+      background: #c82333;
+      transform: translateY(-1px);
+    }
+    
     @media (max-width: 1024px) {
       .profile-content {
         grid-template-columns: 1fr;
+      }
+      .edit-form {
+        grid-template-columns: 1fr;
+      }
+      .event-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
       }
     }
   </style>
@@ -272,74 +464,167 @@
                 </div>
               </div>
               <div class="toggle-container">
-                <label class="toggle-label" for="visibility">Quero estar visível para os outros membros:</label>
-                <input type="checkbox" id="visibility" checked />
+                <span class="toggle-label">Perfil visível para outros membros</span>
+                <div class="toggle-switch active" onclick="toggleVisibility(this)">
+                  <div class="toggle-slider"></div>
+                </div>
               </div>
               <button class="btn-edit-toggle" onclick="toggleEdit()">Editar Perfil</button>
             </div>
           </div>
         </div>
+        
         <div class="profile-card" id="editForm" style="display:none;">
           <div class="card-title">Editar Perfil</div>
-          <!-- Formulário completo aqui como no original -->
+          <div class="edit-form">
+            <div class="form-group">
+              <label class="form-label">Nome Completo</label>
+              <input type="text" class="form-input" value="António Silva" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Cargo</label>
+              <input type="text" class="form-input" value="Head of Latin America" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Empresa</label>
+              <input type="text" class="form-input" value="Entain Group" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Indústria</label>
+              <input type="text" class="form-input" value="Gaming & Entertainment" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">LinkedIn</label>
+              <input type="url" class="form-input" placeholder="https://linkedin.com/in/..." />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Site da Empresa</label>
+              <input type="url" class="form-input" placeholder="https://..." />
+            </div>
+            <div class="form-group full-width">
+              <label class="form-label">Interesses</label>
+              <input type="text" class="form-input" placeholder="Tecnologia, Investimentos, Esportes..." />
+            </div>
+            <div class="form-group full-width">
+              <label class="form-label">Biografia</label>
+              <textarea class="form-textarea" placeholder="Conte um pouco sobre você e sua experiência profissional..."></textarea>
+            </div>
+            <div class="form-actions">
+              <button class="btn-save" onclick="saveProfile()">Salvar Alterações</button>
+              <button class="btn-cancel" onclick="toggleEdit()">Cancelar</button>
+            </div>
+          </div>
         </div>
+        
         <div class="profile-card">
           <div class="card-title">Próximos Eventos</div>
           <div class="event-card">
-            <div class="event-title">Jantar Executivo Tech Leaders</div>
-            <div class="event-date">15 JUN 2025</div>
-            <div class="event-location">Fasano São Paulo</div>
+            <div class="event-info">
+              <div class="event-title">Jantar Executivo Tech Leaders</div>
+              <div class="event-date">15 JUN 2025</div>
+              <div class="event-location">Fasano São Paulo</div>
+            </div>
+            <button class="btn-cancel-event" onclick="cancelEvent(this)">Cancelar Inscrição</button>
           </div>
           <div class="event-card">
-            <div class="event-title">Summit da Indústria de Jogos</div>
-            <div class="event-date">22 JUN 2025</div>
-            <div class="event-location">Sweet Secrets Lounge</div>
+            <div class="event-info">
+              <div class="event-title">Summit da Indústria de Jogos</div>
+              <div class="event-date">22 JUN 2025</div>
+              <div class="event-location">Sweet Secrets Lounge</div>
+            </div>
+            <button class="btn-cancel-event" onclick="cancelEvent(this)">Cancelar Inscrição</button>
           </div>
         </div>
+        
         <div class="profile-card">
           <div class="card-title">Eventos Passados</div>
           <div class="event-card">
-            <div class="event-title">Workshop de Investimentos</div>
-            <div class="event-date">10 ABR 2025</div>
-            <div class="event-location">Sala VIP</div>
+            <div class="event-info">
+              <div class="event-title">Workshop de Investimentos</div>
+              <div class="event-date">10 ABR 2025</div>
+              <div class="event-location">Sala VIP</div>
+            </div>
           </div>
           <div class="event-card">
-            <div class="event-title">Coquetel de Lançamento</div>
-            <div class="event-date">15 JAN 2025</div>
-            <div class="event-location">Sweet Secrets Club</div>
+            <div class="event-info">
+              <div class="event-title">Coquetel de Lançamento</div>
+              <div class="event-date">15 JAN 2025</div>
+              <div class="event-location">Sweet Secrets Club</div>
+            </div>
           </div>
         </div>
       </div>
+      
       <div class="profile-sidebar">
         <div class="benefits-card">
           <div class="benefits-title">Benefícios da Membership</div>
           <div class="benefit-item">
             <div class="benefit-name">Acesso ao Diretório</div>
-            <div class="benefit-desc">Conecte-se com todos os membros cadastrados.</div>
+            <div class="benefit-desc">Conecte-se com todos os membros cadastrados da comunidade exclusiva.</div>
           </div>
           <div class="benefit-item">
             <div class="benefit-name">Eventos Gerais</div>
-            <div class="benefit-desc">Participação em eventos abertos a todos os membros.</div>
+            <div class="benefit-desc">Participação em eventos abertos a todos os membros do clube.</div>
           </div>
         </div>
-        <div class="benefits-card">
-          <div class="benefits-title">Benefícios Exclusivos – Silver</div>
+        
+        <div class="benefits-card exclusive">
+          <div class="benefits-title">Privilégios Exclusivos Silver</div>
           <div class="benefit-item">
-            <div class="benefit-name">Acesso VIP Lounge</div>
-            <div class="benefit-desc">Entrada livre com convidados.</div>
+            <div class="benefit-name">🥂 Acesso VIP Lounge</div>
+            <div class="benefit-desc">Entrada livre com até 3 convidados no nosso lounge privativo com bar premium.</div>
           </div>
           <div class="benefit-item">
-            <div class="benefit-name">Eventos Exclusivos</div>
-            <div class="benefit-desc">Convites para jantares executivos.</div>
+            <div class="benefit-name">🍽️ Jantares Executivos</div>
+            <div class="benefit-desc">Convites exclusivos para jantares íntimos com líderes da indústria em restaurantes estrelados.</div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-name">💼 Networking Prioritário</div>
+            <div class="benefit-desc">Acesso antecipado a eventos de networking com C-levels e investidores.</div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-name">🏆 Concierge Premium</div>
+            <div class="benefit-desc">Serviço personalizado para reservas e experiências exclusivas na cidade.</div>
           </div>
         </div>
       </div>
     </div>
   </main>
+  
   <script>
     function toggleEdit() {
       const form = document.getElementById('editForm');
       form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    }
+    
+    function toggleVisibility(toggle) {
+      toggle.classList.toggle('active');
+      const isVisible = toggle.classList.contains('active');
+      console.log('Perfil visível:', isVisible);
+      // Aqui você pode fazer uma chamada para o backend para salvar a preferência
+    }
+    
+    function saveProfile() {
+      // Implementar salvamento do perfil
+      alert('Perfil salvo com sucesso!');
+      toggleEdit();
+    }
+    
+    function cancelEvent(button) {
+      const eventCard = button.closest('.event-card');
+      const eventTitle = eventCard.querySelector('.event-title').textContent;
+      
+      if (confirm(`Tem certeza que deseja cancelar sua inscrição no evento "${eventTitle}"?`)) {
+        eventCard.style.opacity = '0.5';
+        button.textContent = 'Cancelado';
+        button.style.background = '#6c757d';
+        button.disabled = true;
+        
+        // Aqui você pode fazer uma chamada para o backend para cancelar a inscrição
+        setTimeout(() => {
+          eventCard.remove();
+        }, 2000);
+      }
     }
   </script>
 </body>
