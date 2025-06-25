@@ -52,6 +52,7 @@
       display: flex;
       gap: 32px;
       align-items: center;
+      position: relative;
     }
     .user-menu a {
       color: #cccccc;
@@ -61,6 +62,18 @@
       transition: color 0.3s ease;
     }
     .user-menu a:hover { color: #a6937a; }
+    
+    /* Notification Badge */
+    .notif-badge {
+      background: #a6937a;
+      color: #000;
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 10px;
+      margin-left: 4px;
+      font-weight: 600;
+    }
+    
     main {
       padding: 80px 32px 32px;
       max-width: 1400px;
@@ -232,7 +245,7 @@
       text-transform: uppercase;
       letter-spacing: 1px;
     }
-    .form-input, .form-textarea {
+    .form-input, .form-textarea, .form-select {
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid #333;
       border-radius: 4px;
@@ -241,13 +254,21 @@
       font-size: 14px;
       transition: border-color 0.3s ease;
     }
-    .form-input:focus, .form-textarea:focus {
+    .form-input:focus, .form-textarea:focus, .form-select:focus {
       border-color: #a6937a;
       outline: none;
     }
     .form-textarea {
       resize: vertical;
       min-height: 100px;
+    }
+    .form-select {
+      background: rgba(255, 255, 255, 0.05);
+      cursor: pointer;
+    }
+    .form-select option {
+      background: #1a1a1a;
+      color: #f5f5f5;
     }
     .form-actions {
       grid-column: 1 / -1;
@@ -365,19 +386,182 @@
       color: #d4c4a8;
     }
     
+    /* Event Cards */
     .event-card {
       background: #ffffff;
       color: #000000;
       border-radius: 8px;
-      padding: 20px 24px;
-      margin-bottom: 16px;
+      padding: 24px 32px;
+      margin-bottom: 20px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      flex-direction: column;
+      position: relative;
+      min-height: 120px;
     }
+    
+    /* Event Cards com Restrição de Nível */
+    .event-card.restricted {
+      opacity: 0.7;
+      background: #f8f8f8;
+      border: 2px solid #e0e0e0;
+      position: relative;
+    }
+    
+    /* Ícone de cadeado para eventos restritos */
+    .event-lock {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      width: 32px;
+      height: 32px;
+      background: rgba(0, 0, 0, 0.8);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 16px;
+      z-index: 10;
+      cursor: help;
+    }
+    
+    /* Tooltip para eventos restritos */
+    .event-tooltip {
+      position: absolute;
+      bottom: 100%;
+      right: 0;
+      background: #333;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      white-space: nowrap;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 20;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      margin-bottom: 5px;
+    }
+    .event-tooltip::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      right: 16px;
+      border: 5px solid transparent;
+      border-top-color: #333;
+    }
+    .event-lock:hover .event-tooltip {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    /* Event Type Badge */
+    .event-type-badge {
+      position: absolute;
+      top: 20px;
+      left: 24px;
+      background: rgba(166, 147, 122, 0.15);
+      color: #a6937a;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border: 1px solid rgba(166, 147, 122, 0.3);
+    }
+    
+    /* Event status colors for past events */
+    .event-card.attended {
+      border-left: 6px solid #28a745;
+    }
+    .event-card.no-show {
+      border-left: 6px solid #fd7e14;
+    }
+    .event-card.cancelled {
+      border-left: 6px solid #dc3545;
+    }
+    
+    /* Event countdown badge */
+    .event-countdown {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      background: rgba(166, 147, 122, 0.9);
+      color: #fff;
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 8px rgba(166, 147, 122, 0.3);
+      z-index: 10;
+    }
+    .event-countdown::before {
+      content: '⏰';
+      font-size: 13px;
+    }
+    
+    /* Profile details icons */
+    .profile-details {
+      display: flex;
+      gap: 16px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+    .profile-detail-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 8px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      color: #c2bfa0;
+    }
+    .profile-detail-item .icon {
+      font-size: 14px;
+    }
+    
+    /* Event status legend */
+    .event-status-legend {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 20px;
+      font-size: 13px;
+      color: #c2bfa0;
+      flex-wrap: wrap;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .legend-indicator {
+      width: 20px;
+      height: 4px;
+      border-radius: 2px;
+    }
+    .legend-indicator.attended {
+      background: #28a745;
+    }
+    .legend-indicator.no-show {
+      background: #fd7e14;
+    }
+    .legend-indicator.cancelled {
+      background: #dc3545;
+    }
+    
     .event-info {
       flex: 1;
+      margin-bottom: 16px;
+      padding-right: 120px; /* Espaço para badges */
     }
     .event-card .event-title {
       font-size: 16px;
@@ -392,8 +576,88 @@
       font-size: 13px;
       color: #444;
     }
-    .btn-cancel-event {
+    .event-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      align-self: flex-end;
+      width: 100%;
+      justify-content: flex-end;
+    }
+    .btn-cancel-event, .btn-view-more, .btn-members, .btn-view-agenda {
       background: #dc3545;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 4px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+    .btn-view-more {
+      background: #a6937a;
+    }
+    .btn-view-more:hover {
+      background: #b5a589;
+    }
+    .btn-members {
+      background: #17a2b8;
+    }
+    .btn-members:hover {
+      background: #138496;
+    }
+    .btn-view-agenda {
+      background: #a6937a;
+    }
+    .btn-view-agenda:hover {
+      background: #b5a589;
+    }
+    .btn-cancel-event:hover {
+      background: #c82333;
+      transform: translateY(-1px);
+    }
+    .btn-cancel-event:disabled {
+      background: #cccccc;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+    
+    /* Balance Card */
+    .balance-info {
+      background: linear-gradient(135deg, #1a2a1a 0%, #2a3a2a 100%);
+      border: 1px solid #4a5a4a;
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .balance-content {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .balance-label {
+      font-size: 14px;
+      color: #c2bfa0;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .balance-value {
+      font-family: 'Georgia', serif;
+      font-size: 24px;
+      color: #4CAF50;
+      font-weight: 500;
+    }
+    .balance-value::before {
+      content: 'R$ ';
+      font-size: 16px;
+    }
+    .btn-view-consumption {
+      background: #4CAF50;
       color: white;
       padding: 8px 16px;
       border-radius: 4px;
@@ -402,9 +666,8 @@
       letter-spacing: 1px;
       transition: all 0.3s ease;
     }
-    .btn-cancel-event:hover {
-      background: #c82333;
-      transform: translateY(-1px);
+    .btn-view-consumption:hover {
+      background: #45a049;
     }
     
     /* WhatsApp Button */
@@ -497,36 +760,111 @@
     .notification-info {
       border-left: 3px solid #a6937a;
     }
-    .user-menu {
+    
+    /* Modal Styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(5px);
+      z-index: 3000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+    .modal-content {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 12px;
+      max-width: 600px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
       position: relative;
     }
-    
-    /* Balance Card */
-    .balance-info {
-      background: linear-gradient(135deg, #1a2a1a 0%, #2a3a2a 100%);
-      border: 1px solid #4a5a4a;
-      border-radius: 8px;
-      padding: 20px;
-      margin-top: 16px;
+    .modal-header {
+      padding: 24px 32px 16px;
+      border-bottom: 1px solid #333;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    .balance-label {
-      font-size: 14px;
-      color: #c2bfa0;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    .balance-value {
+    .modal-title {
       font-family: 'Georgia', serif;
-      font-size: 24px;
-      color: #4CAF50;
-      font-weight: 500;
+      font-size: 20px;
+      color: #f5f5f5;
     }
-    .balance-value::before {
-      content: 'R$ ';
-      font-size: 16px;
+    .modal-close {
+      background: none;
+      border: none;
+      color: #999;
+      font-size: 24px;
+      cursor: pointer;
+      padding: 0;
+      line-height: 1;
+    }
+    .modal-close:hover {
+      color: #f5f5f5;
+    }
+    .modal-body {
+      padding: 24px 32px 32px;
+    }
+    .event-details {
+      color: #c2bfa0;
+      line-height: 1.6;
+    }
+    .event-details h3 {
+      color: #f5f5f5;
+      margin-bottom: 12px;
+      font-family: 'Georgia', serif;
+    }
+    .event-details p {
+      margin-bottom: 16px;
+    }
+    .members-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .member-item {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .member-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+    .member-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .member-info {
+      flex: 1;
+    }
+    .member-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: #f5f5f5;
+      margin-bottom: 2px;
+    }
+    .member-role {
+      font-size: 12px;
+      color: #a6937a;
     }
     
     @media (max-width: 1024px) {
@@ -537,9 +875,25 @@
         grid-template-columns: 1fr;
       }
       .event-card {
+        padding: 20px 24px;
+        min-height: 100px;
+      }
+      .event-info {
+        margin-bottom: 12px;
+        padding-right: 80px;
+      }
+      .event-actions {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
+      .event-countdown {
+        top: 16px;
+        right: 20px;
+      }
+      .balance-info {
         flex-direction: column;
-        align-items: flex-start;
         gap: 16px;
+        align-items: flex-start;
       }
     }
   </style>
@@ -550,47 +904,18 @@
       <div class="header-content">
         <h1 class="logo">Sweet Secrets Members Club</h1>
         <nav class="user-menu">
-          <a href="index.html">Diretório</a>
-          <a href="#" id="notifBtn" onclick="toggleNotifications()">Notificações</a>
+          <a href="index.html">Página Inicial</a>
+          <a href="#" id="notifBtn" onclick="toggleNotifications()">
+            Notificações 
+            <span class="notif-badge" id="notifCount" style="display: none;">0</span>
+          </a>
           <a href="#" id="btnLogout">Sair</a>
           
           <!-- Notifications Dropdown -->
           <div class="notifications-dropdown" id="notificationsDropdown">
             <div class="notifications-header">Notificações</div>
-            <div class="notification-item notification-urgent">
-              <div class="notification-content">
-                <span class="notification-icon">🚨</span>
-                O Evento é já amanhã!! - Jantar Executivo Tech Leaders
-              </div>
-              <div class="notification-time">Há 2 horas</div>
-            </div>
-            <div class="notification-item notification-warning">
-              <div class="notification-content">
-                <span class="notification-icon">⏰</span>
-                Faltam 3 dias para o evento Summit da Indústria de Jogos
-              </div>
-              <div class="notification-time">Há 4 horas</div>
-            </div>
-            <div class="notification-item notification-info">
-              <div class="notification-content">
-                <span class="notification-icon">🏆</span>
-                Já só falta 1 visita e 2 eventos para subir para Gold Key Member!
-              </div>
-              <div class="notification-time">Há 1 dia</div>
-            </div>
-            <div class="notification-item notification-warning">
-              <div class="notification-content">
-                <span class="notification-icon">📅</span>
-                Faltam 5 dias para o evento Workshop de Negociação Avançada
-              </div>
-              <div class="notification-time">Há 2 dias</div>
-            </div>
-            <div class="notification-item notification-warning">
-              <div class="notification-content">
-                <span class="notification-icon">📅</span>
-                Faltam 10 dias para o evento Networking Breakfast Executivo
-              </div>
-              <div class="notification-time">Há 3 dias</div>
+            <div id="notificationsContent">
+              <!-- Notificações serão carregadas dinamicamente -->
             </div>
           </div>
         </nav>
@@ -632,9 +957,32 @@
                 </div>
               </div>
               
+              <!-- Profile Details with Icons -->
+              <div class="profile-details">
+                <div class="profile-detail-item">
+                  <span class="icon">🥃</span>
+                  <span>Whisky</span>
+                </div>
+                <div class="profile-detail-item">
+                  <span class="icon">🚫</span>
+                  <span>Lactose</span>
+                </div>
+                <div class="profile-detail-item">
+                  <span class="icon">🎂</span>
+                  <span>15 de Março</span>
+                </div>
+                <div class="profile-detail-item">
+                  <span class="icon">🍷</span>
+                  <span>Bebe socialmente</span>
+                </div>
+              </div>
+              
               <div class="balance-info">
-                <div class="balance-label">Saldo Disponível</div>
-                <div class="balance-value">2.450,00</div>
+                <div class="balance-content">
+                  <div class="balance-label">Saldo Disponível</div>
+                  <div class="balance-value">2.450,00</div>
+                </div>
+                <button class="btn-view-consumption" onclick="viewConsumption()">Ver Meu Consumo na Casa</button>
               </div>
               
               <button class="btn-edit-toggle" onclick="toggleEdit()">Editar Perfil</button>
@@ -669,6 +1017,38 @@
               <label class="form-label">Site da Empresa</label>
               <input type="url" class="form-input" placeholder="https://..." />
             </div>
+            <div class="form-group">
+              <label class="form-label">Aniversário</label>
+              <input type="date" class="form-input" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Bebida Alcoólica</label>
+              <select class="form-select">
+                <option value="">Selecione</option>
+                <option value="sim">Sim</option>
+                <option value="nao">Não</option>
+                <option value="ocasionalmente">Ocasionalmente</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Destilado Favorito</label>
+              <select class="form-select">
+                <option value="">Selecione</option>
+                <option value="whisky">Whisky</option>
+                <option value="vodka">Vodka</option>
+                <option value="gin">Gin</option>
+                <option value="rum">Rum</option>
+                <option value="tequila">Tequila</option>
+                <option value="cachaca">Cachaça</option>
+                <option value="conhaque">Conhaque</option>
+                <option value="brandy">Brandy</option>
+                <option value="nenhum">Nenhum</option>
+              </select>
+            </div>
+            <div class="form-group full-width">
+              <label class="form-label">Intolerâncias Alimentares</label>
+              <input type="text" class="form-input" placeholder="Ex: Lactose, Glúten, Amendoim, Frutos do Mar..." />
+            </div>
             <div class="form-group full-width">
               <label class="form-label">Interesses</label>
               <input type="text" class="form-input" placeholder="Tecnologia, Investimentos, Esportes..." />
@@ -686,38 +1066,61 @@
         
         <div class="profile-card">
           <div class="card-title">Próximos Eventos</div>
-          <div class="event-card">
-            <div class="event-info">
-              <div class="event-title">Jantar Executivo Tech Leaders</div>
-              <div class="event-date">15 JUN 2025</div>
-              <div class="event-location">Fasano São Paulo</div>
-            </div>
-            <button class="btn-cancel-event" onclick="cancelEvent(this)">Cancelar Inscrição</button>
+          <div id="upcomingEventsContainer">
+            <!-- Eventos serão carregados dinamicamente -->
           </div>
-          <div class="event-card">
-            <div class="event-info">
-              <div class="event-title">Summit da Indústria de Jogos</div>
-              <div class="event-date">22 JUN 2025</div>
-              <div class="event-location">Sweet Secrets Lounge</div>
-            </div>
-            <button class="btn-cancel-event" onclick="cancelEvent(this)">Cancelar Inscrição</button>
+          <div style="text-align: center; margin-top: 32px; padding-top: 16px; border-top: 1px solid #333;">
+            <button class="btn-view-agenda" onclick="viewEventCalendar()">Consultar Agenda de Eventos</button>
           </div>
         </div>
         
         <div class="profile-card">
           <div class="card-title">Eventos Passados</div>
-          <div class="event-card">
+          <div class="event-status-legend">
+            <div class="legend-item">
+              <div class="legend-indicator attended"></div>
+              <span>Estive Presente</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-indicator no-show"></div>
+              <span>Faltei</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-indicator cancelled"></div>
+              <span>Cancelei</span>
+            </div>
+          </div>
+          <div class="event-card attended">
+            <div class="event-type-badge">Sweet Talks</div>
             <div class="event-info">
               <div class="event-title">Workshop de Investimentos</div>
               <div class="event-date">10 ABR 2025</div>
               <div class="event-location">Sala VIP</div>
             </div>
+            <div class="event-actions">
+              <button class="btn-members" onclick="viewEventMembers('investment-workshop')">Lista de Membros Participantes</button>
+            </div>
           </div>
-          <div class="event-card">
+          <div class="event-card no-show">
+            <div class="event-type-badge">Happy Hour</div>
+            <div class="event-info">
+              <div class="event-title">Networking Breakfast</div>
+              <div class="event-date">28 MAR 2025</div>
+              <div class="event-location">Sweet Secrets Lounge</div>
+            </div>
+            <div class="event-actions">
+              <button class="btn-members" onclick="viewEventMembers('networking-breakfast')">Lista de Membros Participantes</button>
+            </div>
+          </div>
+          <div class="event-card cancelled">
+            <div class="event-type-badge">Evento Externo</div>
             <div class="event-info">
               <div class="event-title">Coquetel de Lançamento</div>
               <div class="event-date">15 JAN 2025</div>
               <div class="event-location">Sweet Secrets Club</div>
+            </div>
+            <div class="event-actions">
+              <button class="btn-members" onclick="viewEventMembers('launch-cocktail')">Lista de Membros Participantes</button>
             </div>
           </div>
         </div>
@@ -759,6 +1162,36 @@
     </div>
   </main>
   
+  <!-- Modal for Event Details -->
+  <div class="modal-overlay" id="eventModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="eventModalTitle">Detalhes do Evento</h2>
+        <button class="modal-close" onclick="closeModal('eventModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="event-details" id="eventModalContent">
+          <!-- Content will be loaded dynamically -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for Event Members -->
+  <div class="modal-overlay" id="membersModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="membersModalTitle">Membros do Evento</h2>
+        <button class="modal-close" onclick="closeModal('membersModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="members-list" id="membersModalContent">
+          <!-- Content will be loaded dynamically -->
+        </div>
+      </div>
+    </div>
+  </div>
+  
   <!-- WhatsApp Button -->
   <a href="https://api.whatsapp.com/send/?phone=5511913079456" target="_blank" class="whatsapp-btn" title="Falar no WhatsApp">
     <svg viewBox="0 0 24 24">
@@ -767,6 +1200,329 @@
   </a>
   
   <script>
+    // Estado da aplicação em memória (substitui localStorage)
+    const appState = {
+      currentMember: {
+        id: 1,
+        name: 'António Silva',
+        role: 'Head of Latin America',
+        company: 'Entain Group',
+        level: 'Silver Key Member',
+        memberLevel: 'silver' // nível de acesso
+      },
+      registrations: [1, 2], // IDs dos eventos inscritos
+      profileVisible: true,
+      notifications: [
+        {
+          id: 1,
+          type: 'reminder',
+          icon: '🚨',
+          content: 'O Evento é já amanhã!! - Jantar Executivo Tech Leaders',
+          time: 'Há 2 horas',
+          priority: 'urgent',
+          read: false
+        },
+        {
+          id: 2,
+          type: 'event',
+          icon: '⏰',
+          content: 'Faltam 3 dias para o evento Summit da Indústria de Jogos',
+          time: 'Há 4 horas',
+          priority: 'warning',
+          read: false
+        },
+        {
+          id: 3,
+          type: 'milestone',
+          icon: '🏆',
+          content: 'Já só falta 1 visita e 2 eventos para subir para Gold Key Member!',
+          time: 'Há 1 dia',
+          priority: 'info',
+          read: false
+        },
+        {
+          id: 4,
+          type: 'birthday',
+          icon: '🎂',
+          content: 'Hoje é aniversário de Carla Mendes! Envie uma mensagem de parabéns.',
+          time: 'Há 5 horas',
+          priority: 'info',
+          read: false
+        },
+        {
+          id: 5,
+          type: 'networking',
+          icon: '🤝',
+          content: 'Lucas Ferreira aceitou sua solicitação de conexão',
+          time: 'Há 2 dias',
+          priority: 'info',
+          read: true
+        }
+      ],
+      contactRequests: []
+    };
+
+    // Dados de eventos disponíveis
+    const eventsData = [
+      {
+        id: 1,
+        title: 'Finais NBA com a Hennessy',
+        date: '2025-06-05',
+        location: 'Exímia Bar',
+        description: 'Venha assistir aos jogos finais da NBA acompanhado de degustação de Hennessy e entrada VIP no lounge Exímia Bar.',
+        type: 'Evento_Externo',
+        minLevel: 'bronze' // Todos podem participar
+      },
+      {
+        id: 2,
+        title: 'Jantar Especial Dia dos Namorados',
+        date: '2025-06-12',
+        location: 'Sweet Secrets Club',
+        description: 'Celebre o Dia dos Namorados com um jantar romântico preparado pelo nosso chef.',
+        type: 'Boardroom',
+        minLevel: 'silver' // Apenas Silver ou superior
+      },
+      {
+        id: 3,
+        title: 'Petit Comitê CTOs',
+        date: '2025-06-19',
+        location: 'Sala VIP',
+        description: 'Encontro exclusivo para CTOs de grandes empresas, com discussão sobre tendências tecnológicas emergentes.',
+        type: 'Petit Comitê',
+        minLevel: 'gold' // Apenas Gold ou superior
+      },
+      {
+        id: 4,
+        title: 'Cocktail Executivo by Inova.SAO',
+        date: '2025-06-24',
+        location: 'Morumbis',
+        description: 'Coquetel para CEOs e executivos, apresentado por Inova.SAO.',
+        type: 'Happy Hour',
+        minLevel: 'platinum' // Apenas Platinum
+      },
+      {
+        id: 5,
+        title: 'Wine Tasting Especial',
+        date: '2025-06-30',
+        location: 'Sweet Secrets Wine Cellar',
+        description: 'Degustação de vinhos raros com sommelier internacional.',
+        type: 'Wine Club',
+        minLevel: 'gold' // Gold ou superior
+      }
+    ];
+
+    // Sistema de permissões por nível
+    function getLevelHierarchy() {
+      return {
+        'bronze': 1,
+        'silver': 2, 
+        'gold': 3,
+        'platinum': 4
+      };
+    }
+
+    function canAccessEvent(userLevel, eventMinLevel) {
+      const hierarchy = getLevelHierarchy();
+      return hierarchy[userLevel] >= hierarchy[eventMinLevel];
+    }
+
+    function getLevelDisplayName(level) {
+      const names = {
+        'bronze': 'Bronze Key',
+        'silver': 'Silver Key',
+        'gold': 'Gold Key', 
+        'platinum': 'Platinum Key'
+      };
+      return names[level] || level;
+    }
+
+    // Função para carregar notificações
+    function loadNotifications() {
+      const container = document.getElementById('notificationsContent');
+      const badge = document.getElementById('notifCount');
+      
+      const unreadCount = appState.notifications.filter(n => !n.read).length;
+      
+      if (unreadCount > 0) {
+        badge.textContent = unreadCount;
+        badge.style.display = 'inline-block';
+      } else {
+        badge.style.display = 'none';
+      }
+      
+      container.innerHTML = '';
+      
+      appState.notifications.forEach(notif => {
+        const item = document.createElement('div');
+        item.className = `notification-item notification-${notif.priority}`;
+        item.innerHTML = `
+          <div class="notification-content">
+            <span class="notification-icon">${notif.icon}</span>
+            ${notif.content}
+          </div>
+          <div class="notification-time">${notif.time}</div>
+        `;
+        item.onclick = () => markNotificationAsRead(notif.id);
+        container.appendChild(item);
+      });
+    }
+
+    // Marcar notificação como lida
+    function markNotificationAsRead(notifId) {
+      const notif = appState.notifications.find(n => n.id === notifId);
+      if (notif) {
+        notif.read = true;
+        loadNotifications();
+      }
+    }
+
+    // Função para obter inscrições do usuário atual
+    function getUserEventRegistrations() {
+      return appState.registrations || [];
+    }
+
+    // Função para remover inscrição do usuário
+    function removeUserEventRegistration(eventId) {
+      appState.registrations = appState.registrations.filter(id => id !== eventId);
+      return true;
+    }
+
+    // Função para calcular dias até o evento
+    function calculateDaysUntilEvent(eventDate) {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      
+      const event = new Date(eventDate);
+      event.setHours(0, 0, 0, 0);
+      
+      const diffTime = event - today;
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      
+      return diffDays > 0 ? diffDays : 0;
+    }
+
+    // Função para formatar data
+    function formatEventDate(dateString) {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('pt-BR', {
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric'
+      }).toUpperCase();
+    }
+
+    // Função para carregar eventos inscritos
+    function loadUpcomingEvents() {
+      const container = document.getElementById('upcomingEventsContainer');
+      
+      if (!container) return;
+
+      const userRegistrations = getUserEventRegistrations();
+      const userLevel = appState.currentMember.memberLevel;
+      
+      // Filtrar eventos futuros em que o usuário está inscrito
+      const today = new Date();
+      const upcomingEvents = eventsData.filter(event => {
+        const eventDate = new Date(event.date);
+        return eventDate >= today && userRegistrations.includes(event.id);
+      });
+
+      if (upcomingEvents.length === 0) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 40px; color: #888;">
+            <p>Você ainda não está inscrito em nenhum evento próximo.</p>
+            <p style="margin-top: 16px;">
+              <a href="index.html" style="color: #a6937a; text-decoration: underline;">
+                Explore nossa agenda de eventos
+              </a>
+            </p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = '';
+      
+      upcomingEvents.forEach(event => {
+        const daysUntil = calculateDaysUntilEvent(event.date);
+        const formattedDate = formatEventDate(event.date);
+        const canAccess = canAccessEvent(userLevel, event.minLevel);
+        
+        const eventCard = document.createElement('div');
+        eventCard.className = `event-card${!canAccess ? ' restricted' : ''}`;
+        
+        // Conteúdo base do card
+        let cardContent = `
+          <div class="event-type-badge">${event.type.replace('_', ' ')}</div>
+          ${daysUntil <= 7 ? `<div class="event-countdown">${daysUntil} dias</div>` : ''}
+          <div class="event-info">
+            <div class="event-title">${event.title}</div>
+            <div class="event-date">${formattedDate}</div>
+            <div class="event-location">${event.location}</div>
+          </div>
+        `;
+        
+        // Adicionar ações ou restrições
+        if (canAccess) {
+          cardContent += `
+            <div class="event-actions">
+              <button class="btn-view-more" onclick="viewEventDetails('event-${event.id}')">Ver Mais</button>
+              <button class="btn-members" onclick="viewEventMembers('event-${event.id}')">Membros Inscritos</button>
+              <button class="btn-cancel-event" onclick="cancelEventRegistration(${event.id}, this)">Cancelar Inscrição</button>
+            </div>
+          `;
+        } else {
+          cardContent += `
+            <div class="event-lock">
+              🔒
+              <div class="event-tooltip">
+                Exclusivo para membros ${getLevelDisplayName(event.minLevel)} ou superior
+              </div>
+            </div>
+            <div class="event-actions">
+              <button class="btn-view-more" onclick="viewEventDetails('event-${event.id}')">Ver Detalhes</button>
+              <button class="btn-cancel-event" disabled>Evento Restrito</button>
+            </div>
+          `;
+        }
+        
+        eventCard.innerHTML = cardContent;
+        container.appendChild(eventCard);
+      });
+    }
+
+    // Função para cancelar inscrição em evento
+    function cancelEventRegistration(eventId, button) {
+      const eventCard = button.closest('.event-card');
+      const eventTitle = eventCard.querySelector('.event-title').textContent;
+      
+      if (confirm(`Tem certeza que deseja cancelar sua inscrição no evento "${eventTitle}"?`)) {
+        removeUserEventRegistration(eventId);
+        eventCard.style.opacity = '0.5';
+        button.textContent = 'Cancelado';
+        button.style.background = '#6c757d';
+        button.disabled = true;
+        
+        // Adicionar notificação
+        appState.notifications.unshift({
+          id: Date.now(),
+          type: 'event',
+          icon: '❌',
+          content: `Inscrição cancelada para: ${eventTitle}`,
+          time: 'Agora',
+          priority: 'info',
+          read: false
+        });
+        
+        loadNotifications();
+        
+        setTimeout(() => {
+          loadUpcomingEvents(); // Recarregar a lista
+        }, 1000);
+      }
+    }
+
+    // Funções para os modais e outras interações
     function toggleEdit() {
       const form = document.getElementById('editForm');
       form.style.display = form.style.display === 'none' ? 'block' : 'none';
@@ -774,9 +1530,7 @@
     
     function toggleVisibility(toggle) {
       toggle.classList.toggle('active');
-      const isVisible = toggle.classList.contains('active');
-      console.log('Perfil visível:', isVisible);
-      // Aqui você pode fazer uma chamada para o backend para salvar a preferência
+      appState.profileVisible = toggle.classList.contains('active');
     }
     
     function toggleNotifications() {
@@ -784,35 +1538,178 @@
       dropdown.classList.toggle('active');
       
       // Fechar ao clicar fora
-      document.addEventListener('click', function(event) {
-        if (!event.target.closest('.user-menu')) {
-          dropdown.classList.remove('active');
-        }
-      });
+      setTimeout(() => {
+        document.addEventListener('click', function closeDropdown(event) {
+          if (!event.target.closest('.user-menu')) {
+            dropdown.classList.remove('active');
+            document.removeEventListener('click', closeDropdown);
+          }
+        });
+      }, 100);
     }
     
     function saveProfile() {
-      // Implementar salvamento do perfil
       alert('Perfil salvo com sucesso!');
       toggleEdit();
     }
     
-    function cancelEvent(button) {
-      const eventCard = button.closest('.event-card');
-      const eventTitle = eventCard.querySelector('.event-title').textContent;
+    function viewConsumption() {
+      alert('Funcionalidade de consumo será implementada em breve!');
+    }
+    
+    function viewEventCalendar() {
+      window.location.href = 'index.html#eventos';
+    }
+    
+    function viewEventDetails(eventId) {
+      const event = eventsData.find(e => `event-${e.id}` === eventId);
       
-      if (confirm(`Tem certeza que deseja cancelar sua inscrição no evento "${eventTitle}"?`)) {
-        eventCard.style.opacity = '0.5';
-        button.textContent = 'Cancelado';
-        button.style.background = '#6c757d';
-        button.disabled = true;
+      if (!event) return;
+      
+      const modal = document.getElementById('eventModal');
+      const title = document.getElementById('eventModalTitle');
+      const content = document.getElementById('eventModalContent');
+      
+      const userLevel = appState.currentMember.memberLevel;
+      const canAccess = canAccessEvent(userLevel, event.minLevel);
+      
+      title.textContent = event.title;
+      
+      let detailsContent = `
+        <h3>📅 Data e Horário</h3>
+        <p><strong>${formatEventDate(event.date)}</strong><br>20:00 - 23:30</p>
         
-        // Aqui você pode fazer uma chamada para o backend para cancelar a inscrição
-        setTimeout(() => {
-          eventCard.remove();
-        }, 2000);
+        <h3>📍 Local</h3>
+        <p><strong>${event.location}</strong></p>
+        
+        <h3>🏷️ Tipo de Evento</h3>
+        <p><strong>${event.type.replace('_', ' ')}</strong></p>
+        
+        <h3>🔑 Nível Mínimo</h3>
+        <p><strong>${getLevelDisplayName(event.minLevel)}</strong></p>
+      `;
+      
+      if (!canAccess) {
+        detailsContent += `
+          <div style="background: rgba(255,0,0,0.1); border: 1px solid #ff4444; padding: 16px; border-radius: 8px; margin-top: 20px;">
+            <p style="color: #ff6666; font-weight: bold;">
+              🔒 Este evento é exclusivo para membros ${getLevelDisplayName(event.minLevel)} ou superior.
+            </p>
+            <p style="color: #cccccc; margin-top: 8px;">
+              Você precisa subir de nível para participar deste evento.
+            </p>
+          </div>
+        `;
+      } else {
+        detailsContent += `
+          <h3>ℹ️ Sobre o Evento</h3>
+          <p>${event.description}</p>
+          
+          <h3>👔 Dress Code</h3>
+          <p>Smart Casual</p>
+        `;
+      }
+      
+      content.innerHTML = detailsContent;
+      modal.classList.add('active');
+    }
+    
+    function viewEventMembers(eventId) {
+      const eventMembersMap = {
+        'event-1': {
+          title: 'Finais NBA com a Hennessy - Membros Inscritos',
+          members: [
+            { name: 'Carlos Eduardo', role: 'CTO da TechStartup', avatar: 'https://i.pravatar.cc/150?img=11' },
+            { name: 'Fernanda Silva', role: 'VP Technology da BigCorp', avatar: 'https://i.pravatar.cc/150?img=47' },
+            { name: 'Ricardo Santos', role: 'Founder da InnovaTech', avatar: 'https://i.pravatar.cc/150?img=68' },
+            { name: 'Patricia Lima', role: 'Head of Engineering da ScaleTech', avatar: 'https://i.pravatar.cc/150?img=23' }
+          ]
+        },
+        'event-2': {
+          title: 'Jantar Dia dos Namorados - Casais Inscritos',
+          members: [
+            { name: 'João & Maria Silva', role: 'CEO Couple', avatar: 'https://i.pravatar.cc/150?img=15' },
+            { name: 'Pedro & Ana Santos', role: 'Founders DuoCorp', avatar: 'https://i.pravatar.cc/150?img=42' }
+          ]
+        },
+        'investment-workshop': {
+          title: 'Workshop de Investimentos - Membros que Participaram',
+          members: [
+            { name: 'Rafael Costa', role: 'Investment Manager', avatar: 'https://i.pravatar.cc/150?img=12' },
+            { name: 'Beatriz Almeida', role: 'Portfolio Director', avatar: 'https://i.pravatar.cc/150?img=45' },
+            { name: 'Gustavo Pereira', role: 'Wealth Manager', avatar: 'https://i.pravatar.cc/150?img=67' },
+            { name: 'Larissa Martins', role: 'Financial Advisor', avatar: 'https://i.pravatar.cc/150?img=29' },
+            { name: 'Daniel Rodrigues', role: 'Investment Analyst', avatar: 'https://i.pravatar.cc/150?img=54' }
+          ]
+        },
+        'networking-breakfast': {
+          title: 'Networking Breakfast - Membros que Participaram',
+          members: [
+            { name: 'Eduardo Silva', role: 'Business Development', avatar: 'https://i.pravatar.cc/150?img=18' },
+            { name: 'Juliana Costa', role: 'Sales Director', avatar: 'https://i.pravatar.cc/150?img=41' },
+            { name: 'Felipe Santos', role: 'Marketing Head', avatar: 'https://i.pravatar.cc/150?img=72' },
+            { name: 'Mariana Lima', role: 'Operations Manager', avatar: 'https://i.pravatar.cc/150?img=33' }
+          ]
+        },
+        'launch-cocktail': {
+          title: 'Coquetel de Lançamento - Membros que Participaram',
+          members: [
+            { name: 'André Oliveira', role: 'Founder & CEO', avatar: 'https://i.pravatar.cc/150?img=16' },
+            { name: 'Carla Mendes', role: 'Strategic Partnerships', avatar: 'https://i.pravatar.cc/150?img=48' },
+            { name: 'Bruno Garcia', role: 'Innovation Director', avatar: 'https://i.pravatar.cc/150?img=71' },
+            { name: 'Isabela Ferreira', role: 'Brand Manager', avatar: 'https://i.pravatar.cc/150?img=26' }
+          ]
+        }
+      };
+      
+      const modal = document.getElementById('membersModal');
+      const title = document.getElementById('membersModalTitle');
+      const content = document.getElementById('membersModalContent');
+      
+      if (eventMembersMap[eventId]) {
+        title.textContent = eventMembersMap[eventId].title;
+        
+        const membersHTML = eventMembersMap[eventId].members.map(member => `
+          <div class="member-item">
+            <div class="member-avatar">
+              <img src="${member.avatar}" alt="${member.name}" />
+            </div>
+            <div class="member-info">
+              <div class="member-name">${member.name}</div>
+              <div class="member-role">${member.role}</div>
+            </div>
+          </div>
+        `).join('');
+        
+        content.innerHTML = membersHTML;
+        modal.classList.add('active');
       }
     }
+    
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.remove('active');
+    }
+    
+    // Fechar modais ao clicar fora
+    document.addEventListener('click', function(event) {
+      if (event.target.classList.contains('modal-overlay')) {
+        event.target.classList.remove('active');
+      }
+    });
+
+    // Logout
+    document.getElementById('btnLogout').addEventListener('click', function(e) {
+      e.preventDefault();
+      if (confirm('Deseja sair da sua conta?')) {
+        window.location.href = 'login.html';
+      }
+    });
+
+    // Carregar dados ao iniciar a página
+    document.addEventListener('DOMContentLoaded', function() {
+      loadNotifications();
+      loadUpcomingEvents();
+    });
   </script>
 </body>
 </html>
