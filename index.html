@@ -60,7 +60,7 @@
       font-family: 'Montserrat', sans-serif;
       font-size: 32px;       /* 10 pontos a mais que antes */
       font-weight: 700;
-      color: #a6937a;        /* bege-acinzentado-escuro */
+      color: #ffffff;        /* branco */
       letter-spacing: 2px;
     }
     .user-menu {
@@ -77,6 +77,17 @@
     }
     .user-menu a:hover {
       color: #a6937a;
+    }
+    
+    /* Indicador de notificações */
+    .notif-badge {
+      background: #a6937a;
+      color: #000;
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 10px;
+      margin-left: 4px;
+      font-weight: 600;
     }
 
     /* -----------------------------------
@@ -117,7 +128,7 @@
       border: 1px solid #333333;
       border-radius: 4px;
       color: #f5f5f5;
-      padding: 14px 20px;        /* fonte reduzida para não “estourar” */
+      padding: 14px 20px;        /* fonte reduzida para não "estourar" */
       font-size: 14px;
       font-family: 'Arial', sans-serif;
       transition: all 0.3s ease;
@@ -288,53 +299,104 @@
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
-    /* ======== ESTATÍSTICAS REMOVIDAS ======== */
-
+    
+    /* -----------------------------------
+       BOTÕES MELHORADOS NOS CARDS DE MEMBROS
+    ----------------------------------- */
     .member-actions {
       display: flex;
-      gap: 12px;
+      gap: 8px;
       justify-content: flex-start;
-      margin-top: 16px; /* reduzido de 24px para 16px */
+      margin-top: 20px;
+      flex-wrap: wrap;
     }
-    .btn {
-      padding: 12px 24px;
+    
+    .member-actions button {
+      padding: 10px 16px;
       font-weight: 400;
       text-align: center;
       transition: all 0.3s ease;
-      border-radius: 4px;
+      border-radius: 6px;
       font-size: 12px;
       text-transform: uppercase;
       letter-spacing: 1px;
       font-family: 'Arial', sans-serif;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      position: relative;
+      overflow: hidden;
     }
-    .btn-primary {
-      background: #a6937a; /* bege-acinzentado-escuro */
-      color: #000000;
-      border: 1px solid #a6937a;
+    
+    /* Botão LinkedIn */
+    .btn-linkedin {
+      background: rgba(0, 119, 181, 0.1);
+      color: #0077B5;
+      border: 1px solid rgba(0, 119, 181, 0.3);
     }
-    .btn-primary:hover {
-      background: transparent;
-      color: #a6937a;
+    .btn-linkedin:hover {
+      background: #0077B5;
+      color: #ffffff;
+      border-color: #0077B5;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 119, 181, 0.3);
     }
-    .btn-secondary {
-      background: transparent;
-      color: #cccccc;
+    .btn-linkedin svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
+    
+    /* Botão Site */
+    .btn-website {
+      background: rgba(255, 255, 255, 0.05);
+      color: #888888;
       border: 1px solid #333333;
     }
-    .btn-secondary:hover {
-      background: rgba(255,255,255,0.05);
+    .btn-website:hover {
+      background: rgba(255, 255, 255, 0.1);
       color: #ffffff;
-      border-color: #666666;
+      border-color: #555555;
+      transform: translateY(-2px);
     }
-    .btn-tertiary {
-      background: transparent;
-      color: #888888;
-      border: 1px solid #222222;
-      font-size: 11px;
+    
+    /* Botão Contato (Principal) */
+    .btn-contact {
+      background: #a6937a;
+      color: #000000;
+      border: 1px solid #a6937a;
+      font-weight: 500;
     }
-    .btn-tertiary:hover {
-      color: #cccccc;
-      border-color: #333333;
+    .btn-contact::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+    .btn-contact:hover {
+      background: #b5a589;
+      border-color: #b5a589;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(166, 147, 122, 0.3);
+    }
+    .btn-contact:hover::before {
+      left: 100%;
+    }
+    
+    /* Ícone externo para links */
+    .external-icon {
+      width: 12px;
+      height: 12px;
+      margin-left: 4px;
+      opacity: 0.6;
+      transition: opacity 0.3s;
+    }
+    button:hover .external-icon {
+      opacity: 1;
     }
 
     /* -----------------------------------
@@ -346,19 +408,21 @@
       gap: 48px; /* mais espaçamento entre calendário e lista */
     }
     .sidebar-section {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid #1a1a1a;
+      background: #ffffff;
+      border: 1px solid #e0e0e0;
       padding: 40px 32px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
     .sidebar-title {
       font-family: 'Georgia', serif;
       font-size: 18px;
       font-weight: 400;
-      color: #ffffff;
+      color: #333333;
       text-transform: uppercase;
       letter-spacing: 2px;
       margin-bottom: 32px;
-      border-bottom: 1px solid #1a1a1a;
+      border-bottom: 1px solid #e0e0e0;
       padding-bottom: 16px;
     }
 
@@ -378,17 +442,19 @@
     }
     .calendar-nav {
       background: transparent;
-      border: 1px solid #333333;
-      color: #cccccc;
+      border: 1px solid #d0d0d0;
+      color: #666666;
       padding: 8px 12px;
       cursor: pointer;
       transition: all 0.3s ease;
       font-family: 'Arial', sans-serif;
       font-size: 14px;
+      border-radius: 4px;
     }
     .calendar-nav:hover {
       border-color: #a6937a;
       color: #a6937a;
+      background: rgba(166, 147, 122, 0.05);
     }
     .calendar-grid {
       display: grid;
@@ -406,22 +472,24 @@
       transition: all 0.3s ease;
       font-family: 'Arial', sans-serif;
       border: 1px solid transparent;
-      color: #f5f5f5;
+      color: #333333;
       border-radius: 4px;
     }
     .calendar-day:hover {
-      background: rgba(255,255,255,0.05);
-      border-color: #333333;
+      background: rgba(166, 147, 122, 0.1);
+      border-color: #a6937a;
+      color: #a6937a;
     }
     .calendar-day.today {
       background: #a6937a;
-      color: #000000;
+      color: #ffffff;
       font-weight: 500;
     }
     .calendar-day.has-event {
-      background: rgba(166,147,122,0.1);
+      background: rgba(166, 147, 122, 0.15);
       color: #a6937a;
-      border-color: rgba(166,147,122,0.3);
+      border-color: rgba(166, 147, 122, 0.4);
+      font-weight: 500;
     }
 
     /* ---------- LISTA DE EVENTOS (CARDS BRANCOS) ---------- */
@@ -433,8 +501,9 @@
       color: #000000;
       border-radius: 8px;
       padding: 16px 16px;
-      margin-bottom: 16px; /* leve “flutuar” */
+      margin-bottom: 16px; /* leve "flutuar" */
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: relative;
     }
     .event-item:last-child {
       margin-bottom: 0;
@@ -464,6 +533,28 @@
       color: #555555;
       font-family: 'Arial', sans-serif;
     }
+    
+    /* Status de inscrição do usuário */
+    .user-registration-status {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .user-registration-status.inscrito {
+      background: #4CAF50;
+      color: white;
+    }
+    .user-registration-status.pendente {
+      background: #ff9800;
+      color: white;
+    }
+    
     .event-details {
       font-size: 12px;
       color: #333333;
@@ -491,6 +582,11 @@
     .btn-small-primary:hover {
       background: #333333;
       color: #ffffff;
+    }
+    .btn-small-primary:disabled {
+      background: #cccccc;
+      border-color: #cccccc;
+      cursor: not-allowed;
     }
     .btn-small-secondary {
       background: transparent;
@@ -525,6 +621,17 @@
       position: relative;
       font-family: 'Arial', sans-serif;
       box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      animation: modalFadeIn 0.3s ease-out;
+    }
+    @keyframes modalFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
     .modal-content h2 {
       font-family: 'Montserrat', sans-serif;
@@ -571,9 +678,155 @@
     .modal-buttons button:hover {
       background-color: #8c7b66; /* bege um pouco mais escuro */
     }
+    .modal-buttons button:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
 
     /* -----------------------------------
-       9) RESPONSIVIDADE
+       9) MODAL DE CONTATO
+    ----------------------------------- */
+    .contact-form {
+      margin-top: 1rem;
+    }
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    .form-label {
+      display: block;
+      font-size: 0.875rem;
+      color: #666666;
+      margin-bottom: 0.25rem;
+    }
+    .form-textarea {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #cccccc;
+      border-radius: 4px;
+      font-size: 0.875rem;
+      font-family: 'Arial', sans-serif;
+      resize: vertical;
+      min-height: 80px;
+    }
+    .form-textarea:focus {
+      outline: none;
+      border-color: #a6937a;
+    }
+    
+    /* -----------------------------------
+       MODAL DE CONFIRMAÇÃO DE INSCRIÇÃO
+    ----------------------------------- */
+    .confirm-modal {
+      background: #1a1a1a;
+      border: 1px solid #a6937a;
+      max-width: 450px;
+      padding: 32px;
+      text-align: center;
+    }
+    .confirm-modal h2 {
+      font-size: 24px;
+      margin-bottom: 24px;
+      color: #ffffff;
+    }
+    .confirm-details {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid #333333;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 24px 0;
+      text-align: left;
+    }
+    .confirm-detail-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #333333;
+    }
+    .confirm-detail-row:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+    .confirm-label {
+      color: #888888;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .confirm-value {
+      color: #a6937a;
+      font-size: 14px;
+      font-weight: 500;
+      text-align: right;
+    }
+    .confirm-warning {
+      background: rgba(255, 152, 0, 0.1);
+      border: 1px solid rgba(255, 152, 0, 0.3);
+      border-radius: 6px;
+      padding: 16px;
+      margin: 20px 0;
+      font-size: 13px;
+      color: #ff9800;
+      line-height: 1.5;
+    }
+    .confirm-buttons {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .confirm-buttons button {
+      flex: 1;
+      padding: 14px 24px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .btn-confirm {
+      background: #a6937a;
+      color: #000000;
+      border: 1px solid #a6937a;
+    }
+    .btn-confirm:hover {
+      background: #b5a589;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(166, 147, 122, 0.3);
+    }
+    .btn-cancel {
+      background: transparent;
+      color: #cccccc;
+      border: 1px solid #333333;
+    }
+    .btn-cancel:hover {
+      background: rgba(255,255,255,0.05);
+      border-color: #666666;
+    }
+    
+    /* Status de confirmação */
+    .success-message {
+      background: rgba(76, 175, 80, 0.1);
+      border: 1px solid rgba(76, 175, 80, 0.3);
+      border-radius: 8px;
+      padding: 20px;
+      margin: 20px 0;
+      text-align: center;
+    }
+    .success-message h3 {
+      color: #4CAF50;
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+    .success-message p {
+      color: #cccccc;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* -----------------------------------
+       10) RESPONSIVIDADE
     ----------------------------------- */
     @media (max-width: 1024px) {
       .main-content {
@@ -617,8 +870,9 @@
       <div class="header-content">
         <h1 class="logo">Sweet Secrets Members Club</h1>
         <nav class="user-menu">
-          <a href="#" id="notifBtn">Notificações</a>
+          <a href="#" id="notifBtn">Notificações <span class="notif-badge" id="notifCount">0</span></a>
           <a href="#" id="btnMyProfile">Meu Perfil</a>
+          <a href="admin.html" id="btnAdmin" style="display:none;">Admin</a>
           <a href="#" id="btnLogout">Sair</a>
         </nav>
       </div>
@@ -710,7 +964,92 @@
   </template>
 
   <!-- ================================
-       4) SCRIPTS (Dados + Lógica)
+       4) TEMPLATE DO MODAL DE CONTATO
+  ================================= -->
+  <template id="contactModalTemplate">
+    <div class="modal-overlay">
+      <div class="modal-content">
+        <div class="modal-close">&times;</div>
+        <h2>Solicitar Contato</h2>
+        <div class="modal-meta" id="contactMemberName"></div>
+        <div class="contact-form">
+          <div class="form-group">
+            <label class="form-label">Mensagem (opcional)</label>
+            <textarea 
+              id="contactMessage" 
+              class="form-textarea" 
+              placeholder="Olá, gostaria de me conectar com você para discutir..."
+            ></textarea>
+          </div>
+        </div>
+        <div class="modal-buttons">
+          <button id="modalSendContact">Enviar Solicitação</button>
+          <button id="modalCloseContact">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </template>
+  
+  <!-- ================================
+       5) TEMPLATE DO MODAL DE CONFIRMAÇÃO DE INSCRIÇÃO
+  ================================= -->
+  <template id="confirmSignupTemplate">
+    <div class="modal-overlay">
+      <div class="modal-content confirm-modal">
+        <h2>Confirmar Inscrição</h2>
+        <div class="confirm-details">
+          <div class="confirm-detail-row">
+            <span class="confirm-label">Evento</span>
+            <span class="confirm-value" id="confirmEventName"></span>
+          </div>
+          <div class="confirm-detail-row">
+            <span class="confirm-label">Data</span>
+            <span class="confirm-value" id="confirmEventDate"></span>
+          </div>
+          <div class="confirm-detail-row">
+            <span class="confirm-label">Horário</span>
+            <span class="confirm-value" id="confirmEventTime"></span>
+          </div>
+          <div class="confirm-detail-row">
+            <span class="confirm-label">Local</span>
+            <span class="confirm-value" id="confirmEventLocation"></span>
+          </div>
+          <div class="confirm-detail-row">
+            <span class="confirm-label">Status</span>
+            <span class="confirm-value" id="confirmEventStatus"></span>
+          </div>
+        </div>
+        <div class="confirm-warning">
+          ⚠️ Sua inscrição será enviada para aprovação. Você receberá uma confirmação por e-mail em até 24 horas.
+        </div>
+        <div class="confirm-buttons">
+          <button class="btn-confirm" id="btnConfirmSignup">Confirmar Inscrição</button>
+          <button class="btn-cancel" id="btnCancelSignup">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </template>
+  
+  <!-- ================================
+       6) TEMPLATE DE MENSAGEM DE SUCESSO
+  ================================= -->
+  <template id="successMessageTemplate">
+    <div class="modal-overlay">
+      <div class="modal-content confirm-modal">
+        <div class="success-message">
+          <h3>✓ Inscrição Enviada com Sucesso!</h3>
+          <p>Sua solicitação foi recebida e está <strong>pendente de aprovação</strong>.<br>
+          Você receberá um e-mail de confirmação em breve.</p>
+        </div>
+        <div class="confirm-buttons">
+          <button class="btn-confirm" id="btnCloseSuccess">Entendido</button>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <!-- ================================
+       7) SCRIPTS (Dados + Lógica)
   ================================= -->
   <script>
     /*****************************************
@@ -745,7 +1084,8 @@
         bio: 'Criando experiências exclusivas e construindo narrativas para marcas de luxo que ressoam com públicos exigentes.',
         tags: ['Marcas de Luxo','Curadoria de Eventos','Brand Strategy','Hospitalidade'],
         linkedin: 'https://www.linkedin.com/in/inesrelvas',
-        profile: '#'
+        profile: '#',
+        isAdmin: true // Flag para indicar que é admin
       },
       {
         id: 3,
@@ -784,42 +1124,100 @@
         id: 1,
         title: 'Finais NBA com a Hennessy',
         date: '2025-06-05',
+        time: '20:00',
         availability: 'Últimas vagas!',
         location: 'Exímia Bar',
-        description: 'Venha assistir aos jogos finais da NBA acompanhado de degustação de Hennessy e entrada VIP no lounge Exímia Bar. Restrito a 50 convidados. Inclui welcome drink e menu especial.'
+        description: 'Venha assistir aos jogos finais da NBA acompanhado de degustação de Hennessy e entrada VIP no lounge Exímia Bar. Restrito a 50 convidados. Inclui welcome drink e menu especial.',
+        maxCapacity: 50,
+        currentRegistrations: 48,
+        type: 'Evento Externo'
       },
       {
         id: 2,
         title: 'Jantar Especial Dia dos Namorados',
         date: '2025-06-12',
+        time: '19:30',
         availability: 'Vagas limitadas',
         location: 'Sweet Secrets Club',
-        description: 'Celebre o Dia dos Namorados com um jantar romântico preparado pelo nosso chef. Menu especial para casais, decoração intimista e música ao vivo. Reserve já seu par!'
+        description: 'Celebre o Dia dos Namorados com um jantar romântico preparado pelo nosso chef. Menu especial para casais, decoração intimista e música ao vivo. Reserve já seu par!',
+        maxCapacity: 30,
+        currentRegistrations: 20,
+        type: 'Boardroom'
       },
       {
         id: 3,
         title: 'Petit Comitê CTOs',
         date: '2025-06-19',
+        time: '18:00',
         availability: 'Vagas limitadas',
         location: 'Sala VIP',
-        description: 'Encontro exclusivo para CTOs de grandes empresas, com discussão sobre tendências tecnológicas emergentes e networking direcionado. Coffee break incluso.'
+        description: 'Encontro exclusivo para CTOs de grandes empresas, com discussão sobre tendências tecnológicas emergentes e networking direcionado. Coffee break incluso.',
+        maxCapacity: 25,
+        currentRegistrations: 15,
+        type: 'Petit Comitê'
       },
       {
         id: 4,
         title: "Cocktail Executivo by Inova.SAO",
         date: '2025-06-24',
+        time: '19:00',
         availability: 'Vagas limitadas',
         location: 'Morumbis',
-        description: 'Coquetel para CEOs e executivos, apresentado por Inova.SAO. Degustação de bebidas premium e conversa sobre oportunidades de investimentos e inovação no mercado atual.'
+        description: 'Coquetel para CEOs e executivos, apresentado por Inova.SAO. Degustação de bebidas premium e conversa sobre oportunidades de investimentos e inovação no mercado atual.',
+        maxCapacity: 40,
+        currentRegistrations: 25,
+        type: 'Happy Hour'
       }
     ];
+
+    // Sistema de estado da aplicação (substitui localStorage para o ambiente Claude)
+    const appState = {
+      currentUser: null,
+      eventRegistrations: [], // {eventId, status: 'pendente'|'confirmado'}
+      contactRequests: [], // {from, to, message, timestamp}
+      notifications: []
+    };
 
     // Guarda mês corrente para o calendário
     let currentYear = new Date().getFullYear();
     let currentMonth = new Date().getMonth(); // 0-based
 
     /*****************************************
-     * 2) POPULAR FILTROS (Indústria, Cargo, Localização)
+     * 2) INICIALIZAR USUÁRIO
+     *****************************************/
+    function initializeUser() {
+      // Simular usuário logado (Inês Relvas como admin)
+      appState.currentUser = {
+        id: 2,
+        name: 'Inês Relvas',
+        email: 'ines@sweetsecrets.club',
+        isAdmin: true
+      };
+      
+      // Carregar registros salvos (simulado)
+      appState.eventRegistrations = [
+        { eventId: 1, status: 'confirmado' },
+        { eventId: 2, status: 'pendente' }
+      ];
+      
+      // Atualizar notificações
+      updateNotificationCount();
+      
+      // Mostrar botão admin se for admin
+      if (appState.currentUser.isAdmin) {
+        document.getElementById('btnAdmin').style.display = 'inline-block';
+      }
+    }
+    
+    function updateNotificationCount() {
+      const count = appState.notifications.filter(n => !n.read).length;
+      const badge = document.getElementById('notifCount');
+      badge.textContent = count;
+      badge.style.display = count > 0 ? 'inline-block' : 'none';
+    }
+
+    /*****************************************
+     * 3) POPULAR FILTROS (Indústria, Cargo, Localização)
      *****************************************/
     function populateFilters() {
       const selectIndustry = document.getElementById('selectIndustry');
@@ -855,7 +1253,7 @@
     }
 
     /*****************************************
-     * 3) RENDER DE MEMBROS
+     * 4) RENDER DE MEMBROS
      *****************************************/
     function renderMembers(filteredMembers) {
       const container = document.getElementById('membersContainer');
@@ -872,6 +1270,16 @@
 
         // Monta tags
         const tagsHtml = member.tags.map(t => `<span class="tag">${t}</span>`).join('');
+
+        // SVG para LinkedIn
+        const linkedinSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+          <path d="M100.28 448H7.4V149.9h92.88zm-46.44-341.9C24.31 106.1 0 81.8 0 53.9 0 24.1 24.31 0 53.94 0s53.94 24.1 53.94 53.9c0 27.9-24.31 52.2-53.94 52.2zM447.8 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.7V149.9h89V196h1.3c12.4-23.5 42.6-48.3 87.6-48.3 93.7 0 111 61.7 111 142V448z"/>
+        </svg>`;
+        
+        // SVG para ícone externo
+        const externalIcon = `<svg class="external-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+          <path d="M320 0H192L342.6 150.6c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L192 90.5V320c0 17.7-14.3 32-32 32s-32-14.3-32-32V64c0-17.7 14.3-32 32-32h160c17.7 0 32 14.3 32 32s-14.3 32-32 32z"/>
+        </svg>`;
 
         card.innerHTML = `
           <div class="member-level">${member.status}</div>
@@ -890,15 +1298,17 @@
           <div class="member-bio">"${member.bio}"</div>
           <div class="member-tags">${tagsHtml}</div>
           <div class="member-actions">
-            <button class="btn-secondary" onclick="window.open('${member.linkedin}','_blank')">
-              <!-- Ícone LinkedIn SVG + Texto -->
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#cccccc" viewBox="0 0 448 512" style="vertical-align:middle; margin-right:6px;">
-                <path d="M100.28 448H7.4V149.9h92.88zm-46.44-341.9C24.31 106.1 0 81.8 0 53.9 0 24.1 24.31 0 53.94 0s53.94 24.1 53.94 53.9c0 27.9-24.31 52.2-53.94 52.2zM447.8 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.7V149.9h89V196h1.3c12.4-23.5 42.6-48.3 87.6-48.3 93.7 0 111 61.7 111 142V448z"/>
-              </svg>
+            <button class="btn-linkedin" onclick="window.open('${member.linkedin}','_blank')">
+              ${linkedinSvg}
               LinkedIn
             </button>
-            <button class="btn-secondary" onclick="window.open('${member.companySite}','_blank')">Site Empresa</button>
-            <button class="btn-primary btn-contact" data-member-id="${member.id}">Entrar em Contato</button>
+            <button class="btn-website" onclick="window.open('${member.companySite}','_blank')">
+              Website
+              ${externalIcon}
+            </button>
+            <button class="btn-contact" data-member-id="${member.id}">
+              Entrar em Contato
+            </button>
           </div>
         `;
         container.appendChild(card);
@@ -906,7 +1316,7 @@
     }
 
     /*****************************************
-     * 4) FILTRO DE MEMBROS (Search / Industry / Role / Location)
+     * 5) FILTRO DE MEMBROS
      *****************************************/
     function filterMembers() {
       const term = document.getElementById('inputSearch').value.toLowerCase();
@@ -927,7 +1337,7 @@
     }
 
     /*****************************************
-     * 5) RENDER CALENDÁRIO
+     * 6) RENDER CALENDÁRIO
      *****************************************/
     function renderCalendar() {
       const grid = document.getElementById('calendarGrid');
@@ -945,7 +1355,7 @@
       document.getElementById('calendarMonthLabel').textContent =
         `${monthNamesPt[currentMonth]} ${currentYear}`;
 
-      // “Bancos vazios” até o primeiro dia
+      // "Bancos vazios" até o primeiro dia
       for (let i = 0; i < firstDay; i++) {
         const blank = document.createElement('div');
         grid.appendChild(blank);
@@ -1003,7 +1413,7 @@
     }
 
     /*****************************************
-     * 6) RENDER LISTA DE EVENTOS (DO MÊS)
+     * 7) RENDER LISTA DE EVENTOS (DO MÊS)
      *****************************************/
     function renderEventsList() {
       const container = document.getElementById('eventsListContainer');
@@ -1014,7 +1424,7 @@
 
       if (!filtered.length) {
         const p = document.createElement('p');
-        p.style.color = '#888';
+        p.style.color = '#666';
         p.style.textAlign = 'center';
         p.textContent = 'Nenhum evento neste mês.';
         container.appendChild(p);
@@ -1025,14 +1435,28 @@
         const item = document.createElement('div');
         item.className = 'event-item';
 
-        // Formatação de data (ex.: “5 junho 2025”)
+        // Formatação de data (ex.: "5 junho 2025")
         const dt = new Date(ev.date);
         const day = dt.getDate();
         const monthName = dt.toLocaleString('pt-BR', { month: 'long' });
         const year = dt.getFullYear();
         const formatted = `${day} ${monthName} ${year}`;
 
+        // Verificar status de inscrição do usuário
+        const registration = appState.eventRegistrations.find(r => r.eventId === ev.id);
+        const statusHtml = registration ? 
+          `<span class="user-registration-status ${registration.status === 'confirmado' ? 'inscrito' : 'pendente'}">
+            ${registration.status === 'confirmado' ? 'Inscrito' : 'Pendente'}
+          </span>` : '';
+
+        // Botão de inscrição
+        const signupDisabled = registration ? 'disabled' : '';
+        const signupText = registration ? 
+          (registration.status === 'confirmado' ? 'Inscrito' : 'Aguardando') : 
+          'Inscrever';
+
         item.innerHTML = `
+          ${statusHtml}
           <div class="event-title">${ev.title}</div>
           <div class="event-meta">
             <span class="event-date">${formatted}</span>
@@ -1040,7 +1464,7 @@
           </div>
           <div class="event-details">Local: ${ev.location}</div>
           <div class="event-actions">
-            <button class="btn-small btn-small-primary" data-signup-id="${ev.id}">Inscrever</button>
+            <button class="btn-small btn-small-primary" data-signup-id="${ev.id}" ${signupDisabled}>${signupText}</button>
             <button class="btn-small btn-small-secondary" data-detail-id="${ev.id}">Ver Mais</button>
           </div>
         `;
@@ -1049,7 +1473,7 @@
     }
 
     /*****************************************
-     * 7) FILTRAR EVENTOS POR DIA
+     * 8) FILTRAR EVENTOS POR DIA
      *****************************************/
     function filterEventsByDate(dateString) {
       const container = document.getElementById('eventsListContainer');
@@ -1058,7 +1482,7 @@
       const filtered = eventsData.filter(ev => ev.date === dateString);
       if (!filtered.length) {
         const p = document.createElement('p');
-        p.style.color = '#888';
+        p.style.color = '#666';
         p.style.textAlign = 'center';
         p.textContent = 'Nenhum evento neste dia.';
         container.appendChild(p);
@@ -1075,7 +1499,21 @@
         const year = dt.getFullYear();
         const formatted = `${day} ${monthName} ${year}`;
 
+        // Verificar status de inscrição do usuário
+        const registration = appState.eventRegistrations.find(r => r.eventId === ev.id);
+        const statusHtml = registration ? 
+          `<span class="user-registration-status ${registration.status === 'confirmado' ? 'inscrito' : 'pendente'}">
+            ${registration.status === 'confirmado' ? 'Inscrito' : 'Pendente'}
+          </span>` : '';
+
+        // Botão de inscrição
+        const signupDisabled = registration ? 'disabled' : '';
+        const signupText = registration ? 
+          (registration.status === 'confirmado' ? 'Inscrito' : 'Aguardando') : 
+          'Inscrever';
+
         item.innerHTML = `
+          ${statusHtml}
           <div class="event-title">${ev.title}</div>
           <div class="event-meta">
             <span class="event-date">${formatted}</span>
@@ -1083,7 +1521,7 @@
           </div>
           <div class="event-details">Local: ${ev.location}</div>
           <div class="event-actions">
-            <button class="btn-small btn-small-primary" data-signup-id="${ev.id}">Inscrever</button>
+            <button class="btn-small btn-small-primary" data-signup-id="${ev.id}" ${signupDisabled}>${signupText}</button>
             <button class="btn-small btn-small-secondary" data-detail-id="${ev.id}">Ver Mais</button>
           </div>
         `;
@@ -1092,7 +1530,7 @@
     }
 
     /*****************************************
-     * 8) ABRIR / FECHAR MODAL DE EVENTO
+     * 9) ABRIR / FECHAR MODAL DE EVENTO
      *****************************************/
     function openEventModal(eventId) {
       const ev = eventsData.find(e => e.id === eventId);
@@ -1115,6 +1553,13 @@
       locEl.textContent   = `Local: ${ev.location}`;
       descEl.textContent  = ev.description;
 
+      // Verificar se já está inscrito
+      const registration = appState.eventRegistrations.find(r => r.eventId === ev.id);
+      if (registration) {
+        signUpBtn.disabled = true;
+        signUpBtn.textContent = registration.status === 'confirmado' ? 'Inscrito' : 'Aguardando Confirmação';
+      }
+
       function fecharModal() {
         overlay.remove();
       }
@@ -1122,19 +1567,179 @@
       closeBtn.addEventListener('click', fecharModal);
 
       signUpBtn.addEventListener('click', () => {
-        const msg = encodeURIComponent(
-          `Gostaria de me inscrever no evento "${ev.title}" do dia ${ev.date}`
-        );
-        window.open(`https://wa.me/5511913079456?text=${msg}`, '_blank');
+        if (!registration) {
+          fecharModal(); // Fechar modal de detalhes
+          openConfirmSignupModal(ev); // Abrir modal de confirmação
+        }
       });
 
       document.body.appendChild(overlay);
     }
 
     /*****************************************
-     * 9) LISTENERS E INICIALIZAÇÃO
+     * 10) MODAL DE CONTATO
+     *****************************************/
+    function openContactModal(memberId) {
+      const member = membersData.find(m => m.id === memberId);
+      if (!member) return;
+
+      const t = document.getElementById('contactModalTemplate');
+      const clone = t.content.cloneNode(true);
+
+      const overlay = clone.querySelector('.modal-overlay');
+      const memberNameEl = clone.getElementById('contactMemberName');
+      const messageEl = clone.getElementById('contactMessage');
+      const closeIcon = clone.querySelector('.modal-close');
+      const closeBtn = clone.getElementById('modalCloseContact');
+      const sendBtn = clone.getElementById('modalSendContact');
+
+      memberNameEl.textContent = `Para: ${member.name} - ${member.role} @ ${member.company}`;
+
+      function fecharModal() {
+        overlay.remove();
+      }
+      closeIcon.addEventListener('click', fecharModal);
+      closeBtn.addEventListener('click', fecharModal);
+
+      sendBtn.addEventListener('click', () => {
+        const message = messageEl.value.trim();
+        
+        // Criar solicitação de contato
+        appState.contactRequests.push({
+          from: appState.currentUser,
+          to: member,
+          message: message || 'Gostaria de me conectar com você.',
+          timestamp: new Date().toISOString(),
+          status: 'pendente'
+        });
+        
+        // Criar notificação para admin
+        appState.notifications.push({
+          type: 'networking',
+          from: appState.currentUser,
+          to: member,
+          message: message,
+          timestamp: new Date().toISOString()
+        });
+        
+        alert(`Sua solicitação de contato com ${member.name} foi enviada!`);
+        fecharModal();
+      });
+
+      document.body.appendChild(overlay);
+    }
+
+    /*****************************************
+     * 11) INSCRIÇÃO EM EVENTO
+     *****************************************/
+    function signUpForEvent(eventId) {
+      const ev = eventsData.find(e => e.id === eventId);
+      if (!ev) return;
+
+      // Verificar se já está inscrito
+      const registration = appState.eventRegistrations.find(r => r.eventId === eventId);
+      if (registration) return;
+
+      // Abrir modal de confirmação
+      openConfirmSignupModal(ev);
+    }
+    
+    /*****************************************
+     * 11.1) MODAL DE CONFIRMAÇÃO DE INSCRIÇÃO
+     *****************************************/
+    function openConfirmSignupModal(event) {
+      const t = document.getElementById('confirmSignupTemplate');
+      const clone = t.content.cloneNode(true);
+      
+      const overlay = clone.querySelector('.modal-overlay');
+      
+      // Preencher detalhes do evento
+      clone.getElementById('confirmEventName').textContent = event.title;
+      
+      // Formatar data
+      const dt = new Date(event.date);
+      const day = dt.getDate();
+      const monthNames = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho',
+                         'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+      const month = monthNames[dt.getMonth()];
+      const year = dt.getFullYear();
+      const weekDays = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
+      const weekDay = weekDays[dt.getDay()];
+      
+      clone.getElementById('confirmEventDate').textContent = `${weekDay}, ${day} de ${month} de ${year}`;
+      clone.getElementById('confirmEventTime').textContent = event.time + 'h';
+      clone.getElementById('confirmEventLocation').textContent = event.location;
+      clone.getElementById('confirmEventStatus').textContent = event.availability;
+      
+      // Botões
+      const btnConfirm = clone.getElementById('btnConfirmSignup');
+      const btnCancel = clone.getElementById('btnCancelSignup');
+      
+      function fecharModal() {
+        overlay.remove();
+      }
+      
+      btnCancel.addEventListener('click', fecharModal);
+      
+      btnConfirm.addEventListener('click', () => {
+        // Adicionar inscrição pendente
+        appState.eventRegistrations.push({
+          eventId: event.id,
+          status: 'pendente',
+          timestamp: new Date().toISOString()
+        });
+        
+        // Criar notificação para admin
+        appState.notifications.push({
+          type: 'event',
+          from: appState.currentUser,
+          event: event,
+          timestamp: new Date().toISOString()
+        });
+        
+        fecharModal();
+        
+        // Mostrar mensagem de sucesso
+        showSuccessMessage();
+        
+        // Atualizar lista de eventos
+        renderEventsList();
+      });
+      
+      document.body.appendChild(overlay);
+    }
+    
+    /*****************************************
+     * 11.2) MENSAGEM DE SUCESSO
+     *****************************************/
+    function showSuccessMessage() {
+      const t = document.getElementById('successMessageTemplate');
+      const clone = t.content.cloneNode(true);
+      
+      const overlay = clone.querySelector('.modal-overlay');
+      const btnClose = clone.getElementById('btnCloseSuccess');
+      
+      btnClose.addEventListener('click', () => {
+        overlay.remove();
+      });
+      
+      document.body.appendChild(overlay);
+      
+      // Auto-fechar após 5 segundos
+      setTimeout(() => {
+        if (overlay.parentElement) {
+          overlay.remove();
+        }
+      }, 5000);
+    }
+
+    /*****************************************
+     * 12) LISTENERS E INICIALIZAÇÃO
      *****************************************/
     document.addEventListener('DOMContentLoaded', () => {
+      // 0) Inicializar usuário
+      initializeUser();
+
       // 1) Popula selects
       populateFilters();
 
@@ -1151,15 +1756,12 @@
       document.getElementById('selectRole').addEventListener('change', filterMembers);
       document.getElementById('selectLocation').addEventListener('change', filterMembers);
 
-      // 5) Listener em “Entrar em Contato” (abre WhatsApp)
+      // 5) Listener em "Entrar em Contato"
       document.getElementById('membersContainer').addEventListener('click', e => {
-        if (e.target.matches('[data-member-id]')) {
-          const id = Number(e.target.dataset.memberId);
-          const member = membersData.find(m => m.id === id);
-          if (member) {
-            const msg = encodeURIComponent(`Gostaria de me conectar com o membro "${member.name}"`);
-            window.open(`https://wa.me/5511913079456?text=${msg}`, '_blank');
-          }
+        if (e.target.closest('[data-member-id]')) {
+          const btn = e.target.closest('[data-member-id]');
+          const id = Number(btn.dataset.memberId);
+          openContactModal(id);
         }
       });
 
@@ -1167,11 +1769,7 @@
       document.getElementById('eventsListContainer').addEventListener('click', e => {
         if (e.target.matches('[data-signup-id]')) {
           const id = Number(e.target.dataset.signupId);
-          const ev = eventsData.find(ev => ev.id === id);
-          if (ev) {
-            const msg = encodeURIComponent(`Gostaria de me inscrever no evento "${ev.title}" do dia ${ev.date}`);
-            window.open(`https://wa.me/5511913079456?text=${msg}`, '_blank');
-          }
+          signUpForEvent(id);
         }
         if (e.target.matches('[data-detail-id]')) {
           const id = Number(e.target.dataset.detailId);
@@ -1179,20 +1777,28 @@
         }
       });
 
-      // 7) Logout / Meu Perfil
+      // 7) Logout / Meu Perfil / Notificações
       document.getElementById('btnLogout').addEventListener('click', () => {
-        localStorage.removeItem('ss_currentMember');
-        window.location.href = 'login.html';
+        if (confirm('Deseja realmente sair?')) {
+          alert('Fazendo logout...');
+          // window.location.href = 'login.html';
+        }
       });
+      
       document.getElementById('btnMyProfile').addEventListener('click', () => {
-        window.location.href = 'profile.html';
+        alert('Indo para perfil...');
+        // window.location.href = 'profile.html';
       });
-
-      // 8) Verificar sessão (se não logado, volta para login)
-      const current = localStorage.getItem('ss_currentMember');
-      if (!current) {
-        window.location.href = 'login.html';
-      }
+      
+      document.getElementById('notifBtn').addEventListener('click', () => {
+        alert(`Você tem ${appState.notifications.filter(n => !n.read).length} notificações não lidas.`);
+        // Aqui abriria um modal ou página de notificações
+      });
+      
+      document.getElementById('btnAdmin').addEventListener('click', () => {
+        // Redirecionar para o admin dashboard
+        window.location.href = 'admin.html';
+      });
     });
   </script>
 </body>
