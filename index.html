@@ -1281,6 +1281,33 @@
           <path d="M320 0H192L342.6 150.6c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L192 90.5V320c0 17.7-14.3 32-32 32s-32-14.3-32-32V64c0-17.7 14.3-32 32-32h160c17.7 0 32 14.3 32 32s-14.3 32-32 32z"/>
         </svg>`;
 
+        // Verificar quais botões mostrar baseado na disponibilidade dos links
+        let buttonsHtml = '';
+        
+        // Botão LinkedIn (só se tiver link)
+        if (member.linkedin && member.linkedin.trim() !== '' && member.linkedin !== '#') {
+          buttonsHtml += `
+            <button class="btn-linkedin" onclick="window.open('${member.linkedin}','_blank')">
+              ${linkedinSvg}
+              LinkedIn
+            </button>`;
+        }
+        
+        // Botão Website (só se tiver link)
+        if (member.companySite && member.companySite.trim() !== '' && member.companySite !== '#') {
+          buttonsHtml += `
+            <button class="btn-website" onclick="window.open('${member.companySite}','_blank')">
+              Website
+              ${externalIcon}
+            </button>`;
+        }
+        
+        // Botão Contato (sempre presente)
+        buttonsHtml += `
+          <button class="btn-contact" data-member-id="${member.id}">
+            Entrar em Contato
+          </button>`;
+
         card.innerHTML = `
           <div class="member-level">${member.status}</div>
           <div class="member-header">
@@ -1298,17 +1325,7 @@
           <div class="member-bio">"${member.bio}"</div>
           <div class="member-tags">${tagsHtml}</div>
           <div class="member-actions">
-            <button class="btn-linkedin" onclick="window.open('${member.linkedin}','_blank')">
-              ${linkedinSvg}
-              LinkedIn
-            </button>
-            <button class="btn-website" onclick="window.open('${member.companySite}','_blank')">
-              Website
-              ${externalIcon}
-            </button>
-            <button class="btn-contact" data-member-id="${member.id}">
-              Entrar em Contato
-            </button>
+            ${buttonsHtml}
           </div>
         `;
         container.appendChild(card);
