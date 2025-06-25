@@ -504,9 +504,69 @@
       margin-bottom: 16px; /* leve "flutuar" */
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
       position: relative;
+      transition: all 0.3s ease;
     }
     .event-item:last-child {
       margin-bottom: 0;
+    }
+    
+    /* Eventos restritos */
+    .event-item.restricted {
+      opacity: 0.6;
+      background: #f8f8f8;
+      border: 1px solid #e0e0e0;
+      cursor: not-allowed;
+    }
+    .event-item.restricted:hover {
+      opacity: 0.7;
+    }
+    
+    /* Ícone de cadeado */
+    .event-lock {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 24px;
+      height: 24px;
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 12px;
+      z-index: 10;
+    }
+    
+    /* Tooltip */
+    .event-tooltip {
+      position: absolute;
+      bottom: 100%;
+      right: 0;
+      background: #333;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      white-space: nowrap;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 20;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .event-tooltip::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      right: 20px;
+      border: 5px solid transparent;
+      border-top-color: #333;
+    }
+    .event-lock:hover .event-tooltip {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(-5px);
     }
     .event-title {
       font-family: 'Georgia', serif;
@@ -1130,7 +1190,8 @@
         description: 'Venha assistir aos jogos finais da NBA acompanhado de degustação de Hennessy e entrada VIP no lounge Exímia Bar. Restrito a 50 convidados. Inclui welcome drink e menu especial.',
         maxCapacity: 50,
         currentRegistrations: 48,
-        type: 'Evento Externo'
+        type: 'Evento Externo',
+        minLevel: 'bronze' // Todos podem participar
       },
       {
         id: 2,
@@ -1142,7 +1203,8 @@
         description: 'Celebre o Dia dos Namorados com um jantar romântico preparado pelo nosso chef. Menu especial para casais, decoração intimista e música ao vivo. Reserve já seu par!',
         maxCapacity: 30,
         currentRegistrations: 20,
-        type: 'Boardroom'
+        type: 'Boardroom',
+        minLevel: 'silver' // Apenas Silver ou superior
       },
       {
         id: 3,
@@ -1154,7 +1216,8 @@
         description: 'Encontro exclusivo para CTOs de grandes empresas, com discussão sobre tendências tecnológicas emergentes e networking direcionado. Coffee break incluso.',
         maxCapacity: 25,
         currentRegistrations: 15,
-        type: 'Petit Comitê'
+        type: 'Petit Comitê',
+        minLevel: 'gold' // Apenas Gold ou superior
       },
       {
         id: 4,
@@ -1166,7 +1229,8 @@
         description: 'Coquetel para CEOs e executivos, apresentado por Inova.SAO. Degustação de bebidas premium e conversa sobre oportunidades de investimentos e inovação no mercado atual.',
         maxCapacity: 40,
         currentRegistrations: 25,
-        type: 'Happy Hour'
+        type: 'Happy Hour',
+        minLevel: 'platinum' // Apenas Platinum
       }
     ];
 
@@ -1183,6 +1247,33 @@
     let currentMonth = new Date().getMonth(); // 0-based
 
     /*****************************************
+     * 1.1) SISTEMA DE PERMISSÕES POR NÍVEL
+     *****************************************/
+    function getLevelHierarchy() {
+      return {
+        'bronze': 1,
+        'silver': 2, 
+        'gold': 3,
+        'platinum': 4
+      };
+    }
+
+    function canAccessEvent(userLevel, eventMinLevel) {
+      const hierarchy = getLevelHierarchy();
+      return hierarchy[userLevel] >= hierarchy[eventMinLevel];
+    }
+
+    function getLevelDisplayName(level) {
+      const names = {
+        'bronze': 'Bronze Key',
+        'silver': 'Silver Key',
+        'gold': 'Gold Key', 
+        'platinum': 'Platinum Key'
+      };
+      return names[level] || level;
+    }
+
+    /*****************************************
      * 2) INICIALIZAR USUÁRIO
      *****************************************/
     function initializeUser() {
@@ -1191,7 +1282,8 @@
         id: 2,
         name: 'Inês Relvas',
         email: 'ines@sweetsecrets.club',
-        isAdmin: true
+        isAdmin: true,
+        memberLevel: 'silver' // Nível do membro atual
       };
       
       // Carregar registros salvos (simulado)
@@ -1202,6 +1294,33 @@
       
       // Atualizar notificações
       updateNotificationCount();
+
+    /*****************************************
+     * 2.1) SISTEMA DE PERMISSÕES POR NÍVEL
+     *****************************************/
+    function getLevelHierarchy() {
+      return {
+        'bronze': 1,
+        'silver': 2, 
+        'gold': 3,
+        'platinum': 4
+      };
+    }
+
+    function canAccessEvent(userLevel, eventMinLevel) {
+      const hierarchy = getLevelHierarchy();
+      return hierarchy[userLevel] >= hierarchy[eventMinLevel];
+    }
+
+    function getLevelDisplayName(level) {
+      const names = {
+        'bronze': 'Bronze Key',
+        'silver': 'Silver Key',
+        'gold': 'Gold Key', 
+        'platinum': 'Platinum Key'
+      };
+      return names[level] || level;
+    }
       
       // Mostrar botão admin se for admin
       if (appState.currentUser.isAdmin) {
@@ -1450,7 +1569,13 @@
 
       filtered.forEach(ev => {
         const item = document.createElement('div');
-        item.className = 'event-item';
+        
+        // Verificar se o usuário pode acessar o evento
+        const userLevel = appState.currentUser.memberLevel;
+        const canAccess = canAccessEvent(userLevel, ev.minLevel);
+        
+        // Adicionar classes apropriadas
+        item.className = `event-item${canAccess ? '' : ' restricted'}`;
 
         // Formatação de data (ex.: "5 junho 2025")
         const dt = new Date(ev.date);
@@ -1467,13 +1592,28 @@
           </span>` : '';
 
         // Botão de inscrição
-        const signupDisabled = registration ? 'disabled' : '';
-        const signupText = registration ? 
-          (registration.status === 'confirmado' ? 'Inscrito' : 'Aguardando') : 
-          'Inscrever';
+        const signupDisabled = registration || !canAccess ? 'disabled' : '';
+        let signupText = 'Inscrever';
+        
+        if (registration) {
+          signupText = registration.status === 'confirmado' ? 'Inscrito' : 'Aguardando';
+        } else if (!canAccess) {
+          signupText = 'Restrito';
+        }
+
+        // Ícone de cadeado e tooltip para eventos restritos
+        const lockHtml = !canAccess ? `
+          <div class="event-lock">
+            🔒
+            <div class="event-tooltip">
+              Exclusivo para membros ${getLevelDisplayName(ev.minLevel)} ou superior
+            </div>
+          </div>
+        ` : '';
 
         item.innerHTML = `
           ${statusHtml}
+          ${lockHtml}
           <div class="event-title">${ev.title}</div>
           <div class="event-meta">
             <span class="event-date">${formatted}</span>
@@ -1508,7 +1648,13 @@
 
       filtered.forEach(ev => {
         const item = document.createElement('div');
-        item.className = 'event-item';
+        
+        // Verificar se o usuário pode acessar o evento
+        const userLevel = appState.currentUser.memberLevel;
+        const canAccess = canAccessEvent(userLevel, ev.minLevel);
+        
+        // Adicionar classes apropriadas
+        item.className = `event-item${canAccess ? '' : ' restricted'}`;
 
         const dt = new Date(ev.date);
         const day = dt.getDate();
@@ -1524,13 +1670,28 @@
           </span>` : '';
 
         // Botão de inscrição
-        const signupDisabled = registration ? 'disabled' : '';
-        const signupText = registration ? 
-          (registration.status === 'confirmado' ? 'Inscrito' : 'Aguardando') : 
-          'Inscrever';
+        const signupDisabled = registration || !canAccess ? 'disabled' : '';
+        let signupText = 'Inscrever';
+        
+        if (registration) {
+          signupText = registration.status === 'confirmado' ? 'Inscrito' : 'Aguardando';
+        } else if (!canAccess) {
+          signupText = 'Restrito';
+        }
+
+        // Ícone de cadeado e tooltip para eventos restritos
+        const lockHtml = !canAccess ? `
+          <div class="event-lock">
+            🔒
+            <div class="event-tooltip">
+              Exclusivo para membros ${getLevelDisplayName(ev.minLevel)} ou superior
+            </div>
+          </div>
+        ` : '';
 
         item.innerHTML = `
           ${statusHtml}
+          ${lockHtml}
           <div class="event-title">${ev.title}</div>
           <div class="event-meta">
             <span class="event-date">${formatted}</span>
@@ -1570,9 +1731,19 @@
       locEl.textContent   = `Local: ${ev.location}`;
       descEl.textContent  = ev.description;
 
+      // Verificar permissão de acesso
+      const userLevel = appState.currentUser.memberLevel;
+      const canAccess = canAccessEvent(userLevel, ev.minLevel);
+      
       // Verificar se já está inscrito
       const registration = appState.eventRegistrations.find(r => r.eventId === ev.id);
-      if (registration) {
+      
+      if (!canAccess) {
+        signUpBtn.disabled = true;
+        signUpBtn.textContent = `Restrito - ${getLevelDisplayName(ev.minLevel)}+`;
+        signUpBtn.style.background = '#cccccc';
+        signUpBtn.style.color = '#666';
+      } else if (registration) {
         signUpBtn.disabled = true;
         signUpBtn.textContent = registration.status === 'confirmado' ? 'Inscrito' : 'Aguardando Confirmação';
       }
@@ -1584,7 +1755,7 @@
       closeBtn.addEventListener('click', fecharModal);
 
       signUpBtn.addEventListener('click', () => {
-        if (!registration) {
+        if (!registration && canAccess) {
           fecharModal(); // Fechar modal de detalhes
           openConfirmSignupModal(ev); // Abrir modal de confirmação
         }
@@ -1652,6 +1823,15 @@
     function signUpForEvent(eventId) {
       const ev = eventsData.find(e => e.id === eventId);
       if (!ev) return;
+
+      // Verificar permissão de acesso
+      const userLevel = appState.currentUser.memberLevel;
+      const canAccess = canAccessEvent(userLevel, ev.minLevel);
+      
+      if (!canAccess) {
+        alert(`Este evento é exclusivo para membros ${getLevelDisplayName(ev.minLevel)} ou superior.`);
+        return;
+      }
 
       // Verificar se já está inscrito
       const registration = appState.eventRegistrations.find(r => r.eventId === eventId);
