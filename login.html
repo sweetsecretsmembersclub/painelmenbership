@@ -4,112 +4,692 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sweet Secrets Members Club – Login</title>
-
-  <!-- Fonte Montserrat e Tailwind via CDN -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
-
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Georgia&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background-color: #000; /* fundo preto */
-      color: #fff;            /* texto branco */
+    /* Reset e Base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    /* Remover contornos nativos em foco para inputs e botões */
-    input:focus, button:focus {
+    
+    html, body {
+      height: 100%;
+      background: #0a0a0a;
+      color: #f5f5f5;
+      font-family: 'Arial', sans-serif;
+      line-height: 1.6;
+      overflow: hidden;
+    }
+    
+    /* Background animado */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02) 0%, transparent 70%);
+      animation: breathe 20s ease-in-out infinite;
+      z-index: -1;
+    }
+    
+    @keyframes breathe {
+      0%, 100% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.1); opacity: 1; }
+    }
+    
+    /* Container principal */
+    .login-container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    
+    /* Card de login */
+    .login-card {
+      width: 100%;
+      max-width: 420px;
+      animation: fadeInUp 0.8s ease-out;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Logo e título */
+    .login-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    
+    .login-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 3px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+    
+    .login-subtitle {
+      font-family: 'Georgia', serif;
+      font-size: 16px;
+      color: #cccccc;
+      font-style: italic;
+      letter-spacing: 4px;
+    }
+    
+    /* Formulário */
+    .login-form {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid #1a1a1a;
+      border-radius: 12px;
+      padding: 40px 32px;
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .login-form::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #ffffff, transparent);
+      animation: shimmer 3s ease-in-out infinite;
+    }
+    
+    @keyframes shimmer {
+      0%, 100% { opacity: 0.3; transform: translateX(-100%); }
+      50% { opacity: 1; transform: translateX(100%); }
+    }
+    
+    .form-group {
+      margin-bottom: 24px;
+    }
+    
+    .form-label {
+      display: block;
+      font-size: 12px;
+      color: #cccccc;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    
+    .form-input {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid #333333;
+      border-radius: 6px;
+      color: #f5f5f5;
+      padding: 14px 18px;
+      font-size: 15px;
+      font-family: 'Arial', sans-serif;
+      transition: all 0.3s ease;
+    }
+    
+    .form-input::placeholder {
+      color: #666666;
+      font-style: italic;
+    }
+    
+    .form-input:focus {
       outline: none;
+      border-color: #ffffff;
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Opções extras */
+    .form-options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+      font-size: 13px;
+    }
+    
+    .remember-me {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      color: #888888;
+      transition: color 0.3s ease;
+    }
+    
+    .remember-me:hover {
+      color: #ffffff;
+    }
+    
+    .checkbox {
+      width: 16px;
+      height: 16px;
+      margin-right: 8px;
+      background: transparent;
+      border: 1px solid #666666;
+      border-radius: 3px;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    
+    .checkbox input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+    }
+    
+    .checkbox input:checked + .checkmark {
+      opacity: 1;
+    }
+    
+    .checkmark {
+      position: absolute;
+      top: 2px;
+      left: 5px;
+      width: 5px;
+      height: 9px;
+      border: solid #ffffff;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .forgot-password {
+      color: #888888;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      font-size: 13px;
+    }
+    
+    .forgot-password:hover {
+      color: #ffffff;
+    }
+    
+    /* Botão de login */
+    .btn-login {
+      width: 100%;
+      background: #ffffff;
+      color: #000000;
+      border: 1px solid #ffffff;
+      border-radius: 6px;
+      padding: 16px 24px;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-login::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0,0,0,0.1), transparent);
+      transition: left 0.5s;
+    }
+    
+    .btn-login:hover {
+      background: #f5f5f5;
+      border-color: #f5f5f5;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
+    }
+    
+    .btn-login:hover::before {
+      left: 100%;
+    }
+    
+    .btn-login:disabled {
+      background: #333333;
+      border-color: #333333;
+      color: #666666;
+      cursor: not-allowed;
+      transform: none;
       box-shadow: none;
+    }
+    
+    /* Loading spinner */
+    .spinner {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border: 2px solid #000;
+      border-radius: 50%;
+      border-top-color: transparent;
+      animation: spin 0.8s linear infinite;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    /* Mensagens */
+    .message {
+      margin-top: 20px;
+      padding: 12px 16px;
+      border-radius: 6px;
+      font-size: 13px;
+      text-align: center;
+      animation: slideDown 0.3s ease-out;
+    }
+    
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .message-error {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #ef4444;
+    }
+    
+    .message-success {
+      background: rgba(34, 197, 94, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      color: #22c55e;
+    }
+    
+    /* Links extras */
+    .login-footer {
+      text-align: center;
+      margin-top: 32px;
+      padding-top: 32px;
+      border-top: 1px solid #1a1a1a;
+    }
+    
+    .help-text {
+      font-size: 12px;
+      color: #666666;
+      margin-bottom: 16px;
+    }
+    
+    .whatsapp-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #25D366;
+      text-decoration: none;
+      font-size: 13px;
+      transition: all 0.3s ease;
+    }
+    
+    .whatsapp-link:hover {
+      color: #128C7E;
+      transform: translateY(-1px);
+    }
+    
+    .whatsapp-icon {
+      width: 18px;
+      height: 18px;
+    }
+    
+    /* Copyright */
+    .copyright {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 11px;
+      color: #444444;
+      text-align: center;
+    }
+    
+    /* Responsividade */
+    @media (max-width: 480px) {
+      .login-form {
+        padding: 32px 24px;
+      }
+      
+      .login-title {
+        font-size: 28px;
+      }
+      
+      .form-options {
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
-<body class="flex items-center justify-center min-h-screen">
-
-  <!-- Container de toda a área de login -->
-  <div class="w-full max-w-sm">
-    <!-- Títulos (centrados) -->
-    <div class="text-center mb-8">
-      <h1 class="text-3xl font-semibold mb-2">Sweet Secrets Members Club</h1>
-      <p class="text-gray-300 text-sm">Navegue no seu clube</p>
-    </div>
-
-    <!-- Caixa de login branca, levemente arredondada -->
-    <div class="bg-white rounded-lg shadow-lg p-8">
-      <!-- Formulário -->
-      <form id="loginForm" class="space-y-4">
-        <!-- E-mail -->
-        <div>
-          <label for="loginEmail" class="sr-only">E-mail</label>
-          <input
-            id="loginEmail"
-            type="text"
-            placeholder="E-mail"
-            class="w-full px-4 py-2 border border-gray-300 rounded-md text-black"
-            autocomplete="off"
-          />
-        </div>
-
-        <!-- Senha -->
-        <div>
-          <label for="loginPassword" class="sr-only">Senha</label>
-          <input
-            id="loginPassword"
-            type="password"
-            placeholder="Senha"
-            class="w-full px-4 py-2 border border-gray-300 rounded-md text-black"
-            autocomplete="off"
-          />
-        </div>
-
-        <!-- Botão Entrar (preto, hover azul) -->
-        <div>
-          <button
-            id="btnLogin"
-            type="button"
-            class="w-full bg-black text-white font-medium py-2 rounded-md hover:bg-blue-600"
-          >
-            Entrar
+<body>
+  <div class="login-container">
+    <div class="login-card">
+      <!-- Header com logo -->
+      <div class="login-header">
+        <h1 class="login-title">Sweet Secrets</h1>
+        <p class="login-subtitle">Members Club</p>
+      </div>
+      
+      <!-- Formulário de login -->
+      <div class="login-form">
+        <form id="loginForm">
+          <!-- Campo de email -->
+          <div class="form-group">
+            <label class="form-label" for="email">E-mail</label>
+            <input
+              type="email"
+              id="email"
+              class="form-input"
+              placeholder="seu@email.com"
+              autocomplete="email"
+              required
+            />
+          </div>
+          
+          <!-- Campo de senha -->
+          <div class="form-group">
+            <label class="form-label" for="password">Senha</label>
+            <input
+              type="password"
+              id="password"
+              class="form-input"
+              placeholder="••••••••"
+              autocomplete="current-password"
+              required
+            />
+          </div>
+          
+          <!-- Opções -->
+          <div class="form-options">
+            <label class="remember-me">
+              <div class="checkbox">
+                <input type="checkbox" id="rememberMe" />
+                <span class="checkmark"></span>
+              </div>
+              Lembrar-me
+            </label>
+            <a href="#" class="forgot-password" onclick="handleForgotPassword(event)">
+              Esqueceu a senha?
+            </a>
+          </div>
+          
+          <!-- Botão de login -->
+          <button type="submit" class="btn-login" id="btnLogin">
+            <span id="btnText">Entrar</span>
           </button>
+          
+          <!-- Container de mensagens -->
+          <div id="messageContainer"></div>
+        </form>
+        
+        <!-- Links de ajuda -->
+        <div class="login-footer">
+          <p class="help-text">Precisa de ajuda?</p>
+          <a href="https://api.whatsapp.com/send/?phone=5511913079456" target="_blank" class="whatsapp-link">
+            <svg class="whatsapp-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.525 3.488"/>
+            </svg>
+            Falar com o suporte
+          </a>
         </div>
-
-        <!-- Mensagem de erro (inicialmente oculta) -->
-        <p id="loginError" class="hidden text-red-500 text-sm text-center mt-2">
-          Credenciais inválidas.
-        </p>
-      </form>
+      </div>
     </div>
   </div>
-
+  
+  <!-- Copyright -->
+  <div class="copyright">
+    © 2025 Sweet Secrets Members Club. Todos os direitos reservados.
+  </div>
+  
   <script>
-    // Simulação de dados de membros
-    const members = [
-      { id: 1, name: 'António Silva', email: 'antonio@entain.com', password: 'senha123' },
-      { id: 2, name: 'Inês Relvas',   email: 'ines@sweetsecrets.club', password: 'senha456' }
+    // ===== CONFIGURAÇÃO IMPORTANTE =====
+    // SUBSTITUA ESTA URL PELA URL DO SEU GOOGLE APPS SCRIPT
+    const SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+    
+    // ===== MODO DE DESENVOLVIMENTO =====
+    const DEV_MODE = false; // Mude para true para testar sem Google Sheets
+    
+    // Dados de teste para desenvolvimento
+    const DEV_USERS = [
+      { 
+        id: 1, 
+        name: 'António Silva', 
+        email: 'antonio@entain.com', 
+        password: 'senha123',
+        level: 'Silver Key Member',
+        member_level: 'silver',
+        is_admin: false
+      },
+      { 
+        id: 2, 
+        name: 'Inês Relvas', 
+        email: 'ines@sweetsecrets.club', 
+        password: 'admin456',
+        level: 'Gold Key Member',
+        member_level: 'gold',
+        is_admin: true
+      }
     ];
-
-    const loginEmail    = document.getElementById('loginEmail');
-    const loginPassword = document.getElementById('loginPassword');
-    const loginError    = document.getElementById('loginError');
-    const btnLogin      = document.getElementById('btnLogin');
-
-    // Ao clicar em Entrar
-    btnLogin.addEventListener('click', () => {
-      const email = loginEmail.value.trim();
-      const pwd   = loginPassword.value.trim();
-      const member = members.find(m => m.email === email && m.password === pwd);
-
-      if (!member) {
-        loginError.classList.remove('hidden');
+    
+    // Elementos do DOM
+    const form = document.getElementById('loginForm');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const btnLogin = document.getElementById('btnLogin');
+    const btnText = document.getElementById('btnText');
+    const messageContainer = document.getElementById('messageContainer');
+    const rememberMe = document.getElementById('rememberMe');
+    
+    // Carregar email salvo
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedEmail = localStorage.getItem('ss_rememberedEmail');
+      if (savedEmail) {
+        emailInput.value = savedEmail;
+        rememberMe.checked = true;
+      }
+    });
+    
+    // Mostrar mensagem
+    function showMessage(text, type = 'error') {
+      messageContainer.innerHTML = `
+        <div class="message message-${type}">
+          ${text}
+        </div>
+      `;
+      
+      setTimeout(() => {
+        messageContainer.innerHTML = '';
+      }, 5000);
+    }
+    
+    // Toggle loading
+    function setLoading(loading) {
+      btnLogin.disabled = loading;
+      btnText.innerHTML = loading ? 
+        'Entrando<span class="spinner"></span>' : 
+        'Entrar';
+    }
+    
+    // Login em modo dev
+    async function devLogin(email, password) {
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      const user = DEV_USERS.find(u => 
+        u.email === email && u.password === password
+      );
+      
+      return user ? {
+        success: true,
+        data: user
+      } : {
+        success: false,
+        message: 'Email ou senha inválidos'
+      };
+    }
+    
+    // Handle login
+    async function handleLogin(e) {
+      e.preventDefault();
+      
+      const email = emailInput.value.trim();
+      const password = passwordInput.value.trim();
+      
+      if (!email || !password) {
+        showMessage('Por favor, preencha todos os campos');
         return;
       }
-      // Limpa erro (caso estivesse visível)
-      loginError.classList.add('hidden');
-
-      // Salva “sessão” no localStorage
-      localStorage.setItem('ss_currentMember', JSON.stringify(member));
-
-      // Redireciona para página inicial
-      window.location.href = 'index.html';
-    });
+      
+      setLoading(true);
+      messageContainer.innerHTML = '';
+      
+      try {
+        let result;
+        
+        if (DEV_MODE) {
+          result = await devLogin(email, password);
+        } else {
+          if (SCRIPT_URL.includes('YOUR_SCRIPT_ID')) {
+            showMessage('Configure a URL do Google Apps Script');
+            setLoading(false);
+            return;
+          }
+          
+          const response = await fetch(SCRIPT_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              action: 'login',
+              email: email,
+              password: password
+            })
+          });
+          
+          result = await response.json();
+        }
+        
+        if (result.success) {
+          showMessage('Login realizado com sucesso!', 'success');
+          
+          // Salvar email se marcado
+          if (rememberMe.checked) {
+            localStorage.setItem('ss_rememberedEmail', email);
+          } else {
+            localStorage.removeItem('ss_rememberedEmail');
+          }
+          
+          // Salvar dados do usuário
+          const userData = {
+            id: result.data.id,
+            name: result.data.name,
+            email: result.data.email,
+            role: result.data.role,
+            company: result.data.company,
+            level: result.data.level,
+            memberLevel: result.data.member_level || result.data.memberLevel,
+            isAdmin: result.data.is_admin || result.data.isAdmin,
+            profileImage: result.data.profile_image
+          };
+          
+          localStorage.setItem('ss_currentMember', JSON.stringify(userData));
+          
+          // Redirecionar
+          setTimeout(() => {
+            window.location.href = userData.isAdmin ? 'admin.html' : 'index.html';
+          }, 1000);
+          
+        } else {
+          showMessage(result.message || 'Email ou senha inválidos');
+        }
+        
+      } catch (error) {
+        console.error('Erro:', error);
+        showMessage('Erro ao conectar. Tente novamente.');
+      } finally {
+        setLoading(false);
+      }
+    }
+    
+    // Handle forgot password
+    async function handleForgotPassword(e) {
+      e.preventDefault();
+      
+      const email = emailInput.value.trim();
+      
+      if (!email) {
+        showMessage('Digite seu email primeiro');
+        return;
+      }
+      
+      if (DEV_MODE) {
+        showMessage('Função não disponível em modo dev');
+        return;
+      }
+      
+      setLoading(true);
+      
+      try {
+        const response = await fetch(SCRIPT_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            action: 'forgotPassword',
+            email: email
+          })
+        });
+        
+        const result = await response.json();
+        
+        showMessage(
+          result.success ? 
+          `Instruções enviadas para ${email}` : 
+          result.message || 'Erro ao processar',
+          result.success ? 'success' : 'error'
+        );
+        
+      } catch (error) {
+        showMessage('Erro ao conectar. Tente novamente.');
+      } finally {
+        setLoading(false);
+      }
+    }
+    
+    // Event listeners
+    form.addEventListener('submit', handleLogin);
+    
+    // Dev mode console
+    if (DEV_MODE) {
+      console.log('🔧 MODO DEV ATIVO');
+      console.log('Logins disponíveis:');
+      DEV_USERS.forEach(u => {
+        console.log(`${u.email} / ${u.password} (${u.is_admin ? 'Admin' : 'Membro'})`);
+      });
+    }
   </script>
 </body>
 </html>
