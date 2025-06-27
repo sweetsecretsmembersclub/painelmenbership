@@ -20,7 +20,7 @@
       overflow-x: hidden;
     }
     
-    /* Background animado */
+    /* Background estático */
     body::before {
       content: '';
       position: fixed;
@@ -32,14 +32,9 @@
         radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
         radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
         radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.01) 0%, transparent 70%);
-      animation: breathe 20s ease-in-out infinite;
       z-index: -1;
       pointer-events: none;
-    }
-    
-    @keyframes breathe {
-      0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.8; }
-      50% { transform: scale(1.1) rotate(5deg); opacity: 1; }
+      opacity: 0.9;
     }
     
     a, button {
@@ -71,13 +66,8 @@
       left: 0;
       right: 0;
       height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(137, 21, 34, 0.5), transparent);
-      animation: shimmer 3s ease-in-out infinite;
-    }
-    
-    @keyframes shimmer {
-      0%, 100% { opacity: 0.3; transform: translateX(-100%); }
-      50% { opacity: 1; transform: translateX(100%); }
+      background: rgba(137, 21, 34, 0.3);
+      opacity: 0.5;
     }
     
     .container {
@@ -153,21 +143,14 @@
       border-radius: 10px;
       margin-left: 4px;
       font-weight: 600;
-      animation: pulse 2s infinite;
       box-shadow: 0 0 10px rgba(193, 40, 57, 0.5);
-    }
-    
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); }
     }
 
     /* ===================================
        3) MAIN LAYOUT
     =================================== */
     main {
-      padding: 80px 32px 32px;
+      padding: 60px 32px 32px;
       max-width: 1400px;
       margin: 0 auto;
       animation: fadeInUp 0.8s ease-out;
@@ -201,14 +184,19 @@
     =================================== */
     /* Profile Cards Base */
     .profile-card {
-      background: rgba(255, 255, 255, 0.02);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.08);
       padding: 40px 32px;
-      border-radius: 12px;
+      border-radius: 16px;
       position: relative;
       overflow: hidden;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    }
+    
+    .profile-card:hover {
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      transform: translateY(-2px);
     }
     
     .profile-card::before {
@@ -218,7 +206,7 @@
       left: 0;
       width: 3px;
       height: 100%;
-      background: linear-gradient(to bottom, transparent, #ffffff, transparent);
+      background: linear-gradient(to bottom, transparent, #891522, transparent);
       transform: scaleY(0);
       transition: transform 0.4s ease;
       z-index: 1;
@@ -232,11 +220,11 @@
       font-family: 'Georgia', serif;
       font-size: 20px;
       font-weight: 400;
-      color: #ffffff;
+      color: #1a1a1a;
       text-transform: uppercase;
       letter-spacing: 3px;
       margin-bottom: 32px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
       padding-bottom: 16px;
       position: relative;
       z-index: 2;
@@ -252,27 +240,29 @@
       width: 120px;
       height: 120px;
       border-radius: 50%;
-      border: 3px solid rgba(255, 255, 255, 0.2);
+      border: 3px solid rgba(137, 21, 34, 0.2);
       overflow: hidden;
       position: relative;
       transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
     
     .profile-avatar:hover {
       border-color: #891522;
       transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
     }
     
     .profile-avatar img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: grayscale(20%);
+      filter: grayscale(0%);
       transition: filter 0.3s ease;
     }
     
     .profile-avatar:hover img {
-      filter: grayscale(0%);
+      filter: brightness(1.1);
     }
     
     .profile-info {
@@ -284,13 +274,13 @@
       font-size: 28px;
       font-weight: 400;
       margin-bottom: 8px;
-      color: #ffffff;
+      color: #1a1a1a;
     }
     
     .profile-role {
       font-size: 16px;
       font-weight: 500;
-      color: #c66970;
+      color: #891522;
       margin-bottom: 6px;
       text-transform: uppercase;
       letter-spacing: 1px;
@@ -298,7 +288,7 @@
     
     .profile-company {
       font-size: 16px;
-      color: #cccccc;
+      color: #666666;
       margin-bottom: 24px;
     }
     
@@ -307,20 +297,20 @@
       display: inline-flex;
       align-items: center;
       gap: 12px;
-      background: linear-gradient(135deg, rgba(192, 192, 192, 0.1) 0%, rgba(192, 192, 192, 0.05) 100%);
-      border: 1px solid rgba(192, 192, 192, 0.3);
+      background: linear-gradient(135deg, #f8f8f8 0%, #f0f0f0 100%);
+      border: 1px solid rgba(137, 21, 34, 0.2);
       border-radius: 30px;
       padding: 12px 24px;
       margin-bottom: 28px;
-      box-shadow: 0 4px 20px rgba(192, 192, 192, 0.1);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
       position: relative;
       overflow: hidden;
     }
     
     .level-badge:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 30px rgba(192, 192, 192, 0.15);
-      border-color: rgba(192, 192, 192, 0.4);
+      box-shadow: 0 6px 30px rgba(0, 0, 0, 0.12);
+      border-color: rgba(137, 21, 34, 0.3);
     }
     
     .level-badge::before {
@@ -330,20 +320,14 @@
       left: -50%;
       width: 200%;
       height: 200%;
-      background: radial-gradient(circle, rgba(192, 192, 192, 0.1) 0%, transparent 70%);
-      animation: rotate 20s linear infinite;
-    }
-    
-    @keyframes rotate {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+      background: radial-gradient(circle, rgba(137, 21, 34, 0.05) 0%, transparent 70%);
+      pointer-events: none;
     }
     
     .level-badge-icon {
       font-size: 28px;
       position: relative;
       z-index: 1;
-      animation: float 3s ease-in-out infinite;
       transition: transform 0.3s ease;
     }
     
@@ -363,7 +347,7 @@
     
     .level-badge-subtitle {
       font-size: 10px;
-      color: #999;
+      color: #666666;
       text-transform: uppercase;
       letter-spacing: 1.5px;
       margin-bottom: 2px;
@@ -371,12 +355,12 @@
     
     .level-badge-title {
       font-size: 16px;
-      color: #f4e5cf;
+      color: #891522;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 1px;
       font-family: 'Georgia', serif;
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+      text-shadow: none;
       display: flex;
       align-items: center;
       gap: 6px;
@@ -386,24 +370,19 @@
       content: '↓';
       font-size: 12px;
       opacity: 0.6;
-      animation: bounce 2s infinite;
-    }
-    
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(2px); }
+      margin-left: 4px;
     }
     
     /* Progress Journey Container - Luxo Minimalista */
     .progress-journey {
-      background: linear-gradient(135deg, #141414 0%, #0a0a0a 100%);
-      border: 1px solid rgba(244, 229, 207, 0.15);
+      background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+      border: 1px solid rgba(137, 21, 34, 0.15);
       border-radius: 20px;
       padding: 40px;
       margin-bottom: 24px;
       position: relative;
       overflow: hidden;
-      box-shadow: inset 0 1px 0 rgba(244, 229, 207, 0.1);
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
     }
     
     .progress-journey::before {
@@ -413,7 +392,7 @@
       left: 0;
       right: 0;
       height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(244, 229, 207, 0.2), transparent);
+      background: linear-gradient(90deg, transparent, rgba(137, 21, 34, 0.2), transparent);
       opacity: 0.5;
     }
     
@@ -426,7 +405,7 @@
     
     .journey-title {
       font-size: 13px;
-      color: rgba(244, 229, 207, 0.7);
+      color: #666666;
       font-weight: 400;
       text-transform: uppercase;
       letter-spacing: 2px;
@@ -438,19 +417,19 @@
       align-items: center;
       gap: 10px;
       background: transparent;
-      border: 1px solid rgba(244, 229, 207, 0.2);
+      border: 1px solid rgba(137, 21, 34, 0.2);
       padding: 8px 20px;
       border-radius: 50px;
       font-size: 11px;
-      color: rgba(244, 229, 207, 0.8);
+      color: #891522;
       text-transform: uppercase;
       letter-spacing: 1.5px;
       transition: all 0.3s ease;
     }
     
     .next-level-preview:hover {
-      border-color: rgba(244, 229, 207, 0.4);
-      background: rgba(244, 229, 207, 0.05);
+      border-color: rgba(137, 21, 34, 0.4);
+      background: rgba(137, 21, 34, 0.05);
     }
     
     .next-level-preview .icon {
@@ -481,7 +460,7 @@
     
     .metric-label {
       font-size: 11px;
-      color: rgba(244, 229, 207, 0.5);
+      color: #666666;
       font-weight: 300;
       text-transform: uppercase;
       letter-spacing: 1.5px;
@@ -491,7 +470,7 @@
     
     .metric-value {
       font-size: 24px;
-      color: #f4e5cf;
+      color: #1a1a1a;
       font-weight: 300;
       font-family: 'Georgia', serif;
       letter-spacing: -0.5px;
@@ -499,7 +478,7 @@
     
     .metric-percentage {
       font-size: 36px;
-      color: rgba(244, 229, 207, 0.9);
+      color: #891522;
       font-weight: 200;
       font-family: 'Montserrat', sans-serif;
       letter-spacing: -1px;
@@ -515,7 +494,7 @@
     .progress-track {
       position: relative;
       height: 4px;
-      background: rgba(244, 229, 207, 0.1);
+      background: rgba(0, 0, 0, 0.08);
       border-radius: 2px;
       overflow: visible;
       margin-top: 8px;
@@ -526,12 +505,12 @@
       top: 0;
       left: 0;
       height: 100%;
-      background: linear-gradient(90deg, rgba(244, 229, 207, 0.4) 0%, rgba(244, 229, 207, 0.6) 100%);
+      background: linear-gradient(90deg, #891522 0%, #a51623 100%);
       border-radius: 2px;
       transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
       opacity: 0;
       animation: fadeInProgress 0.8s ease-out 0.3s forwards;
-      box-shadow: 0 0 20px rgba(244, 229, 207, 0.2);
+      box-shadow: 0 0 20px rgba(137, 21, 34, 0.2);
     }
     
     @keyframes fadeInProgress {
@@ -546,9 +525,9 @@
       transform: translate(50%, -50%);
       width: 12px;
       height: 12px;
-      background: #f4e5cf;
+      background: #891522;
       border-radius: 50%;
-      box-shadow: 0 0 0 4px rgba(244, 229, 207, 0.1), 0 0 20px rgba(244, 229, 207, 0.4);
+      box-shadow: 0 0 0 4px rgba(137, 21, 34, 0.1), 0 0 20px rgba(137, 21, 34, 0.4);
     }
     
     .progress-milestones {
@@ -565,7 +544,7 @@
       position: absolute;
       width: 1px;
       height: 8px;
-      background: rgba(244, 229, 207, 0.2);
+      background: rgba(0, 0, 0, 0.2);
       top: 50%;
       transform: translateY(-50%);
       transition: all 0.3s ease;
@@ -573,11 +552,11 @@
     
     .milestone.major {
       height: 12px;
-      background: rgba(244, 229, 207, 0.3);
+      background: rgba(0, 0, 0, 0.3);
     }
     
     .milestone.completed {
-      background: rgba(244, 229, 207, 0.6);
+      background: #891522;
     }
     
     .progress-stats {
@@ -585,7 +564,7 @@
       gap: 40px;
       margin-top: 48px;
       padding-top: 40px;
-      border-top: 1px solid rgba(244, 229, 207, 0.1);
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
     }
     
     .stat-block {
@@ -595,7 +574,7 @@
     
     .stat-block-value {
       font-size: 28px;
-      color: #f4e5cf;
+      color: #891522;
       font-weight: 300;
       font-family: 'Georgia', serif;
       margin-bottom: 8px;
@@ -604,7 +583,7 @@
     
     .stat-block-label {
       font-size: 11px;
-      color: rgba(244, 229, 207, 0.5);
+      color: #666666;
       text-transform: uppercase;
       letter-spacing: 1.5px;
       font-family: 'Montserrat', sans-serif;
@@ -613,9 +592,9 @@
     .level-benefits {
       margin-top: 40px;
       padding: 32px;
-      background: linear-gradient(135deg, rgba(244, 229, 207, 0.05) 0%, transparent 100%);
+      background: linear-gradient(135deg, rgba(137, 21, 34, 0.03) 0%, transparent 100%);
       border-radius: 16px;
-      border: 1px solid rgba(244, 229, 207, 0.1);
+      border: 1px solid rgba(137, 21, 34, 0.1);
     }
     
     .benefits-header {
@@ -625,7 +604,7 @@
     
     .benefits-subtitle {
       font-size: 11px;
-      color: rgba(244, 229, 207, 0.5);
+      color: #666666;
       text-transform: uppercase;
       letter-spacing: 2px;
       margin-bottom: 8px;
@@ -634,7 +613,7 @@
     
     .benefits-title {
       font-size: 20px;
-      color: #f4e5cf;
+      color: #891522;
       font-weight: 300;
       font-family: 'Georgia', serif;
       letter-spacing: 0.5px;
@@ -650,26 +629,26 @@
     .benefit-item-minimal {
       text-align: center;
       padding: 20px;
-      background: rgba(244, 229, 207, 0.03);
+      background: rgba(137, 21, 34, 0.02);
       border-radius: 12px;
-      border: 1px solid rgba(244, 229, 207, 0.08);
+      border: 1px solid rgba(137, 21, 34, 0.08);
       transition: all 0.3s ease;
       position: relative;
     }
     
     .benefit-item-minimal:hover {
-      background: rgba(244, 229, 207, 0.05);
-      border-color: rgba(244, 229, 207, 0.15);
+      background: rgba(137, 21, 34, 0.05);
+      border-color: rgba(137, 21, 34, 0.15);
       transform: translateY(-2px);
     }
     
     .benefit-item-minimal.unlocked {
-      border-color: rgba(244, 229, 207, 0.2);
+      border-color: rgba(137, 21, 34, 0.2);
     }
     
     .benefit-item-minimal.next {
-      border-color: rgba(244, 229, 207, 0.3);
-      background: rgba(244, 229, 207, 0.05);
+      border-color: rgba(137, 21, 34, 0.3);
+      background: rgba(137, 21, 34, 0.05);
     }
     
     .benefit-item-minimal.locked {
@@ -690,7 +669,7 @@
     
     .benefit-name-minimal {
       font-size: 11px;
-      color: rgba(244, 229, 207, 0.8);
+      color: #666666;
       font-weight: 400;
       text-transform: uppercase;
       letter-spacing: 1px;
@@ -703,15 +682,15 @@
       right: -8px;
       width: 16px;
       height: 16px;
-      background: #f4e5cf;
+      background: #891522;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 10px;
-      color: #0a0a0a;
+      color: #ffffff;
       font-weight: 600;
-      box-shadow: 0 2px 8px rgba(244, 229, 207, 0.3);
+      box-shadow: 0 2px 8px rgba(137, 21, 34, 0.3);
     }
     
     /* Toggle Switch Styles */
@@ -724,14 +703,14 @@
     
     .toggle-label {
       font-size: 13px;
-      color: #f4e5cf;
+      color: #666666;
     }
     
     .toggle-switch {
       position: relative;
       width: 50px;
       height: 24px;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.1);
       border-radius: 12px;
       cursor: pointer;
       transition: background 0.3s ease;
@@ -750,6 +729,7 @@
       background: #fff;
       border-radius: 50%;
       transition: transform 0.3s ease;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
     }
     
     .toggle-switch.active .toggle-slider {
@@ -758,11 +738,11 @@
     
     .btn-edit-toggle {
       margin-top: 24px;
-      color: #ffffff;
+      color: #1a1a1a;
       text-transform: uppercase;
       font-size: 12px;
       background: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      border: 1px solid rgba(0, 0, 0, 0.2);
       border-radius: 8px;
       padding: 12px 24px;
       transition: all 0.3s ease;
@@ -770,8 +750,8 @@
     }
     
     .btn-edit-toggle:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.5);
+      background: rgba(0, 0, 0, 0.05);
+      border-color: rgba(0, 0, 0, 0.3);
       transform: translateY(-2px);
     }
 
@@ -796,27 +776,27 @@
     
     .form-label {
       font-size: 13px;
-      color: #f4e5cf;
+      color: #666666;
       margin-bottom: 8px;
       text-transform: uppercase;
       letter-spacing: 1px;
     }
     
     .form-input, .form-textarea, .form-select {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(0, 0, 0, 0.04);
+      border: 1px solid rgba(0, 0, 0, 0.15);
       border-radius: 8px;
       padding: 12px 16px;
-      color: #f5f5f5;
+      color: #1a1a1a;
       font-size: 14px;
       transition: all 0.3s ease;
     }
     
     .form-input:focus, .form-textarea:focus, .form-select:focus {
       outline: none;
-      border-color: #c66970;
-      background: rgba(255, 255, 255, 0.08);
-      box-shadow: 0 0 0 3px rgba(198, 105, 112, 0.2);
+      border-color: #891522;
+      background: rgba(0, 0, 0, 0.02);
+      box-shadow: 0 0 0 3px rgba(137, 21, 34, 0.1);
     }
     
     .form-textarea {
@@ -825,13 +805,13 @@
     }
     
     .form-select {
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(0, 0, 0, 0.04);
       cursor: pointer;
     }
     
     .form-select option {
-      background: #1a1a1a;
-      color: #f5f5f5;
+      background: #ffffff;
+      color: #1a1a1a;
     }
     
     .form-actions {
@@ -865,13 +845,13 @@
     
     .btn-cancel {
       background: transparent;
-      color: #999;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #666666;
+      border: 1px solid rgba(0, 0, 0, 0.2);
     }
     
     .btn-cancel:hover {
-      color: #f5f5f5;
-      border-color: rgba(255, 255, 255, 0.3);
+      color: #1a1a1a;
+      border-color: rgba(0, 0, 0, 0.3);
     }
 
     /* ===================================
@@ -888,17 +868,17 @@
       display: flex;
       align-items: center;
       gap: 6px;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(0, 0, 0, 0.04);
       padding: 8px 12px;
       border-radius: 20px;
       font-size: 12px;
-      color: #f4e5cf;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #1a1a1a;
+      border: 1px solid rgba(0, 0, 0, 0.08);
       transition: all 0.3s ease;
     }
     
     .profile-detail-item:hover {
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.06);
       transform: translateY(-2px);
     }
     
@@ -910,7 +890,7 @@
        7) BALANCE INFO
     =================================== */
     .balance-info {
-      background: linear-gradient(135deg, rgba(127, 173, 163, 0.1) 0%, rgba(127, 173, 163, 0.05) 100%);
+      background: linear-gradient(135deg, rgba(127, 173, 163, 0.08) 0%, rgba(127, 173, 163, 0.04) 100%);
       border: 1px solid rgba(127, 173, 163, 0.3);
       border-radius: 12px;
       padding: 20px;
@@ -918,7 +898,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 4px 15px rgba(127, 173, 163, 0.1);
+      box-shadow: 0 4px 15px rgba(127, 173, 163, 0.08);
     }
     
     .balance-content {
@@ -929,7 +909,7 @@
     
     .balance-label {
       font-size: 14px;
-      color: #f4e5cf;
+      color: #666666;
       text-transform: uppercase;
       letter-spacing: 1px;
     }
@@ -974,7 +954,7 @@
     .consumption-title {
       font-size: 16px;
       font-weight: 600;
-      color: #f5f5f5;
+      color: #1a1a1a;
       margin-bottom: 16px;
       display: flex;
       align-items: center;
@@ -987,8 +967,8 @@
     }
     
     .consumption-category {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.02);
+      border: 1px solid rgba(0, 0, 0, 0.08);
       border-radius: 8px;
       padding: 16px;
     }
@@ -996,7 +976,7 @@
     .consumption-category-title {
       font-size: 14px;
       font-weight: 600;
-      color: #c66970;
+      color: #891522;
       margin-bottom: 12px;
     }
     
@@ -1011,17 +991,17 @@
       justify-content: space-between;
       align-items: center;
       padding: 8px;
-      background: rgba(255, 255, 255, 0.02);
+      background: rgba(0, 0, 0, 0.02);
       border-radius: 6px;
       font-size: 13px;
     }
     
     .consumption-item-name {
-      color: #f5f5f5;
+      color: #1a1a1a;
     }
     
     .consumption-item-count {
-      color: #c66970;
+      color: #891522;
       font-weight: 600;
     }
 
@@ -1040,8 +1020,8 @@
     }
     
     .tag {
-      background: rgba(198, 105, 112, 0.2);
-      color: #c66970;
+      background: rgba(137, 21, 34, 0.1);
+      color: #891522;
       padding: 6px 12px;
       border-radius: 20px;
       font-size: 12px;
@@ -1050,10 +1030,11 @@
       gap: 6px;
       transition: all 0.3s ease;
       cursor: pointer;
+      border: 1px solid rgba(137, 21, 34, 0.2);
     }
     
     .tag:hover {
-      background: rgba(198, 105, 112, 0.3);
+      background: rgba(137, 21, 34, 0.15);
       transform: translateY(-1px);
     }
     
@@ -1063,13 +1044,13 @@
     
     .tag-add {
       background: transparent;
-      border: 1px dashed rgba(255, 255, 255, 0.3);
-      color: #999;
+      border: 1px dashed rgba(0, 0, 0, 0.3);
+      color: #666666;
     }
     
     .tag-add:hover {
-      border-color: #c66970;
-      color: #c66970;
+      border-color: #891522;
+      color: #891522;
     }
 
     /* ===================================
@@ -1092,8 +1073,8 @@
       left: -50%;
       width: 200%;
       height: 200%;
-      background: radial-gradient(circle, rgba(198, 105, 112, 0.1) 0%, transparent 70%);
-      animation: rotate 20s linear infinite;
+      background: radial-gradient(circle, rgba(198, 105, 112, 0.05) 0%, transparent 70%);
+      pointer-events: none;
     }
     
     .membership-header {
@@ -1164,7 +1145,6 @@
       border-radius: 20px;
       font-size: 12px;
       font-weight: 600;
-      animation: pulse 2s infinite;
     }
 
     /* ===================================
@@ -1179,28 +1159,14 @@
       position: relative;
       overflow: hidden;
       margin-bottom: 24px;
-    }
-    
-    .benefits-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, #891522, transparent);
-      animation: shimmer 3s ease-in-out infinite;
+      border-top: 2px solid rgba(255, 255, 255, 0.1);
     }
     
     .benefits-card.exclusive {
       background: linear-gradient(135deg, rgba(137, 21, 34, 0.1) 0%, rgba(137, 21, 34, 0.05) 100%);
       border: 1px solid rgba(137, 21, 34, 0.3);
       box-shadow: 0 8px 32px rgba(137, 21, 34, 0.15);
-    }
-    
-    .benefits-card.exclusive::before {
-      background: linear-gradient(90deg, #891522, #c66970, #891522);
-      height: 4px;
+      border-top: 2px solid rgba(137, 21, 34, 0.4);
     }
     
     .benefits-title {
@@ -1248,6 +1214,11 @@
     .benefit-item:hover {
       transform: translateX(4px);
       background: rgba(255, 255, 255, 0.05);
+      border-left-width: 4px;
+    }
+    
+    .benefits-card.exclusive .benefit-item:hover {
+      background: rgba(244, 228, 193, 0.08);
     }
     
     .benefit-name {
@@ -1392,7 +1363,7 @@
       position: absolute;
       top: 16px;
       left: 20px;
-      background: rgba(137, 21, 34, 0.1);
+      background: rgba(137, 21, 34, 0.15);
       color: #891522;
       padding: 6px 16px;
       border-radius: 20px;
@@ -1400,7 +1371,7 @@
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 1px;
-      border: 1px solid rgba(137, 21, 34, 0.2);
+      border: 1px solid rgba(137, 21, 34, 0.3);
       backdrop-filter: blur(10px);
       z-index: 5;
     }
@@ -1471,11 +1442,13 @@
       text-transform: uppercase;
       letter-spacing: 1px;
       margin-bottom: 4px;
+      font-weight: 500;
     }
     
     .event-card .event-location {
       font-size: 14px;
-      color: #666666;
+      color: #1a1a1a;
+      font-weight: 400;
     }
     
     .event-actions {
@@ -1499,15 +1472,17 @@
     }
     
     .btn-view-more {
-      background: transparent;
+      background: #ffffff;
       border: 1px solid #891522;
       color: #891522;
+      font-weight: 500;
     }
     
     .btn-view-more:hover {
       background: #891522;
       color: #ffffff;
       transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(137, 21, 34, 0.3);
     }
     
     .btn-members {
@@ -1538,15 +1513,25 @@
     }
     
     .btn-cancel-event {
-      background: transparent;
+      background: #ffffff;
       border: 1px solid #c12839;
       color: #c12839;
+      font-weight: 500;
     }
     
     .btn-cancel-event:hover {
       background: #c12839;
       color: #ffffff;
       transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(193, 40, 57, 0.3);
+    }
+    
+    .btn-cancel-event:disabled {
+      background: rgba(200, 200, 200, 0.1);
+      border-color: rgba(200, 200, 200, 0.3);
+      color: #999999;
+      cursor: not-allowed;
+      opacity: 0.6;
     }
     
     /* Event card específico para eventos futuros (escuro) */
@@ -1580,6 +1565,7 @@
     }
     
     .event-card.future .btn-view-more {
+      background: transparent;
       border: 1px solid rgba(255, 255, 255, 0.3);
       color: #ffffff;
     }
@@ -1601,13 +1587,14 @@
     }
     
     .event-card.future .btn-cancel-event {
-      background: #c12839;
+      background: transparent;
       border: 1px solid #c12839;
       color: #ffffff;
     }
     
     .event-card.future .btn-cancel-event:hover {
-      background: #e13449;
+      background: #c12839;
+      color: #ffffff;
     }
     
     .event-card.future .btn-cancel-event:disabled {
@@ -1619,6 +1606,11 @@
     .event-card.future.restricted {
       background: #003b56;
       opacity: 0.7;
+    }
+    
+    .event-card.future .event-countdown {
+      background: rgba(244, 229, 207, 0.9);
+      color: #000000;
     }
     
     .event-card.future .event-lock {
@@ -1635,7 +1627,7 @@
       gap: 24px;
       margin-bottom: 20px;
       font-size: 13px;
-      color: #f4e5cf;
+      color: #666666;
       flex-wrap: wrap;
     }
     
@@ -2483,7 +2475,7 @@
           <div id="upcomingEventsContainer">
             <!-- Eventos serão carregados dinamicamente -->
           </div>
-          <div style="text-align: center; margin-top: 32px; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+          <div style="text-align: center; margin-top: 32px; padding-top: 16px; border-top: 1px solid rgba(0, 0, 0, 0.08);">
             <button class="btn-view-agenda" onclick="viewEventCalendar()">Consultar Agenda de Eventos</button>
           </div>
         </div>
@@ -2984,7 +2976,7 @@
         const canAccess = canAccessEvent(userLevel, event.minLevel);
         
         const eventCard = document.createElement('div');
-        eventCard.className = `event-card${!canAccess ? ' restricted' : ''}`;
+        eventCard.className = `event-card future${!canAccess ? ' restricted' : ''}`;
         
         // Conteúdo base do card
         let cardContent = `
@@ -3097,6 +3089,10 @@
       document.getElementById(modalId).classList.add('active');
     }
     
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.remove('active');
+    }
+    
     function viewEventCalendar() {
       window.location.href = 'index.html#eventos';
     }
@@ -3153,3 +3149,374 @@
       content.innerHTML = detailsContent;
       modal.classList.add('active');
     }
+    
+    function viewEventMembers(eventId) {
+      const modal = document.getElementById('membersModal');
+      const title = document.getElementById('membersModalTitle');
+      const content = document.getElementById('membersModalContent');
+      
+      title.textContent = 'Membros Confirmados';
+      
+      // Simular lista de membros (em produção viria da API)
+      const members = [
+        { id: 32, name: 'António Silva', role: 'Head of Latin America', company: 'Entain Group', image: 32 },
+        { id: 48, name: 'Carla Mendes', role: 'CEO', company: 'TechStart Brasil', image: 48 },
+        { id: 3, name: 'Lucas Ferreira', role: 'CTO', company: 'Innovation Labs', image: 3 },
+        { id: 15, name: 'Marina Santos', role: 'VP Marketing', company: 'Digital Agency', image: 15 },
+        { id: 22, name: 'Rafael Oliveira', role: 'Managing Partner', company: 'Venture Capital SP', image: 22 },
+        { id: 29, name: 'Ana Costa', role: 'CFO', company: 'Fintech Solutions', image: 29 }
+      ];
+      
+      content.innerHTML = '';
+      
+      members.forEach(member => {
+        const memberItem = document.createElement('div');
+        memberItem.className = `member-item ${member.id === appState.currentMember.id ? 'member-self' : ''}`;
+        
+        const isSelf = member.id === appState.currentMember.id;
+        const hasRequested = appState.contactRequests.includes(member.id);
+        
+        memberItem.innerHTML = `
+          <div class="member-avatar">
+            <img src="https://i.pravatar.cc/150?img=${member.image}" alt="${member.name}" />
+          </div>
+          <div class="member-info">
+            <div class="member-name">${member.name}${isSelf ? ' (Você)' : ''}</div>
+            <div class="member-role">${member.role} • ${member.company}</div>
+          </div>
+          ${!isSelf ? `
+            <button class="member-contact-btn ${hasRequested ? 'sent' : ''}" 
+                    onclick="${hasRequested ? '' : `requestContact(${member.id}, '${member.name}')`}"
+                    ${hasRequested ? 'disabled' : ''}>
+              ${hasRequested ? 'Solicitado' : 'Conectar'}
+            </button>
+          ` : ''}
+        `;
+        
+        content.appendChild(memberItem);
+      });
+      
+      modal.classList.add('active');
+    }
+    
+    function requestContact(memberId, memberName) {
+      const modal = document.getElementById('contactConfirmModal');
+      const targetName = document.getElementById('contactTargetName');
+      
+      targetName.textContent = memberName;
+      modal.dataset.targetId = memberId;
+      modal.dataset.targetName = memberName;
+      
+      modal.classList.add('active');
+    }
+    
+    function confirmContactRequest() {
+      const modal = document.getElementById('contactConfirmModal');
+      const targetId = parseInt(modal.dataset.targetId);
+      const targetName = modal.dataset.targetName;
+      
+      // Adicionar à lista de solicitações
+      appState.contactRequests.push(targetId);
+      
+      // Fechar modal de confirmação
+      closeModal('contactConfirmModal');
+      
+      // Atualizar botão na lista
+      const buttons = document.querySelectorAll(`.member-contact-btn`);
+      buttons.forEach(btn => {
+        if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(targetId)) {
+          btn.classList.add('sent');
+          btn.textContent = 'Solicitado';
+          btn.disabled = true;
+          btn.onclick = null;
+        }
+      });
+      
+      // Adicionar notificação
+      appState.notifications.unshift({
+        id: Date.now(),
+        type: 'networking',
+        icon: '📧',
+        content: `Solicitação de conexão enviada para ${targetName}`,
+        time: 'Agora',
+        priority: 'info',
+        read: false
+      });
+      
+      loadNotifications();
+      
+      // Mostrar confirmação temporária
+      showToast('Solicitação enviada com sucesso!', 'success');
+    }
+    
+    function showToast(message, type = 'info') {
+      const toast = document.createElement('div');
+      toast.style.cssText = `
+        position: fixed;
+        bottom: 100px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: ${type === 'success' ? '#7fada3' : '#891522'};
+        color: ${type === 'success' ? '#000000' : '#ffffff'};
+        padding: 16px 32px;
+        border-radius: 50px;
+        font-size: 14px;
+        font-weight: 600;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        z-index: 4000;
+        animation: slideUpToast 0.3s ease-out;
+      `;
+      toast.textContent = message;
+      
+      document.body.appendChild(toast);
+      
+      setTimeout(() => {
+        toast.style.animation = 'fadeOut 0.3s ease-out';
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    }
+    
+    function renewMembership() {
+      openModal('renewalModal');
+    }
+    
+    function scrollToBenefits() {
+      const benefitsSection = document.getElementById('silver-benefits');
+      if (benefitsSection) {
+        benefitsSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+        // Adicionar efeito de destaque temporário
+        benefitsSection.style.transition = 'all 0.3s ease';
+        benefitsSection.style.transform = 'scale(1.02)';
+        benefitsSection.style.boxShadow = '0 12px 40px rgba(137, 21, 34, 0.3)';
+        
+        setTimeout(() => {
+          benefitsSection.style.transform = 'scale(1)';
+          benefitsSection.style.boxShadow = '0 8px 32px rgba(137, 21, 34, 0.15)';
+        }, 600);
+      }
+    }
+    
+    // Event Listeners
+    document.getElementById('btnLogout').addEventListener('click', function(e) {
+      e.preventDefault();
+      if (confirm('Tem certeza que deseja sair?')) {
+        // Simular logout
+        window.location.href = 'login.html';
+      }
+    });
+    
+    // Adicionar interesse com Enter
+    document.addEventListener('DOMContentLoaded', function() {
+      const interestInput = document.getElementById('interestInput');
+      if (interestInput) {
+        interestInput.addEventListener('keypress', function(e) {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            const value = this.value.trim();
+            if (value) {
+              addInterestTag(value);
+              this.value = '';
+            }
+          }
+        });
+      }
+      
+      // Carregar notificações e eventos ao iniciar
+      loadNotifications();
+      loadUpcomingEvents();
+    });
+    
+    function addInterestTag(interest) {
+      const container = document.querySelector('.tags-container');
+      const newTag = document.createElement('div');
+      newTag.className = 'tag';
+      newTag.innerHTML = `
+        <span class="tag-icon">🏷️</span>
+        ${interest}
+      `;
+      
+      // Inserir antes do último elemento (que seria o botão de adicionar)
+      container.appendChild(newTag);
+      
+      // Adicionar ao estado
+      appState.currentMember.interests.push(interest);
+      
+      // Animar entrada
+      newTag.style.opacity = '0';
+      newTag.style.transform = 'scale(0.8)';
+      setTimeout(() => {
+        newTag.style.transition = 'all 0.3s ease';
+        newTag.style.opacity = '1';
+        newTag.style.transform = 'scale(1)';
+      }, 10);
+    }
+    
+    // Fechar modais ao clicar fora
+    document.querySelectorAll('.modal-overlay').forEach(modal => {
+      modal.addEventListener('click', function(e) {
+        if (e.target === this) {
+          this.classList.remove('active');
+        }
+      });
+    });
+    
+    // Animação de progresso ao carregar a página
+    window.addEventListener('load', function() {
+      const progressFills = document.querySelectorAll('.progress-fill');
+      progressFills.forEach(fill => {
+        const width = fill.style.width;
+        fill.style.width = '0';
+        setTimeout(() => {
+          fill.style.width = width;
+        }, 100);
+      });
+    });
+    
+    // Função para gerenciar o estado de hover dos cartões
+    const cards = document.querySelectorAll('.profile-card, .benefits-card');
+    cards.forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-4px)';
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+      });
+    });
+    
+    // Sistema de gamificação - Easter Egg
+    let clickCount = 0;
+    const levelBadge = document.querySelector('.level-badge');
+    if (levelBadge) {
+      levelBadge.addEventListener('click', function() {
+        clickCount++;
+        if (clickCount === 5) {
+          showToast('🎉 Você descobriu um Easter Egg! Continue assim para Gold Key!', 'success');
+          clickCount = 0;
+          
+          // Adicionar animação especial
+          this.style.animation = 'float 2s ease-in-out infinite';
+        }
+      });
+    }
+    
+    // Atualizar ano atual no copyright se existir
+    const currentYear = new Date().getFullYear();
+    const copyrightElements = document.querySelectorAll('.copyright-year');
+    copyrightElements.forEach(el => {
+      el.textContent = currentYear;
+    });
+    
+    // Função para simular atualização em tempo real do saldo
+    function updateBalance() {
+      const balanceElement = document.querySelector('.balance-value');
+      if (balanceElement) {
+        const currentBalance = parseFloat(balanceElement.textContent.replace(/[^\d,]/g, '').replace(',', '.'));
+        const newBalance = currentBalance + (Math.random() * 50 - 25); // Variação aleatória
+        
+        if (newBalance > 0) {
+          balanceElement.textContent = newBalance.toFixed(2).replace('.', ',');
+          
+          // Adicionar efeito visual de mudança
+          balanceElement.style.transition = 'color 0.3s ease';
+          balanceElement.style.color = newBalance > currentBalance ? '#4caf50' : '#f44336';
+          
+          setTimeout(() => {
+            balanceElement.style.color = '#7fada3';
+          }, 300);
+        }
+      }
+    }
+    
+    // Verificar se há eventos urgentes (próximos 24h)
+    function checkUrgentEvents() {
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      
+      eventsData.forEach(event => {
+        const eventDate = new Date(event.date);
+        const daysUntil = calculateDaysUntilEvent(event.date);
+        
+        if (daysUntil === 1 && appState.registrations.includes(event.id)) {
+          // Criar notificação urgente se ainda não existe
+          const hasUrgentNotif = appState.notifications.some(n => 
+            n.content.includes(event.title) && n.priority === 'urgent'
+          );
+          
+          if (!hasUrgentNotif) {
+            appState.notifications.unshift({
+              id: Date.now(),
+              type: 'reminder',
+              icon: '🚨',
+              content: `URGENTE: ${event.title} é amanhã!`,
+              time: 'Agora',
+              priority: 'urgent',
+              read: false
+            });
+            
+            loadNotifications();
+            showToast(`⚠️ Lembrete: ${event.title} é amanhã!`, 'warning');
+          }
+        }
+      });
+    }
+    
+    // Verificar eventos urgentes ao carregar
+    checkUrgentEvents();
+    
+    // Verificar a cada hora
+    setInterval(checkUrgentEvents, 3600000);
+    
+    // Função para rastrear tempo na página
+    let timeOnPage = 0;
+    setInterval(() => {
+      timeOnPage++;
+      
+      // Após 5 minutos, sugerir explorar eventos
+      if (timeOnPage === 300) {
+        showToast('💡 Que tal explorar nossos próximos eventos exclusivos?', 'info');
+      }
+    }, 1000);
+    
+    // Detectar tentativa de saída da página
+    let exitIntentShown = false;
+    document.addEventListener('mouseleave', function(e) {
+      if (e.clientY < 10 && !exitIntentShown) {
+        exitIntentShown = true;
+        showToast('👋 Não esqueça de conferir seus benefícios exclusivos Silver!', 'info');
+      }
+    });
+    
+    // Função para atualizar contador de visitas (simulação)
+    function updateVisitCount() {
+      const visitElements = document.querySelectorAll('.metric-value');
+      visitElements.forEach(el => {
+        if (el.textContent.includes('de 25')) {
+          const current = parseInt(el.textContent);
+          if (current < 25) {
+            el.textContent = `${current + 1} de 25`;
+            showToast('🎯 +1 visita registrada! Faltam apenas ' + (25 - current - 1) + ' para Gold Key!', 'success');
+          }
+        }
+      });
+    }
+    
+    // Atalhos de teclado
+    document.addEventListener('keydown', function(e) {
+      // Ctrl/Cmd + K para busca rápida
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        window.location.href = 'index.html';
+      }
+      
+      // Esc para fechar modais
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.modal-overlay.active').forEach(modal => {
+          modal.classList.remove('active');
+        });
+      }
+    });
+  </script>
+</body>
+</html>
