@@ -302,41 +302,416 @@
       margin-bottom: 24px;
     }
     
-    .level-label {
-      font-size: 14px;
+    /* Novo design para o badge de nível */
+    .level-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(135deg, rgba(192, 192, 192, 0.1) 0%, rgba(192, 192, 192, 0.05) 100%);
+      border: 1px solid rgba(192, 192, 192, 0.3);
+      border-radius: 30px;
+      padding: 12px 24px;
+      margin-bottom: 28px;
+      box-shadow: 0 4px 20px rgba(192, 192, 192, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .level-badge:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 30px rgba(192, 192, 192, 0.15);
+      border-color: rgba(192, 192, 192, 0.4);
+    }
+    
+    .level-badge::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(192, 192, 192, 0.1) 0%, transparent 70%);
+      animation: rotate 20s linear infinite;
+    }
+    
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .level-badge-icon {
+      font-size: 28px;
+      position: relative;
+      z-index: 1;
+      animation: float 3s ease-in-out infinite;
+      transition: transform 0.3s ease;
+    }
+    
+    .level-badge:hover .level-badge-icon {
+      transform: scale(1.1);
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-3px); }
+    }
+    
+    .level-badge-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .level-badge-subtitle {
+      font-size: 10px;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 2px;
+    }
+    
+    .level-badge-title {
+      font-size: 16px;
       color: #f4e5cf;
-      margin-bottom: 12px;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 1px;
+      font-family: 'Georgia', serif;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
     
-    .level-label::before {
-      content: '🔑 ';
+    .level-badge-title::after {
+      content: '↓';
+      font-size: 12px;
+      opacity: 0.6;
+      animation: bounce 2s infinite;
     }
     
-    .dual-progress-bars {
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(2px); }
+    }
+    
+    /* Progress Journey Container - Luxo Minimalista */
+    .progress-journey {
+      background: linear-gradient(135deg, #141414 0%, #0a0a0a 100%);
+      border: 1px solid rgba(244, 229, 207, 0.15);
+      border-radius: 20px;
+      padding: 40px;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 1px 0 rgba(244, 229, 207, 0.1);
+    }
+    
+    .progress-journey::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(244, 229, 207, 0.2), transparent);
+      opacity: 0.5;
+    }
+    
+    .journey-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+    
+    .journey-title {
+      font-size: 13px;
+      color: rgba(244, 229, 207, 0.7);
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-family: 'Montserrat', sans-serif;
+    }
+    
+    .next-level-preview {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      border: 1px solid rgba(244, 229, 207, 0.2);
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-size: 11px;
+      color: rgba(244, 229, 207, 0.8);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      transition: all 0.3s ease;
+    }
+    
+    .next-level-preview:hover {
+      border-color: rgba(244, 229, 207, 0.4);
+      background: rgba(244, 229, 207, 0.05);
+    }
+    
+    .next-level-preview .icon {
+      font-size: 16px;
+      opacity: 0.8;
+    }
+    
+    .progress-metrics {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 40px;
     }
     
-    .progress-label {
-      font-size: 13px;
+    .progress-metric {
+      position: relative;
+    }
+    
+    .metric-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    
+    .metric-info {
+      flex: 1;
+    }
+    
+    .metric-label {
+      font-size: 11px;
+      color: rgba(244, 229, 207, 0.5);
+      font-weight: 300;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 4px;
+      font-family: 'Montserrat', sans-serif;
+    }
+    
+    .metric-value {
+      font-size: 24px;
       color: #f4e5cf;
+      font-weight: 300;
+      font-family: 'Georgia', serif;
+      letter-spacing: -0.5px;
     }
     
-    .progress-bar-container {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 4px;
-      overflow: hidden;
-      height: 12px;
+    .metric-percentage {
+      font-size: 36px;
+      color: rgba(244, 229, 207, 0.9);
+      font-weight: 200;
+      font-family: 'Montserrat', sans-serif;
+      letter-spacing: -1px;
+      line-height: 1;
     }
     
-    .progress-bar-fill {
-      background: linear-gradient(90deg, #891522, #c66970);
+    .metric-percentage sup {
+      font-size: 18px;
+      opacity: 0.6;
+      margin-left: 2px;
+    }
+    
+    .progress-track {
+      position: relative;
+      height: 4px;
+      background: rgba(244, 229, 207, 0.1);
+      border-radius: 2px;
+      overflow: visible;
+      margin-top: 8px;
+    }
+    
+    .progress-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
       height: 100%;
-      transition: width 0.4s ease;
+      background: linear-gradient(90deg, rgba(244, 229, 207, 0.4) 0%, rgba(244, 229, 207, 0.6) 100%);
+      border-radius: 2px;
+      transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+      opacity: 0;
+      animation: fadeInProgress 0.8s ease-out 0.3s forwards;
+      box-shadow: 0 0 20px rgba(244, 229, 207, 0.2);
+    }
+    
+    @keyframes fadeInProgress {
+      to { opacity: 1; }
+    }
+    
+    .progress-fill::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translate(50%, -50%);
+      width: 12px;
+      height: 12px;
+      background: #f4e5cf;
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px rgba(244, 229, 207, 0.1), 0 0 20px rgba(244, 229, 207, 0.4);
+    }
+    
+    .progress-milestones {
+      position: absolute;
+      top: -20px;
+      left: 0;
+      right: 0;
+      height: 40px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .milestone {
+      position: absolute;
+      width: 1px;
+      height: 8px;
+      background: rgba(244, 229, 207, 0.2);
+      top: 50%;
+      transform: translateY(-50%);
+      transition: all 0.3s ease;
+    }
+    
+    .milestone.major {
+      height: 12px;
+      background: rgba(244, 229, 207, 0.3);
+    }
+    
+    .milestone.completed {
+      background: rgba(244, 229, 207, 0.6);
+    }
+    
+    .progress-stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 48px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(244, 229, 207, 0.1);
+    }
+    
+    .stat-block {
+      flex: 1;
+      text-align: center;
+    }
+    
+    .stat-block-value {
+      font-size: 28px;
+      color: #f4e5cf;
+      font-weight: 300;
+      font-family: 'Georgia', serif;
+      margin-bottom: 8px;
+      line-height: 1;
+    }
+    
+    .stat-block-label {
+      font-size: 11px;
+      color: rgba(244, 229, 207, 0.5);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-family: 'Montserrat', sans-serif;
+    }
+    
+    .level-benefits {
+      margin-top: 40px;
+      padding: 32px;
+      background: linear-gradient(135deg, rgba(244, 229, 207, 0.05) 0%, transparent 100%);
+      border-radius: 16px;
+      border: 1px solid rgba(244, 229, 207, 0.1);
+    }
+    
+    .benefits-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    
+    .benefits-subtitle {
+      font-size: 11px;
+      color: rgba(244, 229, 207, 0.5);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+      font-family: 'Montserrat', sans-serif;
+    }
+    
+    .benefits-title {
+      font-size: 20px;
+      color: #f4e5cf;
+      font-weight: 300;
+      font-family: 'Georgia', serif;
+      letter-spacing: 0.5px;
+    }
+    
+    .benefit-items {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 32px;
+    }
+    
+    .benefit-item-minimal {
+      text-align: center;
+      padding: 20px;
+      background: rgba(244, 229, 207, 0.03);
+      border-radius: 12px;
+      border: 1px solid rgba(244, 229, 207, 0.08);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .benefit-item-minimal:hover {
+      background: rgba(244, 229, 207, 0.05);
+      border-color: rgba(244, 229, 207, 0.15);
+      transform: translateY(-2px);
+    }
+    
+    .benefit-item-minimal.unlocked {
+      border-color: rgba(244, 229, 207, 0.2);
+    }
+    
+    .benefit-item-minimal.next {
+      border-color: rgba(244, 229, 207, 0.3);
+      background: rgba(244, 229, 207, 0.05);
+    }
+    
+    .benefit-item-minimal.locked {
+      opacity: 0.3;
+    }
+    
+    .benefit-icon-minimal {
+      font-size: 24px;
+      margin-bottom: 12px;
+      display: block;
+      opacity: 0.8;
+    }
+    
+    .benefit-item-minimal.locked .benefit-icon-minimal {
+      filter: grayscale(100%);
+      opacity: 0.4;
+    }
+    
+    .benefit-name-minimal {
+      font-size: 11px;
+      color: rgba(244, 229, 207, 0.8);
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-family: 'Montserrat', sans-serif;
+    }
+    
+    .achievement-marker {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      width: 16px;
+      height: 16px;
+      background: #f4e5cf;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      color: #0a0a0a;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(244, 229, 207, 0.3);
     }
     
     /* Toggle Switch Styles */
@@ -590,7 +965,210 @@
     }
 
     /* ===================================
-       8) BENEFITS CARDS
+       8) CONSUMPTION SECTION
+    =================================== */
+    .consumption-section {
+      margin-top: 24px;
+    }
+    
+    .consumption-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #f5f5f5;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .consumption-grid {
+      display: grid;
+      gap: 16px;
+    }
+    
+    .consumption-category {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 16px;
+    }
+    
+    .consumption-category-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #c66970;
+      margin-bottom: 12px;
+    }
+    
+    .consumption-items {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .consumption-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 6px;
+      font-size: 13px;
+    }
+    
+    .consumption-item-name {
+      color: #f5f5f5;
+    }
+    
+    .consumption-item-count {
+      color: #c66970;
+      font-weight: 600;
+    }
+
+    /* ===================================
+       9) TAGS SECTION
+    =================================== */
+    .tags-section {
+      margin-top: 20px;
+    }
+    
+    .tags-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    
+    .tag {
+      background: rgba(198, 105, 112, 0.2);
+      color: #c66970;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .tag:hover {
+      background: rgba(198, 105, 112, 0.3);
+      transform: translateY(-1px);
+    }
+    
+    .tag-icon {
+      font-size: 14px;
+    }
+    
+    .tag-add {
+      background: transparent;
+      border: 1px dashed rgba(255, 255, 255, 0.3);
+      color: #999;
+    }
+    
+    .tag-add:hover {
+      border-color: #c66970;
+      color: #c66970;
+    }
+
+    /* ===================================
+       10) MEMBERSHIP CARD
+    =================================== */
+    .membership-card {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+      border: 2px solid rgba(198, 105, 112, 0.3);
+      border-radius: 16px;
+      padding: 32px;
+      margin-top: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .membership-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(198, 105, 112, 0.1) 0%, transparent 70%);
+      animation: rotate 20s linear infinite;
+    }
+    
+    .membership-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .membership-level {
+      font-family: 'Georgia', serif;
+      font-size: 24px;
+      color: #f4e5cf;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .membership-level .icon {
+      font-size: 32px;
+    }
+    
+    .membership-number {
+      font-size: 12px;
+      color: #999;
+      letter-spacing: 2px;
+    }
+    
+    .membership-details {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 24px;
+    }
+    
+    .membership-detail {
+      font-size: 13px;
+      color: #ccc;
+    }
+    
+    .membership-detail-label {
+      display: block;
+      font-size: 11px;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+    
+    .membership-expiry {
+      grid-column: 1 / -1;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .expiry-warning {
+      background: rgba(255, 152, 0, 0.2);
+      color: #ff9800;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      animation: pulse 2s infinite;
+    }
+
+    /* ===================================
+       11) BENEFITS CARDS
     =================================== */
     .benefits-card {
       background: rgba(255, 255, 255, 0.02);
@@ -695,17 +1273,17 @@
     }
 
     /* ===================================
-       9) EVENT CARDS
+       12) EVENT CARDS
     =================================== */
     .event-card {
-      background: #891522;
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(137, 21, 34, 0.3);
+      border: 1px solid rgba(0, 0, 0, 0.1);
       border-radius: 12px;
       padding: 20px 24px;
       padding-top: 60px; /* Espaço para o badge */
       margin-bottom: 20px;
-      box-shadow: 0 4px 15px rgba(137, 21, 34, 0.3);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
       position: relative;
       min-height: 140px;
       transition: all 0.3s ease;
@@ -719,15 +1297,15 @@
       left: 0;
       width: 3px;
       height: 100%;
-      background: linear-gradient(to bottom, transparent, #c66970, transparent);
+      background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.2), transparent);
       transform: scaleY(0);
       transition: transform 0.3s ease;
     }
     
     .event-card:hover {
-      background: #a51623;
+      background: #ffffff;
       transform: translateX(4px);
-      box-shadow: 0 8px 25px rgba(137, 21, 34, 0.4);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     }
     
     .event-card:hover::before {
@@ -737,7 +1315,7 @@
     /* Event Cards com Restrição de Nível */
     .event-card.restricted {
       opacity: 0.6;
-      background: #003b56;
+      background: rgba(200, 200, 200, 0.3);
       cursor: not-allowed;
       box-shadow: none;
     }
@@ -745,7 +1323,7 @@
     .event-card.restricted:hover {
       transform: none;
       box-shadow: none;
-      background: #003b56;
+      background: rgba(200, 200, 200, 0.3);
     }
     
     /* Ícone de cadeado para eventos restritos */
@@ -755,13 +1333,13 @@
       right: 24px;
       width: 28px;
       height: 28px;
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(137, 21, 34, 0.1);
+      border: 1px solid rgba(137, 21, 34, 0.2);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
+      color: #891522;
       font-size: 14px;
       z-index: 10;
       cursor: help;
@@ -769,7 +1347,7 @@
     }
     
     .event-lock:hover {
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(137, 21, 34, 0.2);
       transform: scale(1.1);
     }
     
@@ -814,15 +1392,15 @@
       position: absolute;
       top: 16px;
       left: 20px;
-      background: rgba(244, 229, 207, 0.2);
-      color: #f4e5cf;
+      background: rgba(137, 21, 34, 0.1);
+      color: #891522;
       padding: 6px 16px;
       border-radius: 20px;
       font-size: 11px;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 1px;
-      border: 1px solid rgba(244, 229, 207, 0.3);
+      border: 1px solid rgba(137, 21, 34, 0.2);
       backdrop-filter: blur(10px);
       z-index: 5;
     }
@@ -830,17 +1408,20 @@
     /* Event status colors for past events - ajustado */
     .event-card.attended {
       border-left: 6px solid #7fada3;
-      padding-left: 18px; /* Reduzido para compensar a borda */
+      padding-left: 18px;
+      background: #ffffff;
     }
     
     .event-card.no-show {
       border-left: 6px solid #b6753c;
-      padding-left: 18px; /* Reduzido para compensar a borda */
+      padding-left: 18px;
+      background: #ffffff;
     }
     
     .event-card.cancelled {
       border-left: 6px solid #c12839;
-      padding-left: 18px; /* Reduzido para compensar a borda */
+      padding-left: 18px;
+      background: #ffffff;
     }
     
     /* Event countdown badge */
@@ -848,8 +1429,8 @@
       position: absolute;
       top: 16px;
       right: 20px;
-      background: rgba(244, 229, 207, 0.9);
-      color: #000000;
+      background: rgba(137, 21, 34, 0.9);
+      color: #ffffff;
       padding: 6px 12px;
       border-radius: 20px;
       font-size: 11px;
@@ -859,7 +1440,7 @@
       gap: 5px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      box-shadow: 0 2px 8px rgba(244, 229, 207, 0.3);
+      box-shadow: 0 2px 8px rgba(137, 21, 34, 0.3);
       z-index: 5;
     }
     
@@ -879,14 +1460,14 @@
       font-size: 18px;
       font-weight: 600;
       margin-bottom: 6px;
-      color: #ffffff;
+      color: #0a0a0a;
       font-family: 'Georgia', serif;
       line-height: 1.3;
     }
     
     .event-card .event-date {
       font-size: 13px;
-      color: #f4e5cf;
+      color: #891522;
       text-transform: uppercase;
       letter-spacing: 1px;
       margin-bottom: 4px;
@@ -894,7 +1475,7 @@
     
     .event-card .event-location {
       font-size: 14px;
-      color: #e1f5fe;
+      color: #666666;
     }
     
     .event-actions {
@@ -907,7 +1488,6 @@
     }
     
     .btn-cancel-event, .btn-view-more, .btn-members, .btn-view-agenda {
-      color: white;
       padding: 10px 18px;
       border-radius: 6px;
       font-size: 11px;
@@ -920,27 +1500,28 @@
     
     .btn-view-more {
       background: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      border: 1px solid #891522;
+      color: #891522;
     }
     
     .btn-view-more:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.5);
+      background: #891522;
+      color: #ffffff;
       transform: translateY(-2px);
     }
     
     .btn-members {
-      background: #f4e5cf;
-      color: #891522;
-      border: 1px solid #f4e5cf;
+      background: #891522;
+      color: #ffffff;
+      border: 1px solid #891522;
       font-weight: 600;
       cursor: pointer;
     }
     
     .btn-members:hover {
-      background: #ffffff;
+      background: #a51623;
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(244, 229, 207, 0.4);
+      box-shadow: 0 4px 12px rgba(137, 21, 34, 0.4);
     }
     
     .btn-view-agenda {
@@ -957,25 +1538,97 @@
     }
     
     .btn-cancel-event {
-      background: #c12839;
+      background: transparent;
       border: 1px solid #c12839;
+      color: #c12839;
     }
     
     .btn-cancel-event:hover {
-      background: #e13449;
+      background: #c12839;
+      color: #ffffff;
       transform: translateY(-1px);
     }
     
-    .btn-cancel-event:disabled {
+    /* Event card específico para eventos futuros (escuro) */
+    .event-card.future {
+      background: #891522;
+      border: 1px solid rgba(137, 21, 34, 0.3);
+      box-shadow: 0 4px 15px rgba(137, 21, 34, 0.3);
+    }
+    
+    .event-card.future:hover {
+      background: #a51623;
+      box-shadow: 0 8px 25px rgba(137, 21, 34, 0.4);
+    }
+    
+    .event-card.future .event-title {
+      color: #ffffff;
+    }
+    
+    .event-card.future .event-date {
+      color: #f4e5cf;
+    }
+    
+    .event-card.future .event-location {
+      color: #e1f5fe;
+    }
+    
+    .event-card.future .event-type-badge {
+      background: rgba(244, 229, 207, 0.2);
+      color: #f4e5cf;
+      border: 1px solid rgba(244, 229, 207, 0.3);
+    }
+    
+    .event-card.future .btn-view-more {
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #ffffff;
+    }
+    
+    .event-card.future .btn-view-more:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+    
+    .event-card.future .btn-members {
+      background: #f4e5cf;
+      color: #891522;
+      border: 1px solid #f4e5cf;
+    }
+    
+    .event-card.future .btn-members:hover {
+      background: #ffffff;
+      box-shadow: 0 4px 12px rgba(244, 229, 207, 0.4);
+    }
+    
+    .event-card.future .btn-cancel-event {
+      background: #c12839;
+      border: 1px solid #c12839;
+      color: #ffffff;
+    }
+    
+    .event-card.future .btn-cancel-event:hover {
+      background: #e13449;
+    }
+    
+    .event-card.future .btn-cancel-event:disabled {
       background: rgba(255, 255, 255, 0.1);
       border-color: rgba(255, 255, 255, 0.2);
       color: #666666;
-      cursor: not-allowed;
-      opacity: 0.6;
+    }
+    
+    .event-card.future.restricted {
+      background: #003b56;
+      opacity: 0.7;
+    }
+    
+    .event-card.future .event-lock {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
     }
 
     /* ===================================
-       10) EVENT STATUS LEGEND
+       13) EVENT STATUS LEGEND
     =================================== */
     .event-status-legend {
       display: flex;
@@ -1011,7 +1664,7 @@
     }
 
     /* ===================================
-       11) NOTIFICATIONS DROPDOWN
+       14) NOTIFICATIONS DROPDOWN
     =================================== */
     .notifications-dropdown {
       position: absolute;
@@ -1088,7 +1741,7 @@
     }
 
     /* ===================================
-       12) MODALS
+       15) MODALS
     =================================== */
     /* Modals com animação de entrada */
     .modal-overlay {
@@ -1317,7 +1970,7 @@
     }
 
     /* ===================================
-       13) WHATSAPP BUTTON
+       16) WHATSAPP BUTTON
     =================================== */
     .whatsapp-btn {
       position: fixed;
@@ -1348,7 +2001,7 @@
     }
 
     /* ===================================
-       14) RESPONSIVIDADE
+       17) RESPONSIVIDADE
     =================================== */
     @media (max-width: 1024px) {
       .profile-content {
@@ -1390,6 +2043,10 @@
         gap: 16px;
         align-items: flex-start;
       }
+      
+      .journey-rewards {
+        grid-template-columns: 1fr;
+      }
     }
     
     @media (max-width: 768px) {
@@ -1403,6 +2060,39 @@
       
       .user-menu {
         gap: 16px;
+      }
+      
+      .membership-details {
+        grid-template-columns: 1fr;
+      }
+      
+      .membership-card > div:first-child {
+        display: none; /* Esconder badge "Next Level" em telas pequenas */
+      }
+      
+      .level-badge {
+        margin-bottom: 20px;
+      }
+      
+      .progress-journey {
+        padding: 20px;
+      }
+      
+      .progress-metrics {
+        grid-template-columns: 1fr;
+      }
+      
+      .next-level-preview {
+        font-size: 10px;
+        padding: 4px 12px;
+      }
+      
+      .membership-card > div:first-child {
+        display: none; /* Esconder badge "Next Level" em telas pequenas */
+      }
+      
+      .level-badge {
+        margin-bottom: 20px;
       }
     }
   </style>
@@ -1444,21 +2134,107 @@
               <h2 class="profile-name">António Silva</h2>
               <div class="profile-role">Head of Latin America</div>
               <div class="profile-company">Entain Group</div>
-              <div class="level-label">Silver Key Member</div>
-              <div class="dual-progress-bars">
-                <div>
-                  <div class="progress-label">Faltam 2 eventos para Gold</div>
-                  <div class="progress-bar-container">
-                    <div class="progress-bar-fill" style="width: 80%;"></div>
+              
+              <!-- Badge de nível melhorado -->
+              <div class="level-badge" onclick="scrollToBenefits()" style="cursor: pointer;" title="Clique para ver seus benefícios exclusivos">
+                <span class="level-badge-icon">🥈</span>
+                <div class="level-badge-content">
+                  <div class="level-badge-subtitle">Membro Exclusivo</div>
+                  <div class="level-badge-title">Silver Key Member</div>
+                </div>
+              </div>
+              
+              <!-- Nova jornada de progresso gamificada -->
+              <div class="progress-journey">
+                <div class="journey-header">
+                  <div class="journey-title">Progresso</div>
+                  <div class="next-level-preview">
+                    <span class="icon">👑</span>
+                    <span>Gold Key</span>
                   </div>
                 </div>
-                <div>
-                  <div class="progress-label">Faltam 5 visitas para Gold</div>
-                  <div class="progress-bar-container">
-                    <div class="progress-bar-fill" style="width: 60%;"></div>
+                
+                <div class="progress-metrics">
+                  <div class="progress-metric">
+                    <div class="metric-header">
+                      <div class="metric-info">
+                        <div class="metric-label">Eventos Participados</div>
+                        <div class="metric-value">12 de 14</div>
+                      </div>
+                      <div class="metric-percentage">86<sup>%</sup></div>
+                    </div>
+                    <div class="progress-track">
+                      <div class="progress-fill" style="width: 85.7%;"></div>
+                      <div class="progress-milestones">
+                        <div class="milestone completed" style="left: 0%;"></div>
+                        <div class="milestone completed" style="left: 25%;"></div>
+                        <div class="milestone completed major" style="left: 50%;"></div>
+                        <div class="milestone completed" style="left: 75%;"></div>
+                        <div class="milestone major" style="left: 100%;"></div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="progress-metric">
+                    <div class="metric-header">
+                      <div class="metric-info">
+                        <div class="metric-label">Visitas ao Clube</div>
+                        <div class="metric-value">20 de 25</div>
+                      </div>
+                      <div class="metric-percentage">80<sup>%</sup></div>
+                    </div>
+                    <div class="progress-track">
+                      <div class="progress-fill" style="width: 80%;"></div>
+                      <div class="progress-milestones">
+                        <div class="milestone completed" style="left: 0%;"></div>
+                        <div class="milestone completed" style="left: 20%;"></div>
+                        <div class="milestone completed" style="left: 40%;"></div>
+                        <div class="milestone completed major" style="left: 60%;"></div>
+                        <div class="milestone completed" style="left: 80%;"></div>
+                        <div class="milestone major" style="left: 100%;"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="progress-stats">
+                  <div class="stat-block">
+                    <div class="stat-block-value">2</div>
+                    <div class="stat-block-label">Eventos Restantes</div>
+                  </div>
+                  <div class="stat-block">
+                    <div class="stat-block-value">5</div>
+                    <div class="stat-block-label">Visitas Restantes</div>
+                  </div>
+                  <div class="stat-block">
+                    <div class="stat-block-value">83%</div>
+                    <div class="stat-block-label">Progresso Total</div>
+                  </div>
+                </div>
+                
+                <div class="level-benefits">
+                  <div class="benefits-header">
+                    <div class="benefits-subtitle">Desbloqueie com Gold Key</div>
+                    <div class="benefits-title">Experiências Exclusivas</div>
+                  </div>
+                  <div class="benefit-items">
+                    <div class="benefit-item-minimal unlocked">
+                      <div class="achievement-marker">✓</div>
+                      <span class="benefit-icon-minimal">🥂</span>
+                      <div class="benefit-name-minimal">VIP Lounge</div>
+                    </div>
+                    <div class="benefit-item-minimal next">
+                      <span class="benefit-icon-minimal">🎯</span>
+                      <div class="benefit-name-minimal">Private Events</div>
+                    </div>
+                    <div class="benefit-item-minimal locked">
+                      <span class="benefit-icon-minimal">💎</span>
+                      <div class="benefit-name-minimal">Concierge Gold</div>
+                    </div>
                   </div>
                 </div>
               </div>
+              
               <div class="toggle-container">
                 <span class="toggle-label">Perfil visível para outros membros</span>
                 <div class="toggle-switch active" onclick="toggleVisibility(this)">
@@ -1484,6 +2260,14 @@
                   <span class="icon">🍷</span>
                   <span>Bebe socialmente</span>
                 </div>
+                <div class="profile-detail-item">
+                  <span class="icon">📱</span>
+                  <span>+55 11 99123-4567</span>
+                </div>
+                <div class="profile-detail-item">
+                  <span class="icon">💼</span>
+                  <span>Gaming & Entertainment</span>
+                </div>
               </div>
               
               <div class="balance-info">
@@ -1497,6 +2281,34 @@
               <button class="btn-edit-toggle" onclick="toggleEdit()">Editar Perfil</button>
             </div>
           </div>
+          
+          <!-- Membership Card -->
+          <div class="membership-card">
+            <div style="position: absolute; top: 20px; right: 20px; background: transparent; border: 1px solid rgba(255, 255, 255, 0.15); padding: 4px 14px; border-radius: 2px; font-size: 10px; color: #999; font-weight: 400; text-transform: uppercase; letter-spacing: 1.5px;">
+              Next: Gold
+            </div>
+            <div class="membership-header">
+              <div class="membership-level">
+                <span class="icon">🥈</span>
+                <span>Silver Key Member</span>
+              </div>
+              <div class="membership-number">#SSC0032</div>
+            </div>
+            <div class="membership-details">
+              <div class="membership-detail">
+                <span class="membership-detail-label">Membro desde</span>
+                <strong>15 de Março de 2023</strong>
+              </div>
+              <div class="membership-detail">
+                <span class="membership-detail-label">Última visita</span>
+                <strong>20 de Junho de 2025</strong>
+              </div>
+            </div>
+            <div class="membership-expiry" style="margin-top: 24px;">
+              <span>Validade da membership: 15/03/2026</span>
+              <button class="btn-save" onclick="renewMembership()">Renovar</button>
+            </div>
+          </div>
         </div>
         
         <div class="profile-card" id="editForm" style="display:none;">
@@ -1505,6 +2317,14 @@
             <div class="form-group">
               <label class="form-label">Nome Completo</label>
               <input type="text" class="form-input" value="António Silva" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-input" value="antonio.silva@entain.com" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Telefone</label>
+              <input type="tel" class="form-input" value="+55 11 99123-4567" />
             </div>
             <div class="form-group">
               <label class="form-label">Cargo</label>
@@ -1528,13 +2348,13 @@
             </div>
             <div class="form-group">
               <label class="form-label">Aniversário</label>
-              <input type="date" class="form-input" />
+              <input type="date" class="form-input" value="1985-03-15" />
             </div>
             <div class="form-group">
               <label class="form-label">Bebida Alcoólica</label>
               <select class="form-select">
                 <option value="">Selecione</option>
-                <option value="sim">Sim</option>
+                <option value="sim" selected>Sim</option>
                 <option value="nao">Não</option>
                 <option value="ocasionalmente">Ocasionalmente</option>
               </select>
@@ -1543,7 +2363,7 @@
               <label class="form-label">Destilado Favorito</label>
               <select class="form-select">
                 <option value="">Selecione</option>
-                <option value="whisky">Whisky</option>
+                <option value="whisky" selected>Whisky</option>
                 <option value="vodka">Vodka</option>
                 <option value="gin">Gin</option>
                 <option value="rum">Rum</option>
@@ -1556,19 +2376,104 @@
             </div>
             <div class="form-group full-width">
               <label class="form-label">Intolerâncias Alimentares</label>
-              <input type="text" class="form-input" placeholder="Ex: Lactose, Glúten, Amendoim, Frutos do Mar..." />
+              <input type="text" class="form-input" value="Lactose" placeholder="Ex: Lactose, Glúten, Amendoim, Frutos do Mar..." />
             </div>
             <div class="form-group full-width">
               <label class="form-label">Interesses</label>
-              <input type="text" class="form-input" placeholder="Tecnologia, Investimentos, Esportes..." />
+              <input type="text" class="form-input" id="interestInput" placeholder="Digite e pressione Enter para adicionar..." />
+              <div class="tags-container">
+                <div class="tag">
+                  <span class="tag-icon">💻</span>
+                  Tecnologia
+                </div>
+                <div class="tag">
+                  <span class="tag-icon">📈</span>
+                  Investimentos
+                </div>
+                <div class="tag">
+                  <span class="tag-icon">🤝</span>
+                  Networking
+                </div>
+                <div class="tag">
+                  <span class="tag-icon">🎮</span>
+                  Gaming
+                </div>
+                <div class="tag">
+                  <span class="tag-icon">🏆</span>
+                  eSports
+                </div>
+              </div>
             </div>
             <div class="form-group full-width">
               <label class="form-label">Biografia</label>
-              <textarea class="form-textarea" placeholder="Conte um pouco sobre você e sua experiência profissional..."></textarea>
+              <textarea class="form-textarea" placeholder="Conte um pouco sobre você e sua experiência profissional...">Executivo com mais de 15 anos de experiência no setor de gaming e entretenimento. Responsável pela expansão da Entain Group na América Latina, liderando estratégias de crescimento e parcerias estratégicas na região.</textarea>
             </div>
             <div class="form-actions">
               <button class="btn-save" onclick="saveProfile()">Salvar Alterações</button>
               <button class="btn-cancel" onclick="toggleEdit()">Cancelar</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Consumption History -->
+        <div class="profile-card">
+          <div class="card-title">Histórico de Consumo</div>
+          <div class="consumption-section">
+            <div class="consumption-title">
+              <span>🍷</span> Top Consumo - Últimos 3 Meses
+            </div>
+            <div class="consumption-grid">
+              <div class="consumption-category">
+                <div class="consumption-category-title">Bebidas Alcoólicas</div>
+                <div class="consumption-items">
+                  <div class="consumption-item">
+                    <span class="consumption-item-name">Hennessy Paradis</span>
+                    <span class="consumption-item-count">28x</span>
+                  </div>
+                  <div class="consumption-item">
+                    <span class="consumption-item-name">Jack Daniels</span>
+                    <span class="consumption-item-count">15x</span>
+                  </div>
+                  <div class="consumption-item">
+                    <span class="consumption-item-name">Dom Pérignon</span>
+                    <span class="consumption-item-count">8x</span>
+                  </div>
+                </div>
+              </div>
+              <div class="consumption-category">
+                <div class="consumption-category-title">Pratos Principais</div>
+                <div class="consumption-items">
+                  <div class="consumption-item">
+                    <span class="consumption-item-name">Carpaccio</span>
+                    <span class="consumption-item-count">12x</span>
+                  </div>
+                  <div class="consumption-item">
+                    <span class="consumption-item-name">Filé Wellington</span>
+                    <span class="consumption-item-count">8x</span>
+                  </div>
+                  <div class="consumption-item">
+                    <span class="consumption-item-name">Risotto de Camarão</span>
+                    <span class="consumption-item-count">6x</span>
+                  </div>
+                </div>
+              </div>
+              <div class="consumption-category">
+                <div class="consumption-category-title">Bebidas Não Alcoólicas</div>
+                <div class="consumption-items">
+                  <div class="consumption-item">
+                    <span class="consumption-item-name">Água Perrier</span>
+                    <span class="consumption-item-count">35x</span>
+                  </div>
+                  <div class="consumption-item">
+                    <span class="consumption-item-name">Suco Verde Detox</span>
+                    <span class="consumption-item-count">12x</span>
+                  </div>
+                  <div class="consumption-item">
+                    <span class="consumption-item-name">Espresso</span>
+                    <span class="consumption-item-count">18x</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1648,7 +2553,7 @@
           </div>
         </div>
         
-        <div class="benefits-card exclusive">
+        <div class="benefits-card exclusive" id="silver-benefits">
           <div class="benefits-title">Privilégios Exclusivos Silver</div>
           <div class="benefit-item">
             <div class="benefit-name">🥂 Acesso VIP Lounge</div>
@@ -1731,6 +2636,93 @@
     </div>
   </div>
   
+  <!-- Consumption Modal -->
+  <div class="modal-overlay" id="consumptionModal">
+    <div class="modal-content" style="max-width: 800px;">
+      <div class="modal-header">
+        <h2 class="modal-title">Meu Consumo Detalhado</h2>
+        <button class="modal-close" onclick="closeModal('consumptionModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="margin-bottom: 32px; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px;">
+          <div class="stat-item" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 16px; text-align: center;">
+            <div class="stat-value" style="font-size: 24px; font-weight: 700; color: #c66970; margin-bottom: 4px;">R$ 24.5k</div>
+            <div class="stat-label" style="font-size: 12px; color: #999; text-transform: uppercase; letter-spacing: 0.5px;">Total Lifetime</div>
+          </div>
+          <div class="stat-item" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 16px; text-align: center;">
+            <div class="stat-value" style="font-size: 24px; font-weight: 700; color: #c66970; margin-bottom: 4px;">R$ 4.2k</div>
+            <div class="stat-label" style="font-size: 12px; color: #999; text-transform: uppercase; letter-spacing: 0.5px;">Este Mês</div>
+          </div>
+          <div class="stat-item" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 16px; text-align: center;">
+            <div class="stat-value" style="font-size: 24px; font-weight: 700; color: #c66970; margin-bottom: 4px;">R$ 583</div>
+            <div class="stat-label" style="font-size: 12px; color: #999; text-transform: uppercase; letter-spacing: 0.5px;">Ticket Médio</div>
+          </div>
+          <div class="stat-item" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 16px; text-align: center;">
+            <div class="stat-value" style="font-size: 24px; font-weight: 700; color: #c66970; margin-bottom: 4px;">42</div>
+            <div class="stat-label" style="font-size: 12px; color: #999; text-transform: uppercase; letter-spacing: 0.5px;">Visitas</div>
+          </div>
+        </div>
+        
+        <div style="background: rgba(255, 255, 255, 0.02); border-radius: 12px; padding: 24px;">
+          <h3 style="margin-bottom: 20px; color: #c66970;">Tendência de Consumo - Últimos 6 Meses</h3>
+          <div style="height: 200px; display: flex; align-items: flex-end; gap: 8px;">
+            <div style="flex: 1; background: rgba(198, 105, 112, 0.3); height: 60%; border-radius: 4px 4px 0 0; position: relative;">
+              <span style="position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 11px; color: #999;">Jan</span>
+            </div>
+            <div style="flex: 1; background: rgba(198, 105, 112, 0.4); height: 70%; border-radius: 4px 4px 0 0; position: relative;">
+              <span style="position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 11px; color: #999;">Fev</span>
+            </div>
+            <div style="flex: 1; background: rgba(198, 105, 112, 0.5); height: 65%; border-radius: 4px 4px 0 0; position: relative;">
+              <span style="position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 11px; color: #999;">Mar</span>
+            </div>
+            <div style="flex: 1; background: rgba(198, 105, 112, 0.6); height: 80%; border-radius: 4px 4px 0 0; position: relative;">
+              <span style="position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 11px; color: #999;">Abr</span>
+            </div>
+            <div style="flex: 1; background: rgba(198, 105, 112, 0.7); height: 75%; border-radius: 4px 4px 0 0; position: relative;">
+              <span style="position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 11px; color: #999;">Mai</span>
+            </div>
+            <div style="flex: 1; background: #c66970; height: 85%; border-radius: 4px 4px 0 0; position: relative;">
+              <span style="position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 11px; color: #c66970; font-weight: 600;">Jun</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Renewal Modal -->
+  <div class="modal-overlay" id="renewalModal">
+    <div class="modal-content" style="max-width: 500px;">
+      <div class="modal-header">
+        <h2 class="modal-title">Renovação de Membership</h2>
+        <button class="modal-close" onclick="closeModal('renewalModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="text-align: center; padding: 20px 0;">
+          <div style="font-size: 48px; margin-bottom: 20px;">🔑</div>
+          <h3 style="font-size: 20px; color: #f4e5cf; margin-bottom: 16px; font-family: 'Georgia', serif;">
+            Solicitação de Renovação Confirmada
+          </h3>
+          <p style="font-size: 16px; color: #cccccc; line-height: 1.6; margin-bottom: 24px;">
+            Obrigado pelo seu interesse em renovar sua membership <strong>Silver Key</strong>!
+          </p>
+          <p style="font-size: 14px; color: #999; margin-bottom: 32px;">
+            Nossa equipe exclusiva entrará em contato em breve para finalizar os detalhes da sua renovação e apresentar possíveis upgrades de nível.
+          </p>
+          <div style="background: rgba(244, 229, 207, 0.1); border: 1px solid rgba(244, 229, 207, 0.2); padding: 16px; border-radius: 8px; margin-bottom: 24px;">
+            <p style="font-size: 13px; color: #f4e5cf; margin: 0;">
+              <strong>Tempo de resposta:</strong> Até 48 horas úteis<br>
+              <strong>Contato:</strong> Via telefone ou e-mail cadastrado
+            </p>
+          </div>
+          <button class="btn-save" onclick="closeModal('renewalModal')" style="width: 100%;">
+            Entendido
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
   <!-- WhatsApp Button -->
   <a href="https://api.whatsapp.com/send/?phone=5511913079456" target="_blank" class="whatsapp-btn" title="Falar no WhatsApp">
     <svg viewBox="0 0 24 24">
@@ -1747,7 +2739,22 @@
         role: 'Head of Latin America',
         company: 'Entain Group',
         level: 'Silver Key Member',
-        memberLevel: 'silver' // nível de acesso
+        memberLevel: 'silver',
+        phone: '+55 11 99123-4567',
+        email: 'antonio.silva@entain.com',
+        industry: 'Gaming & Entertainment',
+        memberSince: '2023-03-15',
+        birthday: '1985-03-15',
+        totalSpent: 24500,
+        visits: 42,
+        events: 12,
+        avgGuests: 2.3,
+        ticketAvg: 583,
+        lastVisit: '2025-06-20',
+        interests: ['Tecnologia', 'Investimentos', 'Networking', 'Gaming', 'eSports'],
+        dietaryRestrictions: 'Lactose',
+        favoriteSpirit: 'Whisky',
+        biography: 'Executivo com mais de 15 anos de experiência no setor de gaming e entretenimento. Responsável pela expansão da Entain Group na América Latina, liderando estratégias de crescimento e parcerias estratégicas na região.'
       },
       registrations: [1, 2], // IDs dos eventos inscritos
       profileVisible: true,
@@ -1915,17 +2922,6 @@
       }
     }
 
-    // Função para obter inscrições do usuário atual
-    function getUserEventRegistrations() {
-      return appState.registrations || [];
-    }
-
-    // Função para remover inscrição do usuário
-    function removeUserEventRegistration(eventId) {
-      appState.registrations = appState.registrations.filter(id => id !== eventId);
-      return true;
-    }
-
     // Função para calcular dias até o evento
     function calculateDaysUntilEvent(eventDate) {
       const today = new Date();
@@ -1956,7 +2952,7 @@
       
       if (!container) return;
 
-      const userRegistrations = getUserEventRegistrations();
+      const userRegistrations = appState.registrations || [];
       const userLevel = appState.currentMember.memberLevel;
       
       // Filtrar eventos futuros em que o usuário está inscrito
@@ -2036,7 +3032,7 @@
       const eventTitle = eventCard.querySelector('.event-title').textContent;
       
       if (confirm(`Tem certeza que deseja cancelar sua inscrição no evento "${eventTitle}"?`)) {
-        removeUserEventRegistration(eventId);
+        appState.registrations = appState.registrations.filter(id => id !== eventId);
         eventCard.style.opacity = '0.5';
         button.textContent = 'Cancelado';
         button.style.background = '#6c757d';
@@ -2088,12 +3084,17 @@
     }
     
     function saveProfile() {
+      // Simular salvamento
       alert('Perfil salvo com sucesso!');
       toggleEdit();
     }
     
     function viewConsumption() {
-      alert('Funcionalidade de consumo será implementada em breve!');
+      openModal('consumptionModal');
+    }
+    
+    function openModal(modalId) {
+      document.getElementById(modalId).classList.add('active');
     }
     
     function viewEventCalendar() {
@@ -2152,241 +3153,3 @@
       content.innerHTML = detailsContent;
       modal.classList.add('active');
     }
-    
-    function viewEventMembers(eventId) {
-      const eventMembersMap = {
-        'event-1': {
-          title: 'Finais NBA com a Hennessy - Membros Inscritos',
-          members: [
-            { id: 11, name: 'Carlos Eduardo', role: 'CTO da TechStartup', avatar: 'https://i.pravatar.cc/150?img=11' },
-            { id: 47, name: 'Fernanda Silva', role: 'VP Technology da BigCorp', avatar: 'https://i.pravatar.cc/150?img=47' },
-            { id: 68, name: 'Ricardo Santos', role: 'Founder da InnovaTech', avatar: 'https://i.pravatar.cc/150?img=68' },
-            { id: 23, name: 'Patricia Lima', role: 'Head of Engineering da ScaleTech', avatar: 'https://i.pravatar.cc/150?img=23' }
-          ]
-        },
-        'event-2': {
-          title: 'Jantar Dia dos Namorados - Casais Inscritos',
-          members: [
-            { id: 15, name: 'João & Maria Silva', role: 'CEO Couple', avatar: 'https://i.pravatar.cc/150?img=15' },
-            { id: 42, name: 'Pedro & Ana Santos', role: 'Founders DuoCorp', avatar: 'https://i.pravatar.cc/150?img=42' }
-          ]
-        },
-        'investment-workshop': {
-          title: 'Workshop de Investimentos - Membros que Participaram',
-          members: [
-            { id: 32, name: 'António Silva', role: 'Head of Latin America', avatar: 'https://i.pravatar.cc/150?img=32' },
-            { id: 12, name: 'Rafael Costa', role: 'Investment Manager', avatar: 'https://i.pravatar.cc/150?img=12' },
-            { id: 45, name: 'Beatriz Almeida', role: 'Portfolio Director', avatar: 'https://i.pravatar.cc/150?img=45' },
-            { id: 67, name: 'Gustavo Pereira', role: 'Wealth Manager', avatar: 'https://i.pravatar.cc/150?img=67' },
-            { id: 29, name: 'Larissa Martins', role: 'Financial Advisor', avatar: 'https://i.pravatar.cc/150?img=29' },
-            { id: 54, name: 'Daniel Rodrigues', role: 'Investment Analyst', avatar: 'https://i.pravatar.cc/150?img=54' }
-          ]
-        },
-        'networking-breakfast': {
-          title: 'Networking Breakfast - Membros que Participaram',
-          members: [
-            { id: 18, name: 'Eduardo Silva', role: 'Business Development', avatar: 'https://i.pravatar.cc/150?img=18' },
-            { id: 41, name: 'Juliana Costa', role: 'Sales Director', avatar: 'https://i.pravatar.cc/150?img=41' },
-            { id: 72, name: 'Felipe Santos', role: 'Marketing Head', avatar: 'https://i.pravatar.cc/150?img=72' },
-            { id: 33, name: 'Mariana Lima', role: 'Operations Manager', avatar: 'https://i.pravatar.cc/150?img=33' }
-          ]
-        },
-        'launch-cocktail': {
-          title: 'Coquetel de Lançamento - Membros que Participaram',
-          members: [
-            { id: 16, name: 'André Oliveira', role: 'Founder & CEO', avatar: 'https://i.pravatar.cc/150?img=16' },
-            { id: 48, name: 'Carla Mendes', role: 'Strategic Partnerships', avatar: 'https://i.pravatar.cc/150?img=48' },
-            { id: 71, name: 'Bruno Garcia', role: 'Innovation Director', avatar: 'https://i.pravatar.cc/150?img=71' },
-            { id: 26, name: 'Isabela Ferreira', role: 'Brand Manager', avatar: 'https://i.pravatar.cc/150?img=26' }
-          ]
-        }
-      };
-      
-      const modal = document.getElementById('membersModal');
-      const title = document.getElementById('membersModalTitle');
-      const content = document.getElementById('membersModalContent');
-      
-      if (eventMembersMap[eventId]) {
-        const memberCount = eventMembersMap[eventId].members.length;
-        title.innerHTML = `${eventMembersMap[eventId].title} <span style="font-size: 14px; color: #888; font-weight: normal;">(${memberCount} participantes)</span>`;
-        
-        if (memberCount === 0) {
-          content.innerHTML = `
-            <div style="text-align: center; padding: 40px; color: #888;">
-              <p>Ainda não há membros confirmados para este evento.</p>
-            </div>
-          `;
-        } else {
-        
-        const membersHTML = eventMembersMap[eventId].members.map(member => {
-          // Verificar se é o próprio usuário
-          const isSelf = member.id === appState.currentMember.id;
-          
-          // Verificar se já existe solicitação enviada
-          const contactSent = appState.contactRequests.some(req => 
-            req.toId === member.id && req.fromId === appState.currentMember.id
-          );
-          
-          return `
-            <div class="member-item">
-              <div class="member-avatar">
-                <img src="${member.avatar}" alt="${member.name}" />
-              </div>
-              <div class="member-info">
-                <div class="member-name">${member.name}${isSelf ? ' (Você)' : ''}</div>
-                <div class="member-role">${member.role}</div>
-              </div>
-              ${isSelf ? 
-                '<span style="font-size: 12px; color: #888; font-style: italic;">Seu perfil</span>' :
-                `<button class="member-contact-btn ${contactSent ? 'sent' : ''}" 
-                        onclick="requestMemberContact(${member.id}, '${member.name}', this)"
-                        ${contactSent ? 'disabled' : ''}>
-                  ${contactSent ? '✓ Solicitado' : 'Solicitar Contato'}
-                </button>`
-              }
-            </div>
-          `;
-        }).join('');
-        
-        content.innerHTML = membersHTML;
-        
-        // Adicionar contador de solicitações
-        const sentCount = eventMembersMap[eventId].members.filter(member => 
-          appState.contactRequests.some(req => 
-            req.toId === member.id && req.fromId === appState.currentMember.id
-          )
-        ).length;
-        
-        if (sentCount > 0) {
-          const footer = document.createElement('div');
-          footer.style.cssText = `
-            margin-top: 24px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-            font-size: 13px;
-            color: #7fada3;
-          `;
-          footer.innerHTML = `✓ ${sentCount} solicitação${sentCount > 1 ? 'ões' : ''} de contato enviada${sentCount > 1 ? 's' : ''}`;
-          content.appendChild(footer);
-        }
-        }
-        
-        modal.classList.add('active');
-      }
-    }
-    
-    // Nova função para solicitar contato com membro
-    let pendingContactRequest = null;
-    
-    function requestMemberContact(memberId, memberName, button) {
-      if (button.disabled) return;
-      
-      // Guardar informações para confirmação
-      pendingContactRequest = {
-        memberId: memberId,
-        memberName: memberName,
-        button: button
-      };
-      
-      // Abrir modal de confirmação
-      document.getElementById('contactTargetName').textContent = memberName;
-      document.getElementById('contactConfirmModal').classList.add('active');
-    }
-    
-    function confirmContactRequest() {
-      if (!pendingContactRequest) return;
-      
-      const { memberId, memberName, button } = pendingContactRequest;
-      
-      // Adicionar à lista de solicitações
-      appState.contactRequests.push({
-        fromId: appState.currentMember.id,
-        toId: memberId,
-        toName: memberName,
-        timestamp: new Date().toISOString(),
-        status: 'pendente'
-      });
-      
-      // Atualizar botão
-      button.classList.add('sent');
-      button.textContent = '✓ Solicitado';
-      button.disabled = true;
-      
-      // Adicionar notificação
-      appState.notifications.unshift({
-        id: Date.now(),
-        type: 'networking',
-        icon: '🤝',
-        content: `Solicitação de contato enviada para ${memberName}`,
-        time: 'Agora',
-        priority: 'info',
-        read: false
-      });
-      
-      loadNotifications();
-      
-      // Fechar modal de confirmação
-      closeModal('contactConfirmModal');
-      
-      // Feedback visual e mensagem de sucesso
-      const originalBg = button.style.background;
-      button.style.background = 'rgba(127, 173, 163, 0.3)';
-      
-      // Criar toast de sucesso
-      const toast = document.createElement('div');
-      toast.style.cssText = `
-        position: fixed;
-        bottom: 30px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: rgba(127, 173, 163, 0.9);
-        color: #000;
-        padding: 16px 24px;
-        border-radius: 8px;
-        font-size: 14px;
-        font-weight: 600;
-        box-shadow: 0 4px 20px rgba(127, 173, 163, 0.4);
-        z-index: 4000;
-        animation: slideUpToast 0.3s ease-out;
-      `;
-      toast.innerHTML = '✓ Solicitação enviada com sucesso!';
-      document.body.appendChild(toast);
-      
-      setTimeout(() => {
-        button.style.background = originalBg;
-        toast.style.animation = 'fadeOut 0.3s ease-out';
-        setTimeout(() => toast.remove(), 300);
-      }, 2000);
-      
-      // Limpar referência
-      pendingContactRequest = null;
-    }
-    
-    function closeModal(modalId) {
-      document.getElementById(modalId).classList.remove('active');
-    }
-    
-    // Fechar modais ao clicar fora
-    document.addEventListener('click', function(event) {
-      if (event.target.classList.contains('modal-overlay')) {
-        event.target.classList.remove('active');
-      }
-    });
-
-    // Logout
-    document.getElementById('btnLogout').addEventListener('click', function(e) {
-      e.preventDefault();
-      if (confirm('Deseja sair da sua conta?')) {
-        window.location.href = 'login.html';
-      }
-    });
-
-    // Carregar dados ao iniciar a página
-    document.addEventListener('DOMContentLoaded', function() {
-      loadNotifications();
-      loadUpcomingEvents();
-    });
-  </script>
-</body>
-</html>
