@@ -372,7 +372,7 @@
       background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
       border: 1px solid rgba(137, 21, 34, 0.15);
       border-radius: 20px;
-      padding: 40px;
+      padding: 32px;
       margin-bottom: 24px;
       position: relative;
       overflow: hidden;
@@ -394,7 +394,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 40px;
+      margin-bottom: 32px;
     }
     
     .journey-title {
@@ -429,7 +429,7 @@
     .progress-metrics {
       display: flex;
       flex-direction: column;
-      gap: 40px;
+      gap: 32px;
     }
     
     .progress-metric {
@@ -440,7 +440,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
     
     .metric-info {
@@ -551,8 +551,8 @@
     .progress-stats {
       display: flex;
       gap: 40px;
-      margin-top: 48px;
-      padding-top: 40px;
+      margin-top: 36px;
+      padding-top: 32px;
       border-top: 1px solid rgba(0, 0, 0, 0.08);
     }
     
@@ -579,8 +579,8 @@
     }
     
     .level-benefits {
-      margin-top: 40px;
-      padding: 32px;
+      margin-top: 28px;
+      padding: 20px;
       background: linear-gradient(135deg, rgba(137, 21, 34, 0.03) 0%, transparent 100%);
       border-radius: 16px;
       border: 1px solid rgba(137, 21, 34, 0.1);
@@ -588,22 +588,23 @@
     
     .benefits-header {
       text-align: center;
-      margin-bottom: 32px;
+      margin-bottom: 20px;
     }
     
     .benefits-subtitle {
-      font-size: 11px;
-      color: #666666;
+      font-size: 13px;
+      color: #891522;
       text-transform: uppercase;
       letter-spacing: 2px;
       margin-bottom: 8px;
       font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
     }
     
     .benefits-title {
-      font-size: 20px;
-      color: #891522;
-      font-weight: 300;
+      font-size: 18px;
+      color: #1a1a1a;
+      font-weight: 500;
       font-family: 'Georgia', serif;
       letter-spacing: 0.5px;
     }
@@ -611,13 +612,13 @@
     .benefit-items {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-top: 32px;
+      gap: 16px;
+      margin-top: 20px;
     }
     
     .benefit-item-minimal {
       text-align: center;
-      padding: 20px;
+      padding: 16px 12px;
       background: rgba(137, 21, 34, 0.02);
       border-radius: 12px;
       border: 1px solid rgba(137, 21, 34, 0.08);
@@ -631,55 +632,34 @@
       transform: translateY(-2px);
     }
     
-    .benefit-item-minimal.unlocked {
-      border-color: rgba(137, 21, 34, 0.2);
-    }
-    
-    .benefit-item-minimal.next {
-      border-color: rgba(137, 21, 34, 0.3);
-      background: rgba(137, 21, 34, 0.05);
-    }
-    
-    .benefit-item-minimal.locked {
-      opacity: 0.3;
-    }
-    
-    .benefit-icon-minimal {
-      font-size: 24px;
-      margin-bottom: 12px;
-      display: block;
-      opacity: 0.8;
-    }
-    
-    .benefit-item-minimal.locked .benefit-icon-minimal {
-      filter: grayscale(100%);
-      opacity: 0.4;
-    }
-    
     .benefit-name-minimal {
-      font-size: 11px;
+      font-size: 12px;
       color: #666666;
-      font-weight: 400;
+      font-weight: 500;
       text-transform: uppercase;
       letter-spacing: 1px;
       font-family: 'Montserrat', sans-serif;
     }
     
-    .achievement-marker {
-      position: absolute;
-      top: -8px;
-      right: -8px;
-      width: 16px;
-      height: 16px;
+    .btn-explore-benefits {
+      background: transparent;
+      color: #891522;
+      border: 1px solid #891522;
+      padding: 12px 32px;
+      border-radius: 30px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    
+    .btn-explore-benefits:hover {
       background: #891522;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 10px;
       color: #ffffff;
-      font-weight: 600;
-      box-shadow: 0 2px 8px rgba(137, 21, 34, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(137, 21, 34, 0.3);
     }
     
     /* Toggle Switch Styles */
@@ -857,9 +837,8 @@
     .profile-detail-item {
       display: flex;
       align-items: center;
-      gap: 6px;
       background: rgba(0, 0, 0, 0.04);
-      padding: 8px 12px;
+      padding: 8px 16px;
       border-radius: 20px;
       font-size: 12px;
       color: #1a1a1a;
@@ -870,10 +849,6 @@
     .profile-detail-item:hover {
       background: rgba(0, 0, 0, 0.06);
       transform: translateY(-2px);
-    }
-    
-    .profile-detail-item .icon {
-      font-size: 14px;
     }
 
     /* ===================================
@@ -935,68 +910,7 @@
     }
 
     /* ===================================
-       8) CONSUMPTION SECTION
-    =================================== */
-    .consumption-section {
-      margin-top: 24px;
-    }
-    
-    .consumption-title {
-      font-size: 16px;
-      font-weight: 600;
-      color: #1a1a1a;
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    
-    .consumption-grid {
-      display: grid;
-      gap: 16px;
-    }
-    
-    .consumption-category {
-      background: rgba(0, 0, 0, 0.02);
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      border-radius: 8px;
-      padding: 16px;
-    }
-    
-    .consumption-category-title {
-      font-size: 14px;
-      font-weight: 600;
-      color: #891522;
-      margin-bottom: 12px;
-    }
-    
-    .consumption-items {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    
-    .consumption-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 8px;
-      background: rgba(0, 0, 0, 0.02);
-      border-radius: 6px;
-      font-size: 13px;
-    }
-    
-    .consumption-item-name {
-      color: #1a1a1a;
-    }
-    
-    .consumption-item-count {
-      color: #891522;
-      font-weight: 600;
-    }
-
-    /* ===================================
-       9) TAGS SECTION
+       8) TAGS SECTION
     =================================== */
     .tags-section {
       margin-top: 20px;
@@ -1012,12 +926,11 @@
     .tag {
       background: rgba(137, 21, 34, 0.1);
       color: #891522;
-      padding: 6px 12px;
+      padding: 6px 16px;
       border-radius: 20px;
       font-size: 12px;
       display: flex;
       align-items: center;
-      gap: 6px;
       transition: all 0.3s ease;
       cursor: pointer;
       border: 1px solid rgba(137, 21, 34, 0.2);
@@ -1026,10 +939,6 @@
     .tag:hover {
       background: rgba(137, 21, 34, 0.15);
       transform: translateY(-1px);
-    }
-    
-    .tag-icon {
-      font-size: 14px;
     }
     
     .tag-add {
@@ -1044,16 +953,17 @@
     }
 
     /* ===================================
-       10) MEMBERSHIP CARD
+       9) MEMBERSHIP CARD
     =================================== */
     .membership-card {
       background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
       border: 2px solid rgba(198, 105, 112, 0.3);
       border-radius: 16px;
       padding: 32px;
-      margin-top: 24px;
+      margin-top: 32px;
       position: relative;
       overflow: hidden;
+      width: 100%;
     }
     
     .membership-card::before {
@@ -1131,7 +1041,7 @@
     }
 
     /* ===================================
-       11) BENEFITS CARDS
+       10) BENEFITS CARDS
     =================================== */
     .benefits-card {
       background: rgba(255, 255, 255, 0.02);
@@ -1175,8 +1085,7 @@
     }
     
     .benefits-card.exclusive .benefits-title::before {
-      content: '👑';
-      font-size: 28px;
+      display: none;
     }
     
     .benefit-item {
@@ -1226,7 +1135,7 @@
     }
 
     /* ===================================
-       12) EVENT CARDS
+       11) EVENT CARDS
     =================================== */
     .event-card {
       background: rgba(255, 255, 255, 0.95);
@@ -1395,11 +1304,6 @@
       letter-spacing: 0.5px;
       box-shadow: 0 2px 8px rgba(137, 21, 34, 0.3);
       z-index: 5;
-    }
-    
-    .event-countdown::before {
-      content: '⏰';
-      font-size: 13px;
     }
     
     /* Event info container com melhor espaçamento */
@@ -1602,7 +1506,7 @@
     }
 
     /* ===================================
-       13) EVENT STATUS LEGEND
+       12) EVENT STATUS LEGEND
     =================================== */
     .event-status-legend {
       display: flex;
@@ -1638,7 +1542,7 @@
     }
 
     /* ===================================
-       14) NOTIFICATIONS DROPDOWN
+       13) NOTIFICATIONS DROPDOWN
     =================================== */
     .notifications-dropdown {
       position: absolute;
@@ -1697,11 +1601,6 @@
       color: #999;
     }
     
-    .notification-icon {
-      display: inline-block;
-      margin-right: 8px;
-    }
-    
     .notification-urgent {
       border-left: 3px solid #c12839;
     }
@@ -1715,7 +1614,7 @@
     }
 
     /* ===================================
-       15) MODALS
+       14) MODALS
     =================================== */
     /* Modals com animação de entrada */
     .modal-overlay {
@@ -1944,6 +1843,185 @@
     }
 
     /* ===================================
+       15) BENEFITS GALLERY
+    =================================== */
+    .benefits-gallery-container {
+      position: relative;
+      background: #ffffff;
+      border-radius: 0 0 16px 16px;
+      overflow: visible;
+      animation: fadeIn 0.3s ease-out;
+    }
+    
+    .gallery-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.8);
+      color: #ffffff;
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      z-index: 10;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .gallery-nav:hover {
+      background: #891522;
+      transform: translateY(-50%) scale(1.1);
+    }
+    
+    .gallery-nav:focus {
+      outline: 2px solid #891522;
+      outline-offset: 2px;
+    }
+    
+    .gallery-nav-prev {
+      left: -20px;
+    }
+    
+    .gallery-nav-next {
+      right: -20px;
+    }
+    
+    .benefit-level-slide {
+      padding: 48px 64px;
+      min-height: 600px;
+      color: #1a1a1a;
+      animation: fadeIn 0.3s ease-out;
+    }
+    
+    .level-header {
+      text-align: center;
+      margin-bottom: 48px;
+      padding-bottom: 32px;
+      border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+    }
+    
+    .level-name {
+      font-family: 'Georgia', serif;
+      font-size: 32px;
+      color: #1a1a1a;
+      margin-bottom: 8px;
+    }
+    
+    .level-tagline {
+      font-size: 16px;
+      color: #666666;
+      font-style: italic;
+    }
+    
+    .level-benefits-list {
+      margin-bottom: 40px;
+    }
+    
+    .benefit-category h4 {
+      font-size: 18px;
+      color: #891522;
+      margin-bottom: 20px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .benefit-category ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .benefit-category li {
+      padding: 12px 0;
+      padding-left: 28px;
+      position: relative;
+      font-size: 15px;
+      color: #333333;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    
+    .benefit-category li:last-child {
+      border-bottom: none;
+    }
+    
+    .benefit-category li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: #7fada3;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    
+    .level-criteria {
+      background: rgba(137, 21, 34, 0.05);
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 32px;
+    }
+    
+    .level-criteria h4 {
+      font-size: 16px;
+      color: #891522;
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+    
+    .level-criteria p {
+      font-size: 14px;
+      color: #666666;
+      line-height: 1.8;
+      margin: 0;
+    }
+    
+    .level-footer {
+      text-align: center;
+      margin-top: 32px;
+    }
+    
+    .current-level-badge {
+      display: inline-block;
+      background: #7fada3;
+      color: #000000;
+      padding: 8px 24px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .gallery-indicators {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    
+    .indicator {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .indicator.active {
+      background: #891522;
+      transform: scale(1.2);
+    }
+    
+    .indicator:hover {
+      background: rgba(137, 21, 34, 0.6);
+    }
+
+    /* ===================================
        16) WHATSAPP BUTTON
     =================================== */
     .whatsapp-btn {
@@ -2048,6 +2126,28 @@
         margin-bottom: 20px;
       }
       
+      .benefit-level-slide {
+        padding: 32px 20px;
+      }
+      
+      .gallery-nav {
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+      }
+      
+      .gallery-nav-prev {
+        left: 5px;
+      }
+      
+      .gallery-nav-next {
+        right: 5px;
+      }
+      
+      .level-name {
+        font-size: 24px;
+      }
+      
       .progress-journey {
         padding: 20px;
       }
@@ -2089,7 +2189,9 @@
             <div class="notifications-header">Notificações</div>
             <div id="notificationsContent">
               <!-- Notificações serão carregadas dinamicamente -->
-            </div>
+              <div class="level-footer">
+                <span class="next-level-badge" style="display: inline-block; background: #891522; color: #ffffff; padding: 8px 24px; border-radius: 20px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Próximo Nível</span>
+              </div>
           </div>
         </nav>
       </div>
@@ -2187,23 +2289,24 @@
                 
                 <div class="level-benefits">
                   <div class="benefits-header">
-                    <div class="benefits-subtitle">Evolua sua Experiência</div>
-                    <div class="benefits-title">Torne-se Gold Key Member e desbloqueie os benefícios</div>
+                    <div class="benefits-subtitle">Próximo Nível</div>
+                    <div class="benefits-title">Benefícios Exclusivos Gold Key</div>
                   </div>
                   <div class="benefit-items">
-                    <div class="benefit-item-minimal unlocked">
-                      <div class="achievement-marker">✓</div>
-                      <span class="benefit-icon-minimal">🥂</span>
-                      <div class="benefit-name-minimal">VIP Lounge</div>
+                    <div class="benefit-item-minimal">
+                      <div class="benefit-name-minimal">Eventos Privados</div>
                     </div>
-                    <div class="benefit-item-minimal next">
-                      <span class="benefit-icon-minimal">🎯</span>
-                      <div class="benefit-name-minimal">Private Events</div>
-                    </div>
-                    <div class="benefit-item-minimal locked">
-                      <span class="benefit-icon-minimal">💎</span>
+                    <div class="benefit-item-minimal">
                       <div class="benefit-name-minimal">Concierge Gold</div>
                     </div>
+                    <div class="benefit-item-minimal">
+                      <div class="benefit-name-minimal">Degustações Exclusivas</div>
+                    </div>
+                  </div>
+                  <div style="text-align: center; margin-top: 24px;">
+                    <button class="btn-explore-benefits" onclick="openBenefitsGallery('gold')">
+                      Explore os Benefícios Gold
+                    </button>
                   </div>
                 </div>
               </div>
@@ -2218,27 +2321,21 @@
               <!-- Profile Details with Icons -->
               <div class="profile-details">
                 <div class="profile-detail-item">
-                  <span class="icon">🥃</span>
                   <span>Whisky</span>
                 </div>
                 <div class="profile-detail-item">
-                  <span class="icon">🚫</span>
-                  <span>Lactose</span>
+                  <span>Intolerância: Lactose</span>
                 </div>
                 <div class="profile-detail-item">
-                  <span class="icon">🎂</span>
-                  <span>15 de Março</span>
+                  <span>Aniversário: 15 de Março</span>
                 </div>
                 <div class="profile-detail-item">
-                  <span class="icon">🍷</span>
                   <span>Bebe socialmente</span>
                 </div>
                 <div class="profile-detail-item">
-                  <span class="icon">📱</span>
                   <span>+55 11 99123-4567</span>
                 </div>
                 <div class="profile-detail-item">
-                  <span class="icon">💼</span>
                   <span>Gaming & Entertainment</span>
                 </div>
               </div>
@@ -2352,23 +2449,18 @@
               <input type="text" class="form-input" id="interestInput" placeholder="Digite e pressione Enter para adicionar..." />
               <div class="tags-container">
                 <div class="tag">
-                  <span class="tag-icon">💻</span>
                   Tecnologia
                 </div>
                 <div class="tag">
-                  <span class="tag-icon">📈</span>
                   Investimentos
                 </div>
                 <div class="tag">
-                  <span class="tag-icon">🤝</span>
                   Networking
                 </div>
                 <div class="tag">
-                  <span class="tag-icon">🎮</span>
                   Gaming
                 </div>
                 <div class="tag">
-                  <span class="tag-icon">🏆</span>
                   eSports
                 </div>
               </div>
@@ -2380,69 +2472,6 @@
             <div class="form-actions">
               <button class="btn-save" onclick="saveProfile()">Salvar Alterações</button>
               <button class="btn-cancel" onclick="toggleEdit()">Cancelar</button>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Consumption History -->
-        <div class="profile-card">
-          <div class="card-title">Histórico de Consumo</div>
-          <div class="consumption-section">
-            <div class="consumption-title">
-              <span>🍷</span> Top Consumo - Últimos 3 Meses
-            </div>
-            <div class="consumption-grid">
-              <div class="consumption-category">
-                <div class="consumption-category-title">Bebidas Alcoólicas</div>
-                <div class="consumption-items">
-                  <div class="consumption-item">
-                    <span class="consumption-item-name">Hennessy Paradis</span>
-                    <span class="consumption-item-count">28x</span>
-                  </div>
-                  <div class="consumption-item">
-                    <span class="consumption-item-name">Jack Daniels</span>
-                    <span class="consumption-item-count">15x</span>
-                  </div>
-                  <div class="consumption-item">
-                    <span class="consumption-item-name">Dom Pérignon</span>
-                    <span class="consumption-item-count">8x</span>
-                  </div>
-                </div>
-              </div>
-              <div class="consumption-category">
-                <div class="consumption-category-title">Pratos Principais</div>
-                <div class="consumption-items">
-                  <div class="consumption-item">
-                    <span class="consumption-item-name">Carpaccio</span>
-                    <span class="consumption-item-count">12x</span>
-                  </div>
-                  <div class="consumption-item">
-                    <span class="consumption-item-name">Filé Wellington</span>
-                    <span class="consumption-item-count">8x</span>
-                  </div>
-                  <div class="consumption-item">
-                    <span class="consumption-item-name">Risotto de Camarão</span>
-                    <span class="consumption-item-count">6x</span>
-                  </div>
-                </div>
-              </div>
-              <div class="consumption-category">
-                <div class="consumption-category-title">Bebidas Não Alcoólicas</div>
-                <div class="consumption-items">
-                  <div class="consumption-item">
-                    <span class="consumption-item-name">Água Perrier</span>
-                    <span class="consumption-item-count">35x</span>
-                  </div>
-                  <div class="consumption-item">
-                    <span class="consumption-item-name">Suco Verde Detox</span>
-                    <span class="consumption-item-count">12x</span>
-                  </div>
-                  <div class="consumption-item">
-                    <span class="consumption-item-name">Espresso</span>
-                    <span class="consumption-item-count">18x</span>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -2589,7 +2618,6 @@
       </div>
       <div class="modal-body">
         <div style="text-align: center; padding: 20px 0;">
-          <div style="font-size: 48px; margin-bottom: 20px;">🤝</div>
           <p style="font-size: 16px; color: #f5f5f5; margin-bottom: 24px;">
             Deseja enviar uma solicitação de contato para <strong id="contactTargetName"></strong>?
           </p>
@@ -2764,7 +2792,6 @@
       </div>
       <div class="modal-body">
         <div style="text-align: center; padding: 20px 0;">
-          <div style="font-size: 48px; margin-bottom: 20px;">🔑</div>
           <h3 style="font-size: 20px; color: #f4e5cf; margin-bottom: 16px; font-family: 'Georgia', serif;">
             Renovação Silver Key Member
           </h3>
@@ -2783,6 +2810,148 @@
           <button class="btn-save" onclick="confirmRenewal()" style="width: 100%;">
             Fazer pedido de renovação
           </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Benefits Gallery Modal -->
+  <div class="modal-overlay" id="benefitsGalleryModal">
+    <div class="modal-content" style="max-width: 800px; overflow: visible;">
+      <div class="modal-header">
+        <h2 class="modal-title">Benefícios por Nível</h2>
+        <button class="modal-close" onclick="closeModal('benefitsGalleryModal')">&times;</button>
+      </div>
+      <div class="modal-body" style="padding: 0; overflow: visible;">
+        <div class="benefits-gallery-container">
+          <button class="gallery-nav gallery-nav-prev" onclick="navigateBenefits('prev')">‹</button>
+          <button class="gallery-nav gallery-nav-next" onclick="navigateBenefits('next')">›</button>
+          
+          <div class="benefits-gallery-content" id="benefitsGalleryContent">
+            <!-- Silver Level -->
+            <div class="benefit-level-slide" data-level="silver">
+              <div class="level-header">
+                <h3 class="level-name">Silver Key Member</h3>
+                <p class="level-tagline">Acesso Premium ao Clube</p>
+              </div>
+              
+              <div class="level-benefits-list">
+                <div class="benefit-category">
+                  <h4>Benefícios Inclusos</h4>
+                  <ul>
+                    <li>Acesso ao Diretório de Membros</li>
+                    <li>Participação em Eventos Gerais</li>
+                    <li>Acesso VIP Lounge com até 3 convidados</li>
+                    <li>Jantares Executivos mensais</li>
+                    <li>Networking Prioritário</li>
+                    <li>Concierge Premium</li>
+                    <li>Descontos em parceiros selecionados</li>
+                  </ul>
+                </div>
+              </div>
+              
+              <div class="level-criteria">
+                <h4>Critérios para Manter</h4>
+                <p>• Renovação anual<br>
+                   • Mínimo 10 visitas/ano<br>
+                   • Participação em 50% dos eventos</p>
+              </div>
+              
+              <div class="level-footer">
+                <span class="current-level-badge">Seu Nível Atual</span>
+              </div>
+            </div>
+            
+            <!-- Gold Level -->
+            <div class="benefit-level-slide" data-level="gold" style="display: none;">
+              <div class="level-header">
+                <h3 class="level-name">Gold Key Member</h3>
+                <p class="level-tagline">Experiências Exclusivas</p>
+              </div>
+              
+              <div class="level-benefits-list">
+                <div class="benefit-category">
+                  <h4>Todos os Benefícios Silver +</h4>
+                  <ul>
+                    <li>Eventos Privados para Gold e Platinum</li>
+                    <li>Concierge Gold 24/7</li>
+                    <li>Degustações exclusivas de vinhos e destilados</li>
+                    <li>Acesso antecipado a novos eventos</li>
+                    <li>Sala de reuniões privativa (4h/mês)</li>
+                    <li>Personal Host dedicado</li>
+                    <li>Convites para eventos internacionais</li>
+                    <li>Upgrade automático em hotéis parceiros</li>
+                  </ul>
+                </div>
+              </div>
+              
+              <div class="level-criteria">
+                <h4>Critérios para Alcançar</h4>
+                <div class="criteria-progress" style="margin-bottom: 16px;">
+                  <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                    <span style="font-size: 13px; color: #666;">Progresso para Gold Key</span>
+                    <span style="font-size: 13px; color: #891522; font-weight: 600;">75%</span>
+                  </div>
+                  <div style="height: 8px; background: rgba(0, 0, 0, 0.1); border-radius: 4px; overflow: hidden;">
+                    <div style="width: 75%; height: 100%; background: linear-gradient(90deg, #891522, #a51623); border-radius: 4px; transition: width 0.5s ease;"></div>
+                  </div>
+                </div>
+                <p>• 25+ visitas/ano (20/25 concluídas)<br>
+                   • Participação em 70% dos eventos (86% - Concluído)<br>
+                   • Consumo mínimo anual de R$ 50.000 (R$ 42.000/50.000)<br>
+                   • 2 anos como Silver Member (Concluído)</p>
+              </div>
+            </div>
+            
+            <!-- Platinum Level -->
+            <div class="benefit-level-slide" data-level="platinum" style="display: none;">
+              <div class="level-header">
+                <h3 class="level-name">Platinum Key Member</h3>
+                <p class="level-tagline">O Mais Alto Nível de Exclusividade</p>
+              </div>
+              
+              <div class="level-benefits-list">
+                <div class="benefit-category">
+                  <h4>Todos os Benefícios Gold +</h4>
+                  <ul>
+                    <li>Acesso ilimitado ao clube e todos os eventos</li>
+                    <li>Concierge Platinum global</li>
+                    <li>Jantares privados com o Chef</li>
+                    <li>Acesso ao Comitê Consultivo do Clube</li>
+                    <li>Eventos customizados sob demanda</li>
+                    <li>Jet privado para eventos selecionados</li>
+                    <li>Suite permanente em eventos do clube</li>
+                    <li>Mentoria exclusiva com líderes da indústria</li>
+                    <li>Convites para família em eventos especiais</li>
+                  </ul>
+                </div>
+              </div>
+              
+              <div class="level-criteria">
+                <h4>Critérios para Alcançar</h4>
+                <div class="criteria-progress" style="margin-bottom: 16px;">
+                  <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                    <span style="font-size: 13px; color: #666;">Progresso para Platinum Key</span>
+                    <span style="font-size: 13px; color: #891522; font-weight: 600;">20%</span>
+                  </div>
+                  <div style="height: 8px; background: rgba(0, 0, 0, 0.1); border-radius: 4px; overflow: hidden;">
+                    <div style="width: 20%; height: 100%; background: linear-gradient(90deg, #891522, #a51623); border-radius: 4px; transition: width 0.5s ease;"></div>
+                  </div>
+                </div>
+                <p>• Convite exclusivo do Board (Aguardando)<br>
+                   • 50+ visitas/ano (20/50 concluídas)<br>
+                   • Consumo mínimo anual de R$ 150.000 (R$ 42.000/150.000)<br>
+                   • Contribuição ativa para a comunidade (Concluído)<br>
+                   • 3 anos como Gold Member (0/3 anos)</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="gallery-indicators">
+            <span class="indicator active" onclick="showBenefitLevel(0)"></span>
+            <span class="indicator" onclick="showBenefitLevel(1)"></span>
+            <span class="indicator" onclick="showBenefitLevel(2)"></span>
+          </div>
         </div>
       </div>
     </div>
@@ -2827,7 +2996,7 @@
         {
           id: 1,
           type: 'reminder',
-          icon: '🚨',
+          icon: '',
           content: 'O Evento é já amanhã!! - Jantar Executivo Tech Leaders',
           time: 'Há 2 horas',
           priority: 'urgent',
@@ -2836,7 +3005,7 @@
         {
           id: 2,
           type: 'event',
-          icon: '⏰',
+          icon: '',
           content: 'Faltam 3 dias para o evento Summit da Indústria de Jogos',
           time: 'Há 4 horas',
           priority: 'warning',
@@ -2845,7 +3014,7 @@
         {
           id: 3,
           type: 'milestone',
-          icon: '🏆',
+          icon: '',
           content: 'Já só falta 1 visita e 2 eventos para subir para Gold Key Member!',
           time: 'Há 1 dia',
           priority: 'info',
@@ -2854,7 +3023,7 @@
         {
           id: 4,
           type: 'birthday',
-          icon: '🎂',
+          icon: '',
           content: 'Hoje é aniversário de Carla Mendes! Envie uma mensagem de parabéns.',
           time: 'Há 5 horas',
           priority: 'info',
@@ -2863,7 +3032,7 @@
         {
           id: 5,
           type: 'networking',
-          icon: '🤝',
+          icon: '',
           content: 'Lucas Ferreira aceitou sua solicitação de conexão',
           time: 'Há 2 dias',
           priority: 'info',
@@ -2968,7 +3137,6 @@
         item.className = `notification-item notification-${notif.priority}`;
         item.innerHTML = `
           <div class="notification-content">
-            <span class="notification-icon">${notif.icon}</span>
             ${notif.content}
           </div>
           <div class="notification-time">${notif.time}</div>
@@ -3074,7 +3242,7 @@
         } else {
           cardContent += `
             <div class="event-lock">
-              🔒
+              <div class="lock-icon" style="font-size: 16px;">🔒</div>
               <div class="event-tooltip">
                 Exclusivo para membros ${getLevelDisplayName(event.minLevel)} ou superior
               </div>
@@ -3107,7 +3275,7 @@
         appState.notifications.unshift({
           id: Date.now(),
           type: 'event',
-          icon: '❌',
+          icon: '',
           content: `Inscrição cancelada para: ${eventTitle}`,
           time: 'Agora',
           priority: 'info',
@@ -3199,16 +3367,16 @@
       title.textContent = event.title;
       
       let detailsContent = `
-        <h3>📅 Data e Horário</h3>
+        <h3>Data e Horário</h3>
         <p><strong>${formatEventDate(event.date)}</strong><br>20:00 - 23:30</p>
         
-        <h3>📍 Local</h3>
+        <h3>Local</h3>
         <p><strong>${event.location}</strong></p>
         
-        <h3>🏷️ Tipo de Evento</h3>
+        <h3>Tipo de Evento</h3>
         <p><strong>${event.type.replace('_', ' ')}</strong></p>
         
-        <h3>🔑 Nível Mínimo</h3>
+        <h3>Nível Mínimo</h3>
         <p><strong>${getLevelDisplayName(event.minLevel)}</strong></p>
       `;
       
@@ -3216,7 +3384,7 @@
         detailsContent += `
           <div style="background: rgba(193,40,57,0.1); border: 1px solid #c12839; padding: 16px; border-radius: 8px; margin-top: 20px;">
             <p style="color: #ff6666; font-weight: bold;">
-              🔒 Este evento é exclusivo para membros ${getLevelDisplayName(event.minLevel)} ou superior.
+              Este evento é exclusivo para membros ${getLevelDisplayName(event.minLevel)} ou superior.
             </p>
             <p style="color: #cccccc; margin-top: 8px;">
               Você precisa subir de nível para participar deste evento.
@@ -3225,10 +3393,10 @@
         `;
       } else {
         detailsContent += `
-          <h3>ℹ️ Sobre o Evento</h3>
+          <h3>Sobre o Evento</h3>
           <p>${event.description}</p>
           
-          <h3>👔 Dress Code</h3>
+          <h3>Dress Code</h3>
           <p>Smart Casual</p>
         `;
       }
@@ -3323,7 +3491,7 @@
       appState.notifications.unshift({
         id: Date.now(),
         type: 'networking',
-        icon: '📧',
+        icon: '',
         content: `Solicitação de conexão enviada para ${targetName}`,
         time: 'Agora',
         priority: 'info',
@@ -3375,7 +3543,7 @@
       appState.notifications.unshift({
         id: Date.now(),
         type: 'info',
-        icon: '🔑',
+        icon: '',
         content: 'Pedido de renovação enviado. Aguarde contato da nossa equipe.',
         time: 'Agora',
         priority: 'info',
@@ -3436,10 +3604,7 @@
       const container = document.querySelector('.tags-container');
       const newTag = document.createElement('div');
       newTag.className = 'tag';
-      newTag.innerHTML = `
-        <span class="tag-icon">🏷️</span>
-        ${interest}
-      `;
+      newTag.innerHTML = interest;
       
       // Inserir antes do último elemento (que seria o botão de adicionar)
       container.appendChild(newTag);
@@ -3490,6 +3655,64 @@
       });
     });
     
+    // Sistema de galeria de benefícios
+    let currentBenefitLevel = 0;
+    const benefitLevels = ['silver', 'gold', 'platinum'];
+    
+    function openBenefitsGallery(startLevel = 'gold') {
+      const modal = document.getElementById('benefitsGalleryModal');
+      
+      // Adicionar animação de entrada
+      modal.style.opacity = '0';
+      modal.classList.add('active');
+      
+      setTimeout(() => {
+        modal.style.transition = 'opacity 0.3s ease';
+        modal.style.opacity = '1';
+      }, 10);
+      
+      // Encontrar o índice do nível inicial
+      const startIndex = benefitLevels.indexOf(startLevel);
+      if (startIndex !== -1) {
+        currentBenefitLevel = startIndex;
+        showBenefitLevel(startIndex);
+      }
+    }
+    
+    function showBenefitLevel(index) {
+      currentBenefitLevel = index;
+      
+      // Esconder todos os slides
+      const slides = document.querySelectorAll('.benefit-level-slide');
+      slides.forEach(slide => slide.style.display = 'none');
+      
+      // Mostrar o slide atual
+      if (slides[index]) {
+        slides[index].style.display = 'block';
+      }
+      
+      // Atualizar indicadores
+      const indicators = document.querySelectorAll('.indicator');
+      indicators.forEach((ind, i) => {
+        ind.classList.toggle('active', i === index);
+      });
+      
+      // Atualizar visibilidade dos botões de navegação
+      const prevBtn = document.querySelector('.gallery-nav-prev');
+      const nextBtn = document.querySelector('.gallery-nav-next');
+      
+      prevBtn.style.display = index === 0 ? 'none' : 'flex';
+      nextBtn.style.display = index === benefitLevels.length - 1 ? 'none' : 'flex';
+    }
+    
+    function navigateBenefits(direction) {
+      if (direction === 'prev' && currentBenefitLevel > 0) {
+        showBenefitLevel(currentBenefitLevel - 1);
+      } else if (direction === 'next' && currentBenefitLevel < benefitLevels.length - 1) {
+        showBenefitLevel(currentBenefitLevel + 1);
+      }
+    }
+    
     // Sistema de gamificação - Easter Egg
     let clickCount = 0;
     const levelBadge = document.querySelector('.level-badge');
@@ -3497,7 +3720,7 @@
       levelBadge.addEventListener('click', function() {
         clickCount++;
         if (clickCount === 5) {
-          showToast('🎉 Você descobriu um Easter Egg! Continue assim para Gold Key!', 'success');
+          showToast('Você descobriu um Easter Egg! Continue assim para Gold Key!', 'success');
           clickCount = 0;
           
           // Adicionar animação especial
@@ -3553,7 +3776,7 @@
             appState.notifications.unshift({
               id: Date.now(),
               type: 'reminder',
-              icon: '🚨',
+              icon: '',
               content: `URGENTE: ${event.title} é amanhã!`,
               time: 'Agora',
               priority: 'urgent',
@@ -3561,7 +3784,7 @@
             });
             
             loadNotifications();
-            showToast(`⚠️ Lembrete: ${event.title} é amanhã!`, 'warning');
+            showToast(`Lembrete: ${event.title} é amanhã!`, 'warning');
           }
         }
       });
@@ -3580,7 +3803,7 @@
       
       // Após 5 minutos, sugerir explorar eventos
       if (timeOnPage === 300) {
-        showToast('💡 Que tal explorar nossos próximos eventos exclusivos?', 'info');
+        showToast('Que tal explorar nossos próximos eventos exclusivos?', 'info');
       }
     }, 1000);
     
@@ -3589,7 +3812,7 @@
     document.addEventListener('mouseleave', function(e) {
       if (e.clientY < 10 && !exitIntentShown) {
         exitIntentShown = true;
-        showToast('👋 Não esqueça de conferir seus benefícios exclusivos Silver!', 'info');
+        showToast('Não esqueça de conferir seus benefícios exclusivos Silver!', 'info');
       }
     });
     
@@ -3601,7 +3824,7 @@
           const current = parseInt(el.textContent);
           if (current < 25) {
             el.textContent = `${current + 1} de 25`;
-            showToast('🎯 +1 visita registrada! Faltam apenas ' + (25 - current - 1) + ' para Gold Key!', 'success');
+            showToast('+1 visita registrada! Faltam apenas ' + (25 - current - 1) + ' para Gold Key!', 'success');
           }
         }
       });
@@ -3621,7 +3844,49 @@
           modal.classList.remove('active');
         });
       }
+      
+      // Navegação por setas na galeria de benefícios
+      const galleryModal = document.getElementById('benefitsGalleryModal');
+      if (galleryModal && galleryModal.classList.contains('active')) {
+        if (e.key === 'ArrowLeft') {
+          navigateBenefits('prev');
+        } else if (e.key === 'ArrowRight') {
+          navigateBenefits('next');
+        }
+      }
     });
+    // Suporte para swipe em mobile na galeria
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      const galleryContent = document.getElementById('benefitsGalleryContent');
+      if (galleryContent) {
+        galleryContent.addEventListener('touchstart', function(e) {
+          touchStartX = e.changedTouches[0].screenX;
+        });
+        
+        galleryContent.addEventListener('touchend', function(e) {
+          touchEndX = e.changedTouches[0].screenX;
+          handleGallerySwipe();
+        });
+      }
+    });
+    
+    function handleGallerySwipe() {
+      const swipeThreshold = 50;
+      const diff = touchStartX - touchEndX;
+      
+      if (Math.abs(diff) > swipeThreshold) {
+        if (diff > 0) {
+          // Swipe left - próximo
+          navigateBenefits('next');
+        } else {
+          // Swipe right - anterior
+          navigateBenefits('prev');
+        }
+      }
+    }
   </script>
 </body>
 </html>
