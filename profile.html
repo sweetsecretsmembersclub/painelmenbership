@@ -296,7 +296,6 @@
     .level-badge {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
       background: linear-gradient(135deg, #f8f8f8 0%, #f0f0f0 100%);
       border: 1px solid rgba(137, 21, 34, 0.2);
       border-radius: 30px;
@@ -324,15 +323,10 @@
       pointer-events: none;
     }
     
-    .level-badge-icon {
-      font-size: 28px;
-      position: relative;
-      z-index: 1;
-      transition: transform 0.3s ease;
-    }
-    
-    .level-badge:hover .level-badge-icon {
-      transform: scale(1.1);
+    .level-badge:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 30px rgba(0, 0, 0, 0.12);
+      border-color: rgba(137, 21, 34, 0.3);
     }
     
     @keyframes float {
@@ -738,6 +732,7 @@
     
     .btn-edit-toggle {
       margin-top: 24px;
+      margin-bottom: 24px;
       color: #1a1a1a;
       text-transform: uppercase;
       font-size: 12px;
@@ -1092,7 +1087,6 @@
       color: #f4e5cf;
       display: flex;
       align-items: center;
-      gap: 12px;
     }
     
     .membership-level .icon {
@@ -1188,8 +1182,7 @@
     }
     
     .benefits-title::before {
-      content: '✨';
-      font-size: 24px;
+      display: none;
     }
     
     .benefits-card.exclusive .benefits-title::before {
@@ -2129,8 +2122,7 @@
               
               <!-- Badge de nível melhorado -->
               <div class="level-badge" onclick="scrollToBenefits()" style="cursor: pointer;" title="Clique para ver seus benefícios exclusivos">
-                <span class="level-badge-icon">🥈</span>
-                <div class="level-badge-content">
+                <div class="level-badge-content" style="margin-left: 0;">
                   <div class="level-badge-subtitle">Membro Exclusivo</div>
                   <div class="level-badge-title">Silver Key Member</div>
                 </div>
@@ -2141,8 +2133,8 @@
                 <div class="journey-header">
                   <div class="journey-title">Progresso</div>
                   <div class="next-level-preview">
-                    <span class="icon">👑</span>
-                    <span>Gold Key</span>
+                    <span style="font-weight: 600;">Próximo Nível:</span>
+                    <span>Gold Key Member</span>
                   </div>
                 </div>
                 
@@ -2206,8 +2198,8 @@
                 
                 <div class="level-benefits">
                   <div class="benefits-header">
-                    <div class="benefits-subtitle">Desbloqueie com Gold Key</div>
-                    <div class="benefits-title">Experiências Exclusivas</div>
+                    <div class="benefits-subtitle">Evolua sua Experiência</div>
+                    <div class="benefits-title">Torne-se Gold Key Member e desbloqueie os benefícios</div>
                   </div>
                   <div class="benefit-items">
                     <div class="benefit-item-minimal unlocked">
@@ -2262,6 +2254,8 @@
                 </div>
               </div>
               
+              <button class="btn-edit-toggle" onclick="toggleEdit()">Editar Perfil</button>
+              
               <div class="balance-info">
                 <div class="balance-content">
                   <div class="balance-label">Saldo Disponível</div>
@@ -2269,8 +2263,6 @@
                 </div>
                 <button class="btn-view-consumption" onclick="viewConsumption()">Ver Meu Consumo</button>
               </div>
-              
-              <button class="btn-edit-toggle" onclick="toggleEdit()">Editar Perfil</button>
             </div>
           </div>
           
@@ -2281,7 +2273,6 @@
             </div>
             <div class="membership-header">
               <div class="membership-level">
-                <span class="icon">🥈</span>
                 <span>Silver Key Member</span>
               </div>
               <div class="membership-number">#SSC0032</div>
@@ -2548,19 +2539,19 @@
         <div class="benefits-card exclusive" id="silver-benefits">
           <div class="benefits-title">Privilégios Exclusivos Silver</div>
           <div class="benefit-item">
-            <div class="benefit-name">🥂 Acesso VIP Lounge</div>
+            <div class="benefit-name">Acesso VIP Lounge</div>
             <div class="benefit-desc">Entrada livre com até 3 convidados no nosso lounge privativo com bar premium.</div>
           </div>
           <div class="benefit-item">
-            <div class="benefit-name">🍽️ Jantares Executivos</div>
+            <div class="benefit-name">Jantares Executivos</div>
             <div class="benefit-desc">Convites exclusivos para jantares íntimos com líderes da indústria em restaurantes estrelados.</div>
           </div>
           <div class="benefit-item">
-            <div class="benefit-name">💼 Networking Prioritário</div>
+            <div class="benefit-name">Networking Prioritário</div>
             <div class="benefit-desc">Acesso antecipado a eventos de networking com C-levels e investidores.</div>
           </div>
           <div class="benefit-item">
-            <div class="benefit-name">🏆 Concierge Premium</div>
+            <div class="benefit-name">Concierge Premium</div>
             <div class="benefit-desc">Serviço personalizado para reservas e experiências exclusivas na cidade.</div>
           </div>
         </div>
@@ -2636,45 +2627,141 @@
         <button class="modal-close" onclick="closeModal('consumptionModal')">&times;</button>
       </div>
       <div class="modal-body">
-        <div style="margin-bottom: 32px; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px;">
-          <div class="stat-item" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 16px; text-align: center;">
-            <div class="stat-value" style="font-size: 24px; font-weight: 700; color: #c66970; margin-bottom: 4px;">R$ 24.5k</div>
-            <div class="stat-label" style="font-size: 12px; color: #999; text-transform: uppercase; letter-spacing: 0.5px;">Total Lifetime</div>
+        <!-- Header com estatísticas principais -->
+        <div style="display: flex; justify-content: space-between; padding: 24px; background: rgba(127, 173, 163, 0.08); border-radius: 12px; margin-bottom: 32px;">
+          <div style="text-align: center;">
+            <div style="font-size: 28px; font-weight: 700; color: #7fada3; margin-bottom: 4px; font-family: 'Georgia', serif;">R$ 2.450,00</div>
+            <div style="font-size: 12px; color: #666; text-transform: uppercase; letter-spacing: 1px;">Saldo Disponível</div>
           </div>
-          <div class="stat-item" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 16px; text-align: center;">
-            <div class="stat-value" style="font-size: 24px; font-weight: 700; color: #c66970; margin-bottom: 4px;">R$ 4.2k</div>
-            <div class="stat-label" style="font-size: 12px; color: #999; text-transform: uppercase; letter-spacing: 0.5px;">Este Mês</div>
-          </div>
-          <div class="stat-item" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 16px; text-align: center;">
-            <div class="stat-value" style="font-size: 24px; font-weight: 700; color: #c66970; margin-bottom: 4px;">R$ 583</div>
-            <div class="stat-label" style="font-size: 12px; color: #999; text-transform: uppercase; letter-spacing: 0.5px;">Ticket Médio</div>
-          </div>
-          <div class="stat-item" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 16px; text-align: center;">
-            <div class="stat-value" style="font-size: 24px; font-weight: 700; color: #c66970; margin-bottom: 4px;">42</div>
-            <div class="stat-label" style="font-size: 12px; color: #999; text-transform: uppercase; letter-spacing: 0.5px;">Visitas</div>
+          <div style="text-align: center;">
+            <div style="font-size: 28px; font-weight: 700; color: #891522; margin-bottom: 4px; font-family: 'Georgia', serif;">42</div>
+            <div style="font-size: 12px; color: #666; text-transform: uppercase; letter-spacing: 1px;">Visitas Totais</div>
           </div>
         </div>
         
-        <div style="background: rgba(255, 255, 255, 0.02); border-radius: 12px; padding: 24px;">
-          <h3 style="margin-bottom: 20px; color: #c66970;">Tendência de Consumo - Últimos 6 Meses</h3>
-          <div style="height: 200px; display: flex; align-items: flex-end; gap: 8px;">
-            <div style="flex: 1; background: rgba(198, 105, 112, 0.3); height: 60%; border-radius: 4px 4px 0 0; position: relative;">
-              <span style="position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 11px; color: #999;">Jan</span>
+        <!-- Lista de consumo por visita -->
+        <div id="consumptionList">
+          <!-- Visita 1 -->
+          <div class="consumption-visit-item" style="margin-bottom: 16px; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; overflow: hidden;">
+            <div class="consumption-visit-header" onclick="toggleVisitDetails(this)" style="padding: 20px; background: rgba(255, 255, 255, 0.02); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <div style="font-size: 16px; font-weight: 600; color: #f5f5f5; margin-bottom: 4px;">20 de Junho de 2025</div>
+                <div style="font-size: 13px; color: #999;">Sexta-feira • 20:30 - 23:45</div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 16px;">
+                <div style="text-align: right;">
+                  <div style="font-size: 18px; font-weight: 600; color: #c66970;">R$ 487,50</div>
+                  <div style="font-size: 12px; color: #999;">Total</div>
+                </div>
+                <span class="expand-icon" style="color: #666; font-size: 20px; transition: transform 0.3s;">▼</span>
+              </div>
             </div>
-            <div style="flex: 1; background: rgba(198, 105, 112, 0.4); height: 70%; border-radius: 4px 4px 0 0; position: relative;">
-              <span style="position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 11px; color: #999;">Fev</span>
+            <div class="consumption-visit-details" style="display: none; padding: 20px; background: rgba(255, 255, 255, 0.01); border-top: 1px solid rgba(255, 255, 255, 0.05);">
+              <table style="width: 100%; font-size: 14px;">
+                <tbody>
+                  <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                    <td style="padding: 12px 0; color: #f5f5f5;">Hennessy Paradis</td>
+                    <td style="padding: 12px 0; text-align: center; color: #999;">2x</td>
+                    <td style="padding: 12px 0; text-align: right; color: #c66970;">R$ 340,00</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                    <td style="padding: 12px 0; color: #f5f5f5;">Carpaccio de Salmão</td>
+                    <td style="padding: 12px 0; text-align: center; color: #999;">1x</td>
+                    <td style="padding: 12px 0; text-align: right; color: #c66970;">R$ 78,00</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                    <td style="padding: 12px 0; color: #f5f5f5;">Água Perrier</td>
+                    <td style="padding: 12px 0; text-align: center; color: #999;">3x</td>
+                    <td style="padding: 12px 0; text-align: right; color: #c66970;">R$ 45,00</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 12px 0; color: #f5f5f5;">Taxa de Serviço</td>
+                    <td style="padding: 12px 0; text-align: center; color: #999;">10%</td>
+                    <td style="padding: 12px 0; text-align: right; color: #c66970;">R$ 24,50</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-            <div style="flex: 1; background: rgba(198, 105, 112, 0.5); height: 65%; border-radius: 4px 4px 0 0; position: relative;">
-              <span style="position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 11px; color: #999;">Mar</span>
+          </div>
+          
+          <!-- Visita 2 -->
+          <div class="consumption-visit-item" style="margin-bottom: 16px; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; overflow: hidden;">
+            <div class="consumption-visit-header" onclick="toggleVisitDetails(this)" style="padding: 20px; background: rgba(255, 255, 255, 0.02); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <div style="font-size: 16px; font-weight: 600; color: #f5f5f5; margin-bottom: 4px;">15 de Junho de 2025</div>
+                <div style="font-size: 13px; color: #999;">Domingo • Evento: Workshop de Investimentos</div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 16px;">
+                <div style="text-align: right;">
+                  <div style="font-size: 18px; font-weight: 600; color: #c66970;">R$ 625,00</div>
+                  <div style="font-size: 12px; color: #999;">Total</div>
+                </div>
+                <span class="expand-icon" style="color: #666; font-size: 20px; transition: transform 0.3s;">▼</span>
+              </div>
             </div>
-            <div style="flex: 1; background: rgba(198, 105, 112, 0.6); height: 80%; border-radius: 4px 4px 0 0; position: relative;">
-              <span style="position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 11px; color: #999;">Abr</span>
+            <div class="consumption-visit-details" style="display: none; padding: 20px; background: rgba(255, 255, 255, 0.01); border-top: 1px solid rgba(255, 255, 255, 0.05);">
+              <table style="width: 100%; font-size: 14px;">
+                <tbody>
+                  <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                    <td style="padding: 12px 0; color: #f5f5f5;">Dom Pérignon</td>
+                    <td style="padding: 12px 0; text-align: center; color: #999;">1x</td>
+                    <td style="padding: 12px 0; text-align: right; color: #c66970;">R$ 450,00</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                    <td style="padding: 12px 0; color: #f5f5f5;">Filé Wellington</td>
+                    <td style="padding: 12px 0; text-align: center; color: #999;">2x</td>
+                    <td style="padding: 12px 0; text-align: right; color: #c66970;">R$ 156,00</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 12px 0; color: #f5f5f5;">Espresso</td>
+                    <td style="padding: 12px 0; text-align: center; color: #999;">2x</td>
+                    <td style="padding: 12px 0; text-align: right; color: #c66970;">R$ 19,00</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-            <div style="flex: 1; background: rgba(198, 105, 112, 0.7); height: 75%; border-radius: 4px 4px 0 0; position: relative;">
-              <span style="position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 11px; color: #999;">Mai</span>
+          </div>
+          
+          <!-- Visita 3 -->
+          <div class="consumption-visit-item" style="margin-bottom: 16px; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; overflow: hidden;">
+            <div class="consumption-visit-header" onclick="toggleVisitDetails(this)" style="padding: 20px; background: rgba(255, 255, 255, 0.02); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <div style="font-size: 16px; font-weight: 600; color: #f5f5f5; margin-bottom: 4px;">8 de Junho de 2025</div>
+                <div style="font-size: 13px; color: #999;">Sábado • 19:00 - 22:30</div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 16px;">
+                <div style="text-align: right;">
+                  <div style="font-size: 18px; font-weight: 600; color: #c66970;">R$ 380,00</div>
+                  <div style="font-size: 12px; color: #999;">Total</div>
+                </div>
+                <span class="expand-icon" style="color: #666; font-size: 20px; transition: transform 0.3s;">▼</span>
+              </div>
             </div>
-            <div style="flex: 1; background: #c66970; height: 85%; border-radius: 4px 4px 0 0; position: relative;">
-              <span style="position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 11px; color: #c66970; font-weight: 600;">Jun</span>
+            <div class="consumption-visit-details" style="display: none; padding: 20px; background: rgba(255, 255, 255, 0.01); border-top: 1px solid rgba(255, 255, 255, 0.05);">
+              <table style="width: 100%; font-size: 14px;">
+                <tbody>
+                  <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                    <td style="padding: 12px 0; color: #f5f5f5;">Jack Daniels</td>
+                    <td style="padding: 12px 0; text-align: center; color: #999;">3x</td>
+                    <td style="padding: 12px 0; text-align: right; color: #c66970;">R$ 210,00</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                    <td style="padding: 12px 0; color: #f5f5f5;">Risotto de Camarão</td>
+                    <td style="padding: 12px 0; text-align: center; color: #999;">1x</td>
+                    <td style="padding: 12px 0; text-align: right; color: #c66970;">R$ 98,00</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                    <td style="padding: 12px 0; color: #f5f5f5;">Suco Verde Detox</td>
+                    <td style="padding: 12px 0; text-align: center; color: #999;">2x</td>
+                    <td style="padding: 12px 0; text-align: right; color: #c66970;">R$ 34,00</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 12px 0; color: #f5f5f5;">Taxa de Serviço</td>
+                    <td style="padding: 12px 0; text-align: center; color: #999;">10%</td>
+                    <td style="padding: 12px 0; text-align: right; color: #c66970;">R$ 38,00</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
@@ -2693,13 +2780,13 @@
         <div style="text-align: center; padding: 20px 0;">
           <div style="font-size: 48px; margin-bottom: 20px;">🔑</div>
           <h3 style="font-size: 20px; color: #f4e5cf; margin-bottom: 16px; font-family: 'Georgia', serif;">
-            Solicitação de Renovação Confirmada
+            Renovação Silver Key Member
           </h3>
           <p style="font-size: 16px; color: #cccccc; line-height: 1.6; margin-bottom: 24px;">
-            Obrigado pelo seu interesse em renovar sua membership <strong>Silver Key</strong>!
+            Sua membership <strong>Silver Key</strong> está se aproximando da data de renovação.
           </p>
           <p style="font-size: 14px; color: #999; margin-bottom: 32px;">
-            Nossa equipe exclusiva entrará em contato em breve para finalizar os detalhes da sua renovação e apresentar possíveis upgrades de nível.
+            Depois de efetuar o pedido nossa equipe entrará em contato para finalizar os detalhes da sua renovação.
           </p>
           <div style="background: rgba(244, 229, 207, 0.1); border: 1px solid rgba(244, 229, 207, 0.2); padding: 16px; border-radius: 8px; margin-bottom: 24px;">
             <p style="font-size: 13px; color: #f4e5cf; margin: 0;">
@@ -2707,8 +2794,8 @@
               <strong>Contato:</strong> Via telefone ou e-mail cadastrado
             </p>
           </div>
-          <button class="btn-save" onclick="closeModal('renewalModal')" style="width: 100%;">
-            Entendido
+          <button class="btn-save" onclick="confirmRenewal()" style="width: 100%;">
+            Fazer pedido de renovação
           </button>
         </div>
       </div>
@@ -3049,6 +3136,20 @@
       }
     }
 
+    // Função para expandir/colapsar detalhes de consumo
+    function toggleVisitDetails(header) {
+      const details = header.nextElementSibling;
+      const icon = header.querySelector('.expand-icon');
+      
+      if (details.style.display === 'none' || !details.style.display) {
+        details.style.display = 'block';
+        icon.style.transform = 'rotate(180deg)';
+      } else {
+        details.style.display = 'none';
+        icon.style.transform = 'rotate(0deg)';
+      }
+    }
+    
     // Funções para os modais e outras interações
     function toggleEdit() {
       const form = document.getElementById('editForm');
@@ -3278,6 +3379,24 @@
     
     function renewMembership() {
       openModal('renewalModal');
+    }
+    
+    function confirmRenewal() {
+      closeModal('renewalModal');
+      showToast('Pedido de renovação enviado com sucesso!', 'success');
+      
+      // Adicionar notificação
+      appState.notifications.unshift({
+        id: Date.now(),
+        type: 'info',
+        icon: '🔑',
+        content: 'Pedido de renovação enviado. Aguarde contato da nossa equipe.',
+        time: 'Agora',
+        priority: 'info',
+        read: false
+      });
+      
+      loadNotifications();
     }
     
     function scrollToBenefits() {
